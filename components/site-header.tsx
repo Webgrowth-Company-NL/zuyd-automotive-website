@@ -14,8 +14,9 @@ export function SiteHeader() {
   const pathname = usePathname();
 
   return (
-    <header className="sticky top-0 z-50 bg-warm/85 backdrop-blur-[14px] border-b border-line-soft">
-      <div className="max-w-[1200px] mx-auto px-[22px] h-[72px] flex items-center justify-between gap-4">
+    <>
+      <header className="sticky top-0 z-50 bg-warm/85 backdrop-blur-[14px] border-b border-line-soft">
+        <div className="max-w-[1200px] mx-auto px-[22px] h-[72px] flex items-center justify-between gap-4">
         <Link href="/" aria-label="Zuyd Automotive — home" className="shrink-0">
           <Wordmark />
         </Link>
@@ -52,10 +53,11 @@ export function SiteHeader() {
             <Menu size={20} />
           </button>
         </div>
-      </div>
+        </div>
+      </header>
 
       {menuOpen && (
-        <div className="fixed inset-0 z-[60] bg-warm flex flex-col z-fade lg:hidden">
+        <div className="fixed inset-0 z-[70] bg-warm flex flex-col z-fade lg:hidden">
           <div className="max-w-[1200px] mx-auto w-full px-[22px] h-[72px] flex items-center justify-between border-b border-line-soft shrink-0">
             <Wordmark />
             <button
@@ -89,7 +91,7 @@ export function SiteHeader() {
           </div>
         </div>
       )}
-    </header>
+    </>
   );
 }
 
