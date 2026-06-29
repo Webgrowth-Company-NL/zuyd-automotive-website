@@ -1,56 +1,46 @@
+import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight, Plus } from "lucide-react";
 import type { CarView } from "@/lib/inventory";
 
+interface Shot {
+  src: string;
+  href: string;
+  title: string;
+  labels: string[];
+}
+
 /**
- * "Zuyd in beeld" — byq for-human-stijl filmische marquee van de échte occasions.
- * Geen stockfoto's (off-brand); premium editorial spotlight-kaarten met de
- * merk-gradient + overlay. TODO go-live: echte voertuigfoto's als achtergrond.
+ * "Zuyd in beeld" — byq for-human-stijl filmische image-marquee met de échte
+ * voertuigfoto's. Pauzeert bij hover. Geen stockbeeld: alleen onze eigen auto's.
  */
-function SpotlightCard({ car }: { car: CarView }) {
+function ShotCard({ shot }: { shot: Shot }) {
   return (
     <Link
-      href={`/occasions/${car.slug}`}
-      className="group relative flex-none w-[300px] sm:w-[360px] h-[440px] sm:h-[480px] rounded-[var(--radius-lg)] overflow-hidden bg-gradient-to-br from-steel to-slate"
+      href={shot.href}
+      className="group relative flex-none w-[300px] sm:w-[420px] h-[420px] sm:h-[500px] rounded-[var(--radius-lg)] overflow-hidden"
     >
-      {/* decoratieve ringen (byq-decor) */}
-      <span className="absolute -right-16 -top-16 w-56 h-56 rounded-full border-2 border-creme/10" />
-      <span className="absolute right-6 top-6 w-32 h-32 rounded-full border-2 border-creme/[0.07]" />
-      {/* groot, subtiel model-woordmerk op de achtergrond */}
-      <span className="absolute -left-2 bottom-24 font-display font-extrabold text-[clamp(56px,9vw,84px)] leading-none text-white/[0.06] uppercase tracking-tight select-none">
-        {car.model}
-      </span>
-
-      {/* top: status + prijs */}
-      <div className="relative z-10 flex items-start justify-between p-6">
-        <span
-          className="font-display font-bold text-[11.5px] px-2.5 py-1.5 rounded-full"
-          style={{ background: car.badge.bg, color: car.badge.color }}
-        >
-          {car.status}
-        </span>
-        <span className="font-display font-extrabold text-[19px] text-creme bg-white/10 backdrop-blur px-3 py-1.5 rounded-full">
-          {car.prijsFmt}
-        </span>
-      </div>
-
-      {/* bottom overlay */}
-      <div className="absolute inset-x-0 bottom-0 z-10 p-6 pt-16 bg-gradient-to-t from-slate/90 via-slate/50 to-transparent">
-        <div className="flex flex-col gap-1 mb-4">
-          {[`${car.bouwjaar} · ${car.kmFmt}`, `${car.brandstof} · ${car.transmissie}`].map((t) => (
-            <span key={t} className="flex items-center gap-2 text-creme/90 text-[12.5px] uppercase tracking-wide font-display font-semibold">
-              <Plus size={12} className="text-creme" />
-              {t}
-            </span>
-          ))}
-        </div>
-        <h3 className="font-display font-extrabold text-[22px] text-white leading-tight">
-          {car.title}
-        </h3>
-        <p className="text-creme/80 text-[14px] mt-0.5">{car.variant}</p>
-        <span className="inline-flex items-center gap-1.5 mt-4 font-display font-bold text-[14px] text-creme group-hover:gap-2.5 transition-all">
-          Bekijk deze auto
-          <ArrowUpRight size={16} />
+      <Image
+        src={shot.src}
+        alt={shot.title}
+        fill
+        sizes="(max-width: 640px) 300px, 420px"
+        className="object-cover transition-transform duration-500 group-hover:scale-[1.04]"
+      />
+      <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-slate/85 to-transparent" />
+      <div className="absolute bottom-0 left-0 right-0 p-6 flex flex-col gap-1.5">
+        {shot.labels.map((label) => (
+          <span
+            key={label}
+            className="flex items-center gap-2.5 text-creme uppercase text-[12px] tracking-wide font-display font-semibold"
+          >
+            <Plus size={12} className="text-creme" />
+            {label}
+          </span>
+        ))}
+        <span className="inline-flex items-center gap-1.5 mt-2 font-display font-bold text-[15px] text-white">
+          {shot.title}
+          <ArrowUpRight size={16} className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
         </span>
       </div>
     </Link>
@@ -58,9 +48,22 @@ function SpotlightCard({ car }: { car: CarView }) {
 }
 
 export function ShowcaseMarquee({ cars }: { cars: CarView[] }) {
-  if (cars.length === 0) return null;
-  const loop = [...cars, ...cars];
-  const duration = Math.max(cars.length * 6, 38);
+  // Vlakke lijst van échte foto's; bij placeholder (geen foto's) tonen we niets.
+  const shots: Shot[] = cars.flatMap((car) =>
+    car.photos.map((src) => ({
+      src,
+      href: `/occasions/${car.slug}`,
+      title: `${car.title} · ${car.prijsFmt}`,
+      labels: [`${car.brandstof} · ${car.transmissie}`, `${car.bouwjaar} · ${car.kmFmt}`],
+    })),
+  );
+  if (shots.length === 0) return null;
+
+  // Genoeg kaarten voor een vloeiende loop (verdubbel tot minstens 6).
+  let base = shots;
+  while (base.length < 6) base = [...base, ...shots];
+  const loop = [...base, ...base];
+  const duration = Math.max(base.length * 6, 40);
 
   return (
     <section className="py-[clamp(40px,6vw,80px)] overflow-hidden bg-warm">
@@ -82,8 +85,8 @@ export function ShowcaseMarquee({ cars }: { cars: CarView[] }) {
       </div>
       <div className="marquee">
         <div className="marquee-track gap-5" style={{ ["--marquee-duration" as string]: `${duration}s` }}>
-          {loop.map((car, i) => (
-            <SpotlightCard key={`${car.slug}-${i}`} car={car} />
+          {loop.map((shot, i) => (
+            <ShotCard key={`${shot.src}-${i}`} shot={shot} />
           ))}
         </div>
       </div>

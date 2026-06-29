@@ -13,6 +13,7 @@ export function carSlug(c: Car): string {
 }
 
 export function decorate(c: Car): CarView {
+  const photos = c.images ?? [];
   return {
     ...c,
     slug: carSlug(c),
@@ -23,5 +24,7 @@ export function decorate(c: Car): CarView {
     pkFmt: pkFmt(c.pk),
     badge: BADGES[c.status] ?? BADGES.Beschikbaar,
     available: c.status === "Beschikbaar" || c.status === "Nieuw binnen",
+    cover: photos[0] ?? null,
+    photos,
   };
 }

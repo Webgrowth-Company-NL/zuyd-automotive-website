@@ -11,6 +11,7 @@ export function CarCard({ car, priority }: { car: CarView; priority?: boolean })
     >
       <div className="relative aspect-[4/3]">
         <Photo
+          src={car.cover ?? undefined}
           alt={`${car.full} occasion`}
           label={`foto · ${car.title}`}
           rounded="rounded-none"

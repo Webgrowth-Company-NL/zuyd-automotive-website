@@ -26,7 +26,7 @@ const AVATARS = [
   "https://byqsupply-components.netlify.app/haldenmiller/images/ContactAvatar-3.webp",
 ];
 
-export function Hero() {
+export function Hero({ heroImage }: { heroImage?: string }) {
   const [mounted, setMounted] = useState(false);
   const [idx, setIdx] = useState(0);
 
@@ -117,7 +117,8 @@ export function Hero() {
         >
           <div className="absolute -right-4 -top-4 bottom-10 left-11 bg-steel rounded-[var(--radius-lg)] z-0" />
           <Photo
-            alt="Uitgelichte occasion van Zuyd Automotive in Breda"
+            src={heroImage}
+            alt="Renault Clio E-Tech Hybrid R.S. Line — occasion bij Zuyd Automotive in Breda"
             label="uitgelichte auto · hoofdfoto"
             priority
             sizes="(max-width: 1024px) 100vw, 560px"

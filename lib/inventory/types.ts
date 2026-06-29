@@ -22,8 +22,8 @@ export interface Car {
   status: CarStatus;
   highlights: string[];
   quote: string;
-  /** Aantal foto's beschikbaar (placeholder telt als 1). Later uit feed/CMS. */
-  fotoCount?: number;
+  /** Voertuigfoto's (lokaal in /public of later via feed/CMS). Leeg = placeholder. */
+  images?: string[];
 }
 
 /** Afgeleide weergavevelden bovenop Car. */
@@ -36,6 +36,10 @@ export interface CarView extends Car {
   pkFmt: string;
   badge: { bg: string; color: string };
   available: boolean;
+  /** Hoofdfoto (eerste image) of null bij placeholder. */
+  cover: string | null;
+  /** Alle foto's (genormaliseerd, evt. leeg). */
+  photos: string[];
 }
 
 /**

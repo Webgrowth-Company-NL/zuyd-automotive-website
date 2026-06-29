@@ -15,7 +15,7 @@ export default async function HomePage() {
   return (
     <>
       <JsonLd data={autoDealerLd()} />
-      <Hero />
+      <Hero heroImage={featured[0]?.cover ?? undefined} />
       <Featured cars={featured} />
       <Usp />
       <Personal />

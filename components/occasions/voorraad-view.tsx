@@ -79,6 +79,23 @@ export function VoorraadView({ cars }: { cars: CarView[] }) {
   const set = <K extends keyof Filters>(key: K, value: Filters[K]) =>
     setF((prev) => ({ ...prev, [key]: value }));
 
+  // Bij een kleine voorraad voegen filters niets toe: toon gewoon de auto's.
+  if (cars.length < 3) {
+    return (
+      <div>
+        <div className="text-[14.5px] text-slate-soft mb-4">
+          <b className="text-slate font-bold">{cars.length}</b>{" "}
+          {cars.length === 1 ? "auto beschikbaar" : "auto's beschikbaar"}
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-[22px]">
+          {cars.map((car, i) => (
+            <CarCard key={car.slug} car={car} priority={i === 0} />
+          ))}
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="flex flex-wrap gap-7 items-start">
       {/* Filters */}

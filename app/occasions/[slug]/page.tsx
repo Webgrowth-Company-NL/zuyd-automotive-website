@@ -17,6 +17,7 @@ import {
 } from "lucide-react";
 import { getAllSlugs, getCarBySlug, type CarView } from "@/lib/inventory";
 import { Photo } from "@/components/ui/photo";
+import { OccasionGallery } from "@/components/occasions/gallery";
 import { ZBadge } from "@/components/brand/logo";
 import { BookButton } from "@/components/booking/book-button";
 import { WhatsappIcon } from "@/components/ui/icons";
@@ -104,35 +105,12 @@ export default async function OccasionDetailPage({
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-[clamp(26px,3.5vw,44px)] items-start">
           {/* Gallery */}
-          <div>
-            <div className="relative">
-              <Photo
-                alt={`${car.full} occasion`}
-                label={`foto · ${car.full}`}
-                priority
-                sizes="(max-width: 1024px) 100vw, 560px"
-                className="w-full aspect-[4/3] shadow-soft"
-              />
-              <span
-                className="absolute top-4 left-4 font-display font-bold text-xs px-3 py-1.5 rounded-full"
-                style={{ background: car.badge.bg, color: car.badge.color }}
-              >
-                {car.status}
-              </span>
-            </div>
-            <div className="grid grid-cols-4 gap-2.5 mt-2.5">
-              {Array.from({ length: 4 }).map((_, t) => (
-                <Photo
-                  key={t}
-                  alt={`${car.title} foto ${t + 2}`}
-                  label=""
-                  rounded="rounded-[11px]"
-                  sizes="120px"
-                  className={`aspect-[4/3] ${t === 0 ? "outline outline-2 outline-steel" : "opacity-70"}`}
-                />
-              ))}
-            </div>
-          </div>
+          <OccasionGallery
+            photos={car.photos}
+            alt={`${car.full} occasion`}
+            status={car.status}
+            badge={car.badge}
+          />
 
           {/* Info */}
           <div>
