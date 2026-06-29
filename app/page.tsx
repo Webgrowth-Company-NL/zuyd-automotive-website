@@ -1,0 +1,28 @@
+import { getAllCars, getFeaturedCars } from "@/lib/inventory";
+import { autoDealerLd, JsonLd } from "@/lib/structured-data";
+import { Hero } from "@/components/sections/hero";
+import { Featured } from "@/components/sections/featured";
+import { Usp } from "@/components/sections/usp";
+import { Personal } from "@/components/sections/personal";
+import { TrustStats } from "@/components/sections/trust-stats";
+import { CarMarquee } from "@/components/sections/car-marquee";
+import { Testimonials } from "@/components/sections/testimonials";
+import { ClosingCta } from "@/components/sections/closing-cta";
+
+export default async function HomePage() {
+  const [featured, all] = await Promise.all([getFeaturedCars(3), getAllCars()]);
+
+  return (
+    <>
+      <JsonLd data={autoDealerLd()} />
+      <Hero />
+      <Featured cars={featured} />
+      <Usp />
+      <Personal />
+      <TrustStats />
+      <CarMarquee cars={all} />
+      <Testimonials />
+      <ClosingCta />
+    </>
+  );
+}

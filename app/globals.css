@@ -1,0 +1,119 @@
+@import "tailwindcss";
+
+/* ----------------------------------------------------------------------------
+   Zuyd Automotive — design tokens (afgeleid uit het logo / Claude Design)
+   Monochroom: staalblauw + crème + warme neutralen. Sober en volwassen.
+---------------------------------------------------------------------------- */
+@theme {
+  --color-steel: #5c7382;
+  --color-steel-deep: #42525e;
+  --color-steel-700: #384651;
+  --color-creme: #eae5d8;
+  --color-creme-deep: #e0d9c8;
+  --color-slate: #27333b;
+  --color-slate-soft: #62707a;
+  --color-warm: #f7f6f2;
+  --color-line: #e6e2d8;
+  --color-line-soft: #eeebe3;
+
+  --font-display: var(--font-archivo), "Archivo", system-ui, sans-serif;
+  --font-sans: var(--font-hanken), "Hanken Grotesk", system-ui, sans-serif;
+
+  --radius-sm: 10px;
+  --radius: 14px;
+  --radius-lg: 24px;
+
+  --shadow-sm: 0 1px 2px rgba(39, 51, 59, 0.06), 0 1px 1px rgba(39, 51, 59, 0.04);
+  --shadow-soft: 0 6px 22px rgba(39, 51, 59, 0.08);
+  --shadow-lg: 0 22px 60px rgba(39, 51, 59, 0.16);
+
+  --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    margin: 0;
+    background: var(--color-warm);
+    color: var(--color-slate);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  ::selection {
+    background: rgba(92, 115, 130, 0.22);
+  }
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    text-wrap: balance;
+  }
+  /* Range sliders in steel */
+  input[type="range"] {
+    accent-color: var(--color-steel);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after {
+      animation-duration: 0.001ms !important;
+      transition-duration: 0.001ms !important;
+    }
+  }
+}
+
+/* ----------------------------------------------------------------------------
+   Animaties (entrance + modal). IntersectionObserver triggert .is-revealed.
+---------------------------------------------------------------------------- */
+@keyframes z-fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes z-up {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes z-sheet {
+  from { opacity: 0; transform: translateY(28px) scale(0.99); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes z-marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+.z-fade { animation: z-fade 0.22s ease both; }
+.z-sheet { animation: z-sheet 0.32s var(--ease-out-soft) both; }
+
+/* Reveal-on-scroll */
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  filter: blur(6px);
+  transition: opacity 0.7s var(--ease-out-soft), transform 0.7s var(--ease-out-soft),
+    filter 0.7s var(--ease-out-soft);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+.reveal.is-revealed {
+  opacity: 1;
+  transform: none;
+  filter: blur(0);
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: z-marquee var(--marquee-duration, 40s) linear infinite;
+}
+.marquee:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; filter: none; }
+  .marquee-track { animation: none; }
+}
