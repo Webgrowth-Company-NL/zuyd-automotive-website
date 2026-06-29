@@ -1,9 +1,5 @@
-"use client";
-
-import { useEffect, useState } from "react";
 import Image from "next/image";
-import { ArrowLeft, ArrowRight, Star } from "lucide-react";
-import { cn } from "@/lib/cn";
+import { Star } from "lucide-react";
 
 interface Review {
   quote: string;
@@ -12,132 +8,81 @@ interface Review {
   avatar: string;
 }
 
-// TODO go-live: echte reviews + portretten (Google-reviews). byq CDN als placeholder.
+// TODO go-live: echte Google-reviews + portretten. byq CDN-portretten als placeholder.
 const REVIEWS: Review[] = [
   {
     quote:
-      "Rustig geholpen door Leroy, alle tijd genomen. Eerlijk verhaal over de auto en netjes afgeleverd. Precies wat je wil bij het kopen van een occasion.",
+      "Rustig geholpen door Leroy, alle tijd genomen. Eerlijk verhaal over de auto en netjes afgeleverd.",
     name: "Sandra",
     place: "Breda",
     avatar: "https://byqsupply-components.netlify.app/haldenmiller/images/ContactAvatar-3.webp",
   },
   {
     quote:
-      "Fijne, nuchtere mensen. Geen gladde verkooppraat. Onze eerste gezinsauto met een gerust gevoel gekocht bij Zuyd.",
+      "Fijne, nuchtere mensen. Geen gladde verkooppraat. Onze eerste gezinsauto met een gerust gevoel gekocht.",
     name: "Mehmet",
     place: "Etten-Leur",
     avatar: "https://byqsupply-components.netlify.app/haldenmiller/images/ContactAvatar-1.webp",
   },
   {
     quote:
-      "Auto online gevonden, bezichtiging gepland, en alles klopte. Aanrader voor wie geen gedoe wil en gewoon een goede auto zoekt.",
+      "Auto online gevonden, bezichtiging gepland, en alles klopte. Aanrader voor wie geen gedoe wil.",
     name: "Patrick",
     place: "Oosterhout",
     avatar: "https://byqsupply-components.netlify.app/haldenmiller/images/ContactAvatar.webp",
   },
+  {
+    quote:
+      "Eerlijk advies en een nette auto met garantie. Voelde echt als kopen van iemand die je kent, niet van een loket.",
+    name: "Linda",
+    place: "Prinsenbeek",
+    avatar: "https://byqsupply-components.netlify.app/haldenmiller/images/ContactAvatar-2.webp",
+  },
 ];
 
-export function Testimonials() {
-  const [i, setI] = useState(0);
-  const [paused, setPaused] = useState(false);
-
-  useEffect(() => {
-    if (paused) return;
-    const t = setInterval(() => setI((p) => (p + 1) % REVIEWS.length), 6000);
-    return () => clearInterval(t);
-  }, [paused]);
-
-  const go = (dir: number) => setI((p) => (p + dir + REVIEWS.length) % REVIEWS.length);
-  const r = REVIEWS[i];
-
+function ReviewCard({ r }: { r: Review }) {
   return (
-    <section className="max-w-[1200px] mx-auto px-[22px] py-[clamp(48px,6vw,80px)]">
-      <div className="flex items-end justify-between gap-5 flex-wrap mb-8">
-        <div>
-          <span className="font-display font-bold text-[13px] tracking-[0.14em] uppercase text-steel">
-            Wat kopers zeggen
-          </span>
-          <h2 className="font-display font-extrabold text-[clamp(26px,3.6vw,38px)] tracking-[-0.01em] text-slate mt-2">
-            Met een gerust gevoel gereden
-          </h2>
-        </div>
-        <div className="flex gap-2.5">
-          <SliderBtn label="Vorige" onClick={() => go(-1)}>
-            <ArrowLeft size={18} />
-          </SliderBtn>
-          <SliderBtn label="Volgende" onClick={() => go(1)}>
-            <ArrowRight size={18} />
-          </SliderBtn>
-        </div>
+    <figure className="flex flex-col justify-between w-[340px] sm:w-[400px] shrink-0 bg-creme rounded-[var(--radius-lg)] p-8 m-0">
+      <div className="flex gap-1 mb-4">
+        {Array.from({ length: 5 }).map((_, s) => (
+          <Star key={s} size={16} className="fill-steel text-steel" />
+        ))}
       </div>
-
-      <div
-        className="bg-white border border-line rounded-[var(--radius-lg)] shadow-soft overflow-hidden"
-        onMouseEnter={() => setPaused(true)}
-        onMouseLeave={() => setPaused(false)}
-      >
-        <div className="grid grid-cols-1 md:grid-cols-[260px_1fr]">
-          <div className="relative h-[220px] md:h-auto bg-creme-deep">
-            <Image
-              key={r.avatar}
-              src={r.avatar}
-              alt={`${r.name} uit ${r.place}`}
-              fill
-              sizes="260px"
-              className="object-cover z-fade"
-            />
-          </div>
-          <div className="p-7 md:p-10 flex flex-col justify-center">
-            <div className="flex gap-1 mb-4">
-              {Array.from({ length: 5 }).map((_, s) => (
-                <Star key={s} size={17} className="fill-steel text-steel" />
-              ))}
-            </div>
-            <blockquote
-              key={r.quote}
-              className="font-display font-semibold text-[clamp(18px,2.2vw,24px)] leading-snug text-slate z-fade"
-            >
-              “{r.quote}”
-            </blockquote>
-            <figcaption className="mt-5 text-[15px] text-slate-soft">
-              <b className="font-display font-bold text-slate">{r.name}</b> — {r.place}
-            </figcaption>
-            <div className="flex gap-1.5 mt-6">
-              {REVIEWS.map((_, d) => (
-                <button
-                  key={d}
-                  onClick={() => setI(d)}
-                  aria-label={`Review ${d + 1}`}
-                  className={cn(
-                    "h-1.5 rounded-full transition-all",
-                    d === i ? "w-6 bg-steel" : "w-1.5 bg-line",
-                  )}
-                />
-              ))}
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+      <blockquote className="font-display font-semibold text-[clamp(18px,2vw,23px)] leading-snug tracking-[-0.01em] text-slate m-0">
+        “{r.quote}”
+      </blockquote>
+      <figcaption className="flex items-center gap-3.5 mt-7">
+        <span className="w-12 h-12 rounded-full overflow-hidden shrink-0">
+          <Image src={r.avatar} alt={`${r.name} uit ${r.place}`} width={48} height={48} className="object-cover w-full h-full" />
+        </span>
+        <span className="leading-tight">
+          <span className="block font-display font-bold text-[15px] text-slate">{r.name}</span>
+          <span className="block text-[14px] text-slate-soft">{r.place}</span>
+        </span>
+      </figcaption>
+    </figure>
   );
 }
 
-function SliderBtn({
-  label,
-  onClick,
-  children,
-}: {
-  label: string;
-  onClick: () => void;
-  children: React.ReactNode;
-}) {
+export function Testimonials() {
+  const loop = [...REVIEWS, ...REVIEWS];
   return (
-    <button
-      aria-label={label}
-      onClick={onClick}
-      className="w-11 h-11 grid place-items-center bg-white border border-line rounded-xl text-slate hover:border-steel hover:text-steel-deep transition-colors"
-    >
-      {children}
-    </button>
+    <section className="py-[clamp(48px,7vw,96px)] overflow-hidden">
+      <div className="max-w-[1200px] mx-auto px-[22px] mb-10">
+        <span className="font-display font-bold text-[13px] tracking-[0.14em] uppercase text-steel">
+          Wat kopers zeggen
+        </span>
+        <h2 className="font-display font-extrabold text-[clamp(28px,4.4vw,52px)] tracking-[-0.02em] text-slate mt-2 max-w-[16ch]">
+          Met een gerust gevoel gereden
+        </h2>
+      </div>
+      <div className="marquee">
+        <div className="marquee-track gap-6" style={{ ["--marquee-duration" as string]: "44s" }}>
+          {loop.map((r, i) => (
+            <ReviewCard key={`${r.name}-${i}`} r={r} />
+          ))}
+        </div>
+      </div>
+    </section>
   );
 }

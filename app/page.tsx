@@ -5,7 +5,7 @@ import { Featured } from "@/components/sections/featured";
 import { Usp } from "@/components/sections/usp";
 import { Personal } from "@/components/sections/personal";
 import { TrustStats } from "@/components/sections/trust-stats";
-import { CarMarquee } from "@/components/sections/car-marquee";
+import { ShowcaseMarquee } from "@/components/sections/showcase-marquee";
 import { Testimonials } from "@/components/sections/testimonials";
 import { ClosingCta } from "@/components/sections/closing-cta";
 
@@ -19,8 +19,8 @@ export default async function HomePage() {
       <Featured cars={featured} />
       <Usp />
       <Personal />
+      <ShowcaseMarquee cars={all} />
       <TrustStats />
-      <CarMarquee cars={all} />
       <Testimonials />
       <ClosingCta />
     </>

@@ -16,17 +16,46 @@ interface Filters {
   maxKm: number;
 }
 
-const DEFAULTS: Filters = {
-  merk: "Alle merken",
-  brandstof: "Alle",
-  transmissie: "Alle",
-  maxPrijs: 12000,
-  minBouwjaar: 2015,
-  maxKm: 140000,
-};
+interface Bounds {
+  priceMin: number;
+  priceMax: number;
+  yearMin: number;
+  yearMax: number;
+  kmMin: number;
+  kmMax: number;
+}
+
+const roundDown = (n: number, step: number) => Math.floor(n / step) * step;
+const roundUp = (n: number, step: number) => Math.ceil(n / step) * step;
+
+function computeBounds(cars: CarView[]): Bounds {
+  const prices = cars.map((c) => c.prijs);
+  const years = cars.map((c) => c.bouwjaar);
+  const kms = cars.map((c) => c.km);
+  return {
+    priceMin: roundDown(Math.min(...prices), 500),
+    priceMax: roundUp(Math.max(...prices), 500),
+    yearMin: Math.min(...years),
+    yearMax: Math.max(...years),
+    kmMin: roundDown(Math.min(...kms), 5000),
+    kmMax: roundUp(Math.max(...kms), 5000),
+  };
+}
+
+function defaultsFrom(b: Bounds): Filters {
+  return {
+    merk: "Alle merken",
+    brandstof: "Alle",
+    transmissie: "Alle",
+    maxPrijs: b.priceMax,
+    minBouwjaar: b.yearMin,
+    maxKm: b.kmMax,
+  };
+}
 
 export function VoorraadView({ cars }: { cars: CarView[] }) {
-  const [f, setF] = useState<Filters>(DEFAULTS);
+  const bounds = useMemo(() => computeBounds(cars), [cars]);
+  const [f, setF] = useState<Filters>(() => defaultsFrom(bounds));
 
   const brandOptions = useMemo(
     () => ["Alle merken", ...Array.from(new Set(cars.map((c) => c.merk))).sort()],
@@ -60,7 +89,7 @@ export function VoorraadView({ cars }: { cars: CarView[] }) {
             Filters
           </span>
           <button
-            onClick={() => setF(DEFAULTS)}
+            onClick={() => setF(defaultsFrom(bounds))}
             className="text-[13px] font-semibold text-steel hover:text-steel-deep"
           >
             Wissen
@@ -88,17 +117,17 @@ export function VoorraadView({ cars }: { cars: CarView[] }) {
           <RangeField
             label="Max. prijs"
             display={euro(f.maxPrijs)}
-            min={8000}
-            max={12000}
-            step={250}
+            min={bounds.priceMin}
+            max={bounds.priceMax}
+            step={500}
             value={f.maxPrijs}
             onChange={(v) => set("maxPrijs", v)}
           />
           <RangeField
             label="Vanaf bouwjaar"
             display={String(f.minBouwjaar)}
-            min={2015}
-            max={2019}
+            min={bounds.yearMin}
+            max={bounds.yearMax}
             step={1}
             value={f.minBouwjaar}
             onChange={(v) => set("minBouwjaar", v)}
@@ -106,8 +135,8 @@ export function VoorraadView({ cars }: { cars: CarView[] }) {
           <RangeField
             label="Max. km-stand"
             display={kmFmt(f.maxKm)}
-            min={50000}
-            max={140000}
+            min={bounds.kmMin}
+            max={bounds.kmMax}
             step={5000}
             value={f.maxKm}
             onChange={(v) => set("maxKm", v)}
@@ -134,7 +163,7 @@ export function VoorraadView({ cars }: { cars: CarView[] }) {
             <p className="text-[14.5px] text-slate-soft mb-[18px]">
               Verruim je filters om meer occasions te zien.
             </p>
-            <Button size="sm" onClick={() => setF(DEFAULTS)}>
+            <Button size="sm" onClick={() => setF(defaultsFrom(bounds))}>
               Filters wissen
             </Button>
           </div>

@@ -6,6 +6,33 @@ import type { Car } from "./types";
  * Houd de shape gelijk; de UI leest alleen via de InventorySource-abstractie.
  */
 export const CARS: Car[] = [
+  // === ECHTE voorraad (Marktplaats, 1e eigenaar). De rest hieronder is demo. ===
+  {
+    id: "clio-etech-rs-line",
+    merk: "Renault",
+    model: "Clio",
+    variant: "1.6 E-Tech Hybrid R.S. Line 140",
+    prijs: 17990,
+    bouwjaar: 2022,
+    km: 31368,
+    brandstof: "Hybride",
+    transmissie: "Automaat",
+    pk: 140,
+    kleur: "Blue Iron metallic",
+    deuren: 5,
+    apk: "01-2028",
+    verbruik: "1 op 23,0",
+    status: "Beschikbaar",
+    highlights: [
+      "Eerste eigenaar, 31.368 km",
+      "Adaptive cruise control & Apple CarPlay",
+      "Achteruitrijcamera & RS Line sportstoelen",
+      "Dealeronderhouden, APK tot 01-2028",
+    ],
+    quote:
+      "Eén eigenaar, volledig dealeronderhouden en die zuinige E-Tech hybride: deze Clio rijdt als nieuw en is helemaal compleet.",
+  },
+  // === Demo-occasions (placeholder) — TODO go-live: vervangen door echte voorraad. ===
   {
     id: "polo",
     merk: "Volkswagen",
