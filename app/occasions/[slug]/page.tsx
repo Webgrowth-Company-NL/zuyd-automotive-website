@@ -56,6 +56,7 @@ function bookingCarOf(car: CarView) {
     prijsFmt: car.prijsFmt,
     bouwjaar: car.bouwjaar,
     kmFmt: car.kmFmt,
+    cover: car.cover,
   };
 }
 

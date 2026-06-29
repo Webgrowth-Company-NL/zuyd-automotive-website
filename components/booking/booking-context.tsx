@@ -9,6 +9,7 @@ export interface BookingCar {
   prijsFmt: string;
   bouwjaar: number;
   kmFmt: string;
+  cover?: string | null;
 }
 
 interface BookingContextValue {

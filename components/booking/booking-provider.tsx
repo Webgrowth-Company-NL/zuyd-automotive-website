@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useState } from "react";
+import Image from "next/image";
 import { Calendar, Check, MapPin, X, Car as CarIcon } from "lucide-react";
 import { BookingContext, type BookingCar } from "./booking-context";
 import { ZBadge } from "@/components/brand/logo";
@@ -143,7 +144,11 @@ export function BookingProvider({ children }: { children: React.ReactNode }) {
             <div className="p-[22px]">
               {car && step !== "done" && (
                 <div className="flex items-center gap-3.5 bg-white border border-line rounded-[var(--radius)] p-3 mb-5">
-                  <div className="w-16 h-12 rounded-[9px] shrink-0 bg-creme-deep" />
+                  <div className="relative w-16 h-12 rounded-[9px] shrink-0 overflow-hidden bg-creme-deep">
+                    {car.cover && (
+                      <Image src={car.cover} alt={car.full} fill sizes="64px" className="object-cover" />
+                    )}
+                  </div>
                   <div className="leading-tight flex-1 min-w-0">
                     <div className="font-display font-bold text-[15px] text-slate truncate">
                       {car.full}

@@ -17,11 +17,11 @@ export const SITE = {
   baseUrl: "https://www.zuydautomotive.nl",
   locale: "nl_NL",
 
-  // Contact — TODO go-live: echte gegevens
-  phoneDisplay: "06 12 34 56 78",
-  phoneE164: "+31612345678",
-  whatsapp: "31612345678",
-  email: "hallo@zuydautomotive.nl",
+  // Contact
+  phoneDisplay: "+31 6 81116583",
+  phoneE164: "+31681116583",
+  whatsapp: "31681116583",
+  email: "hallo@zuydautomotive.nl", // TODO go-live: echt e-mailadres bevestigen
 
   // Vestiging
   address: {

@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Archivo, Hanken_Grotesk } from "next/font/google";
 import "./globals.css";
 import { BookingProvider } from "@/components/booking/booking-provider";
@@ -52,6 +52,10 @@ export const metadata: Metadata = {
       "Persoonlijk uitgekozen occasions in Breda. Plan online een bezichtiging met Leroy.",
   },
   robots: { index: true, follow: true },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#F7F6F2",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
