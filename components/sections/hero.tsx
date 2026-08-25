@@ -6,7 +6,6 @@ import Image from "next/image";
 import { ArrowRight, Calendar, Check } from "lucide-react";
 import { BookButton } from "@/components/booking/book-button";
 import { buttonVariants } from "@/components/ui/button";
-import { ZBadge } from "@/components/brand/logo";
 import { Photo } from "@/components/ui/photo";
 import { cn } from "@/lib/cn";
 
@@ -131,7 +130,13 @@ export function Hero({ heroImage }: { heroImage?: string }) {
           </div>
           {/* Floating Leroy card */}
           <div className="absolute -left-1.5 -bottom-[18px] z-[2] bg-white border border-line rounded-2xl px-[18px] py-3.5 shadow-lg flex items-center gap-3.5 max-w-[280px]">
-            <ZBadge size={46} />
+            <Photo
+              src="/leroy/leroy-kop.jpg"
+              alt="Leroy van Zuyd Automotive"
+              rounded="rounded-full"
+              sizes="46px"
+              className="w-[46px] h-[46px] shrink-0"
+            />
             <span className="leading-snug">
               <span className="block font-display font-bold text-[14.5px] text-slate">
                 Welkom bij Leroy

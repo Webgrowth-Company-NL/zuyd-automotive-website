@@ -59,7 +59,7 @@ export default function OgImage() {
             Betrouwbare occasions in Breda
           </span>
           <span style={{ fontSize: 30, color: "#62707A", marginTop: 20 }}>
-            Persoonlijk uitgekozen door Leroy en Max · plan een bezichtiging
+            Persoonlijk uitgekozen door Leroy · plan een bezichtiging
           </span>
         </div>
       </div>

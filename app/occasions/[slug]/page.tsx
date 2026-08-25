@@ -191,6 +191,7 @@ export default async function OccasionDetailPage({
           <div className="absolute -right-16 -top-16 w-60 h-60 rounded-full border-2 border-creme/[0.07]" />
           <div className="absolute right-10 -bottom-[70px] w-40 h-40 rounded-full border-2 border-creme/[0.05]" />
           <Photo
+            src="/leroy/leroy-kop.jpg"
             alt="Leroy van Zuyd Automotive"
             label="foto · leroy"
             rounded="rounded-full"
@@ -208,7 +209,7 @@ export default async function OccasionDetailPage({
               <ZBadge size={36} />
               <span className="leading-tight">
                 <span className="block font-display font-bold text-[15px] text-white">Leroy</span>
-                <span className="block text-[13px] text-creme/70">Verkoop &amp; bezichtigingen</span>
+                <span className="block text-[13px] text-creme/70">Eigenaar Zuyd Automotive</span>
               </span>
             </div>
           </div>

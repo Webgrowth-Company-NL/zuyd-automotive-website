@@ -37,8 +37,9 @@ export function TrustStats() {
             <StatCard value="4,9" label="Gemiddelde beoordeling" />
 
             <Photo
-              alt="De showroom van Zuyd Automotive aan de Riethil in Breda"
-              label="foto · showroom"
+              src="/leroy/leroy-bezichtiging.jpg"
+              alt="Leroy laat een occasion zien in de garage van Zuyd Automotive in Breda"
+              label="foto · bezichtiging"
               sizes="(max-width: 1024px) 100vw, 280px"
               className="h-[300px] lg:h-auto lg:row-span-2"
               rounded="rounded-[var(--radius-lg)]"

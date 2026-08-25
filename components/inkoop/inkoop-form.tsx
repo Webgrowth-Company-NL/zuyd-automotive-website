@@ -68,7 +68,7 @@ export function InkoopForm() {
           Bedankt, we nemen contact op
         </h3>
         <p className="text-[15px] text-slate-soft max-w-[32ch] mx-auto mb-5 leading-relaxed">
-          Leroy of Max belt je binnen één werkdag met een eerlijk voorstel.
+          Leroy belt je binnen één werkdag met een eerlijk voorstel.
         </p>
         <Button
           variant="secondary"

@@ -12,7 +12,7 @@
 export const SITE = {
   name: "Zuyd Automotive",
   legalName: "Zuyd Automotive",
-  tagline: "Betaalbare occasions in Breda, persoonlijk uitgekozen door Leroy en Max.",
+  tagline: "Betaalbare occasions in Breda, persoonlijk uitgekozen door Leroy.",
   // TODO go-live: bevestig canonical host (1 van beide moet 200 geven, ander 301)
   baseUrl: "https://www.zuydautomotive.nl",
   locale: "nl_NL",

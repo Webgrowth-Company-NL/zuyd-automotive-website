@@ -6,26 +6,11 @@ import { breadcrumbLd, JsonLd } from "@/lib/structured-data";
 import { SITE } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Over ons — Leroy en Max",
+  title: "Over ons — Leroy van Zuyd Automotive",
   description:
-    "Zuyd Automotive wordt gerund door Leroy en Max. Twee mensen, één belofte: eerlijke, persoonlijk uitgekozen occasions in Breda. Maak kennis met de mensen achter Zuyd.",
+    "Zuyd Automotive wordt gerund door Leroy. Eén aanspreekpunt, één belofte: eerlijke, persoonlijk uitgekozen occasions in Breda. Maak kennis met de man achter Zuyd.",
   alternates: { canonical: "/over-ons" },
 };
-
-const TEAM = [
-  {
-    naam: "Leroy",
-    rol: "Verkoop & bezichtigingen",
-    label: "foto · leroy",
-    body: "Leroy ontvangt je en laat de auto rustig zien. Hij vertelt eerlijk wat je mag verwachten en denkt met je mee — zonder druk.",
-  },
-  {
-    naam: "Max",
-    rol: "Inkoop & techniek",
-    label: "foto · max",
-    body: "Max selecteert en keurt elke auto. Alleen wat technisch in orde is en wat we zelf zouden rijden, komt in de voorraad.",
-  },
-];
 
 const VALUES = [
   { title: "Nuchter & eerlijk", body: "We zeggen het zoals het is. Ook als een auto niet bij je past." },
@@ -51,13 +36,14 @@ export default function OverOnsPage() {
         </h1>
         <p className="text-[clamp(16px,2vw,19px)] leading-relaxed text-slate-soft mt-5 max-w-[56ch] mx-auto">
           Zuyd Automotive begon met een simpel idee: autokopen kan ook rustig, eerlijk en persoonlijk.
-          Geen showroom vol druk, maar twee mensen die je echt verder helpen.
+          Geen showroom vol druk, maar één vast aanspreekpunt dat je echt verder helpt.
         </p>
       </section>
 
       <section className="max-w-[1100px] mx-auto px-[22px] pt-[clamp(20px,3vw,30px)] pb-[clamp(40px,5vw,64px)]">
         <Reveal>
           <Photo
+            src="/leroy/pand.jpg"
             alt="Het pand van Zuyd Automotive aan de Riethil in Breda"
             label="foto · het pand aan de riethil"
             sizes="(max-width: 1100px) 100vw, 1056px"
@@ -69,33 +55,39 @@ export default function OverOnsPage() {
       <section className="bg-white border-y border-line-soft">
         <div className="max-w-[1100px] mx-auto px-[22px] py-[clamp(48px,6vw,80px)]">
           <h2 className="font-display font-extrabold text-[clamp(24px,3.4vw,34px)] text-slate text-center mb-2">
-            De mensen achter Zuyd
+            De man achter Zuyd
           </h2>
           <p className="text-center text-slate-soft text-[16.5px] max-w-[46ch] mx-auto mb-10">
-            Bij ons koop je geen auto van een onbekende. Je koopt &apos;m van Leroy of Max.
+            Bij ons koop je geen auto van een onbekende. Je koopt &apos;m van Leroy.
           </p>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-            {TEAM.map((m, i) => (
-              <Reveal key={m.naam} delay={i * 100}>
-                <div className="bg-warm border border-line-soft rounded-[var(--radius)] overflow-hidden h-full">
-                  <Photo
-                    alt={`${m.naam} van Zuyd Automotive`}
-                    label={m.label}
-                    rounded="rounded-none"
-                    sizes="(max-width: 640px) 100vw, 528px"
-                    className="aspect-[4/3]"
-                  />
-                  <div className="p-[22px]">
-                    <h3 className="font-display font-extrabold text-[21px] text-slate">{m.naam}</h3>
-                    <p className="text-[13.5px] font-semibold text-steel mt-1 mb-3 tracking-[0.02em]">
-                      {m.rol}
-                    </p>
-                    <p className="text-[15px] leading-relaxed text-slate-soft">{m.body}</p>
-                  </div>
-                </div>
-              </Reveal>
-            ))}
-          </div>
+          <Reveal>
+            <div className="grid grid-cols-1 sm:grid-cols-[minmax(0,5fr)_minmax(0,6fr)] items-stretch bg-warm border border-line-soft rounded-[var(--radius)] overflow-hidden">
+              <Photo
+                src="/leroy/leroy-portret.jpg"
+                alt="Leroy van Zuyd Automotive voor de garage aan de Riethil in Breda"
+                label="foto · leroy"
+                rounded="rounded-none"
+                sizes="(max-width: 640px) 100vw, 480px"
+                className="aspect-[4/3] sm:h-full"
+              />
+              <div className="p-[clamp(22px,3vw,34px)] flex flex-col justify-center">
+                <h3 className="font-display font-extrabold text-[clamp(21px,2.4vw,26px)] text-slate">
+                  Leroy
+                </h3>
+                <p className="text-[13.5px] font-semibold text-steel mt-1 mb-3.5 tracking-[0.02em]">
+                  Eigenaar · inkoop, verkoop en bezichtigingen
+                </p>
+                <p className="text-[15.5px] leading-relaxed text-slate-soft">
+                  Leroy zoekt elke auto zelf uit en keurt hem voordat hij in de voorraad komt. Alleen
+                  wat technisch in orde is en wat hij zelf zou rijden, verkoopt hij door.
+                </p>
+                <p className="text-[15.5px] leading-relaxed text-slate-soft mt-3">
+                  Kom je langs, dan ontvangt hij je persoonlijk en laat hij de auto rustig zien. Hij
+                  vertelt eerlijk wat je mag verwachten en denkt met je mee — zonder druk.
+                </p>
+              </div>
+            </div>
+          </Reveal>
         </div>
       </section>
 

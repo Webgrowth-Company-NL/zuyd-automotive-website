@@ -13,25 +13,26 @@ export function Personal() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-[clamp(28px,4vw,56px)] items-center">
           <Reveal>
             <Photo
-              alt="Leroy en Max van Zuyd Automotive"
-              label="foto · leroy & max"
+              src="/leroy/leroy-bij-auto.jpg"
+              alt="Leroy van Zuyd Automotive bij een auto voor de garage"
+              label="foto · leroy"
               sizes="(max-width: 1024px) 100vw, 560px"
               className="w-full aspect-[5/4] outline outline-1 outline-creme/12 shadow-[0_24px_60px_rgba(0,0,0,0.34)]"
             />
           </Reveal>
           <Reveal delay={120}>
             <span className="font-display font-bold text-[13px] tracking-[0.16em] uppercase text-[#9fb3bd]">
-              Wie zijn wij
+              Wie je treft
             </span>
             <h2 className="font-display font-extrabold text-[clamp(28px,3.8vw,44px)] tracking-[-0.015em] text-creme mt-3 leading-[1.05]">
-              Twee mensen,
+              Eén aanspreekpunt,
               <br />
               één belofte
             </h2>
             <p className="text-[17px] leading-relaxed text-warm/78 mt-5 max-w-[46ch]">
-              Zuyd Automotive wordt gerund door Leroy en Max. Met z&apos;n tweeën, en dat merk je. Wij
-              kennen elke auto in onze voorraad persoonlijk en nemen de tijd om hem je rustig te laten
-              zien. Geen verkooppraat, gewoon eerlijk advies.
+              Zuyd Automotive wordt gerund door Leroy. Je hebt dus altijd dezelfde man aan de lijn en
+              aan de deur. Hij kent elke auto in de voorraad persoonlijk en neemt de tijd om hem je
+              rustig te laten zien. Geen verkooppraat, gewoon eerlijk advies.
             </p>
             <p className="text-[17px] leading-relaxed text-warm/78 mt-3.5 max-w-[46ch]">
               Bij ons koop je geen nummer, maar een auto die wij met een gerust hart aan je meegeven.
