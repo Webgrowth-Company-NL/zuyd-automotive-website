@@ -13,7 +13,7 @@ export function Personal() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-[clamp(28px,4vw,56px)] items-center">
           <Reveal>
             <Photo
-              src="/leroy/leroy-bij-auto.jpg"
+              src="/leroy/leroy-autodeur.jpg"
               alt="Leroy van Zuyd Automotive bij een auto voor de garage"
               label="foto · leroy"
               sizes="(max-width: 1024px) 100vw, 560px"

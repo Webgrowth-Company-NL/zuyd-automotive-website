@@ -131,7 +131,7 @@ export function Hero({ heroImage }: { heroImage?: string }) {
           {/* Floating Leroy card */}
           <div className="absolute -left-1.5 -bottom-[18px] z-[2] bg-white border border-line rounded-2xl px-[18px] py-3.5 shadow-lg flex items-center gap-3.5 max-w-[280px]">
             <Photo
-              src="/leroy/leroy-kop.jpg"
+              src="/leroy/leroy-avatar.jpg"
               alt="Leroy van Zuyd Automotive"
               rounded="rounded-full"
               sizes="46px"

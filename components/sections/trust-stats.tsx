@@ -37,7 +37,7 @@ export function TrustStats() {
             <StatCard value="4,9" label="Gemiddelde beoordeling" />
 
             <Photo
-              src="/leroy/leroy-bezichtiging.jpg"
+              src="/leroy/leroy-voor-de-box.jpg"
               alt="Leroy laat een occasion zien in de garage van Zuyd Automotive in Breda"
               label="foto · bezichtiging"
               sizes="(max-width: 1024px) 100vw, 280px"

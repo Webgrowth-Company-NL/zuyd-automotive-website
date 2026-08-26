@@ -62,7 +62,7 @@ export default function OverOnsPage() {
           <Reveal>
             <div className="grid grid-cols-1 sm:grid-cols-[minmax(0,5fr)_minmax(0,6fr)] items-stretch bg-warm border border-line-soft rounded-[var(--radius)] overflow-hidden">
               <Photo
-                src="/leroy/leroy-portret.jpg"
+                src="/leroy/leroy-polo.jpg"
                 alt="Leroy van Zuyd Automotive voor de garage aan de Riethil in Breda"
                 label="foto · leroy"
                 rounded="rounded-none"
