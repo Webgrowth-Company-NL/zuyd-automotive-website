@@ -80,7 +80,7 @@ export default async function OccasionDetailPage({
     { icon: Droplet, label: "Verbruik", value: car.verbruik },
     { icon: Palette, label: "Kleur", value: car.kleur },
     { icon: ShieldCheck, label: "APK tot", value: car.apk },
-  ];
+  ].filter((s) => s.value); // onbekende specs (bv. verbruik) niet leeg tonen
 
   return (
     <div className="pb-[84px] lg:pb-0">

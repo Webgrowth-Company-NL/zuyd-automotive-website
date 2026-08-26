@@ -30,9 +30,10 @@ export function Personal() {
               één belofte
             </h2>
             <p className="text-[17px] leading-relaxed text-warm/78 mt-5 max-w-[46ch]">
-              Zuyd Automotive wordt gerund door Leroy. Je hebt dus altijd dezelfde man aan de lijn en
-              aan de deur. Hij kent elke auto in de voorraad persoonlijk en neemt de tijd om hem je
-              rustig te laten zien. Geen verkooppraat, gewoon eerlijk advies.
+              Dit is Leroy, mede-eigenaar van Zuyd Automotive. Bel je ons, dan krijg je hem aan de
+              lijn — geen callcenter, geen doorverbinden. Hij kent elke auto in de voorraad
+              persoonlijk en neemt de tijd om hem je rustig te laten zien. Geen verkooppraat, gewoon
+              eerlijk advies.
             </p>
             <p className="text-[17px] leading-relaxed text-warm/78 mt-3.5 max-w-[46ch]">
               Bij ons koop je geen nummer, maar een auto die wij met een gerust hart aan je meegeven.

@@ -8,7 +8,7 @@ import { SITE } from "@/lib/site";
 export const metadata: Metadata = {
   title: "Over ons — Leroy van Zuyd Automotive",
   description:
-    "Zuyd Automotive wordt gerund door Leroy. Eén aanspreekpunt, één belofte: eerlijke, persoonlijk uitgekozen occasions in Breda. Maak kennis met de man achter Zuyd.",
+    "Bij Zuyd Automotive krijg je Leroy aan de lijn. Eén aanspreekpunt, één belofte: eerlijke, persoonlijk uitgekozen occasions in Breda. Maak kennis met de man achter Zuyd.",
   alternates: { canonical: "/over-ons" },
 };
 
@@ -74,7 +74,7 @@ export default function OverOnsPage() {
                   Leroy
                 </h3>
                 <p className="text-[13.5px] font-semibold text-steel mt-1 mb-3.5 tracking-[0.02em]">
-                  Eigenaar · inkoop, verkoop en bezichtigingen
+                  Mede-eigenaar · inkoop, verkoop en bezichtigingen
                 </p>
                 <p className="text-[15.5px] leading-relaxed text-slate-soft">
                   Leroy zoekt elke auto zelf uit en keurt hem voordat hij in de voorraad komt. Alleen
