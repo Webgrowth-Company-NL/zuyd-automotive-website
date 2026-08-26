@@ -43,7 +43,6 @@ export default function OverOnsPage() {
       <section className="max-w-[1100px] mx-auto px-[22px] pt-[clamp(20px,3vw,30px)] pb-[clamp(40px,5vw,64px)]">
         <Reveal>
           <Photo
-            src="/leroy/pand.jpg"
             alt="Het pand van Zuyd Automotive aan de Riethil in Breda"
             label="foto · het pand aan de riethil"
             sizes="(max-width: 1100px) 100vw, 1056px"
