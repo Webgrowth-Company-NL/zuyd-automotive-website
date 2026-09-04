@@ -139,9 +139,9 @@ export function Hero({ heroImage }: { heroImage?: string }) {
             />
             <span className="leading-snug">
               <span className="block font-display font-bold text-[14.5px] text-slate">
-                Welkom bij Leroy
+                Vraag naar Leroy
               </span>
-              <span className="block text-[13px] text-slate-soft">Hij laat je de auto rustig zien</span>
+              <span className="block text-[13px] text-slate-soft">Je vaste aanspreekpunt</span>
             </span>
           </div>
         </div>

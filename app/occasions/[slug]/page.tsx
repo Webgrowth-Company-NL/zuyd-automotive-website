@@ -220,7 +220,7 @@ export default async function OccasionDetailPage({
               <ZBadge size={36} />
               <span className="leading-tight">
                 <span className="block font-display font-bold text-[15px] text-white">Leroy</span>
-                <span className="block text-[13px] text-creme/70">Eigenaar Zuyd Automotive</span>
+                <span className="block text-[13px] text-creme/70">Mede-eigenaar Zuyd Automotive</span>
               </span>
             </div>
           </div>
