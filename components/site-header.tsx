@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Calendar, Menu, X } from "lucide-react";
+import { Menu, Phone, X } from "lucide-react";
 import { Wordmark, ZBadge } from "@/components/brand/logo";
 import { BookButton } from "@/components/booking/book-button";
 import { NAV, SITE } from "@/lib/site";
@@ -17,7 +17,7 @@ export function SiteHeader() {
     <>
       <header className="sticky top-0 z-50 bg-warm/85 backdrop-blur-[14px] border-b border-line-soft">
         <div className="max-w-[1200px] mx-auto px-[22px] h-[72px] flex items-center justify-between gap-4">
-        <Link href="/" aria-label="Zuyd Automotive — home" className="shrink-0">
+        <Link href="/" aria-label="Zuyd Automotive, home" className="shrink-0">
           <Wordmark />
         </Link>
 
@@ -41,9 +41,9 @@ export function SiteHeader() {
 
         <div className="flex items-center gap-2.5">
           <BookButton size="sm" className="max-sm:px-4">
-            <Calendar size={17} />
-            <span className="max-sm:hidden">Plan bezichtiging</span>
-            <span className="sm:hidden">Plan</span>
+            <Phone size={17} />
+            <span className="max-sm:hidden">Maak een afspraak</span>
+            <span className="sm:hidden">Afspraak</span>
           </BookButton>
           <button
             onClick={() => setMenuOpen(true)}
@@ -81,11 +81,11 @@ export function SiteHeader() {
             </nav>
             <div className="flex flex-wrap gap-3.5 items-center">
               <BookButton size="lg" onClick={() => setMenuOpen(false)}>
-                Plan een bezichtiging met Leroy
+                Maak een afspraak
               </BookButton>
               <span className="text-[15px] text-slate-soft flex items-center gap-2">
                 <ZBadge size={26} />
-                {SITE.address.city} · 9:00–18:00
+                {SITE.address.city} · {SITE.openingText.toLowerCase()}
               </span>
             </div>
           </div>

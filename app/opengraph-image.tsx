@@ -2,7 +2,7 @@ import { ImageResponse } from "next/og";
 
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
-export const alt = "Zuyd Automotive — Betrouwbare occasions in Breda";
+export const alt = "Zuyd Automotive · Betrouwbare occasions in Breda";
 
 export default function OgImage() {
   return new ImageResponse(
@@ -59,7 +59,7 @@ export default function OgImage() {
             Betrouwbare occasions in Breda
           </span>
           <span style={{ fontSize: 30, color: "#62707A", marginTop: 20 }}>
-            Persoonlijk uitgekozen door Leroy · plan een bezichtiging
+            Persoonlijk uitgekozen · vraag naar Leroy
           </span>
         </div>
       </div>

@@ -9,6 +9,7 @@ import {
   Droplet,
   Fuel,
   Gauge,
+  Mail,
   Palette,
   Phone,
   ShieldCheck,
@@ -22,7 +23,7 @@ import { ZBadge } from "@/components/brand/logo";
 import { BookButton } from "@/components/booking/book-button";
 import { WhatsappIcon } from "@/components/ui/icons";
 import { breadcrumbLd, JsonLd, vehicleLd } from "@/lib/structured-data";
-import { SITE, telHref, whatsappHref } from "@/lib/site";
+import { SITE, mailHref, telHref, whatsappHref } from "@/lib/site";
 
 export async function generateStaticParams() {
   const slugs = await getAllSlugs();
@@ -39,7 +40,7 @@ export async function generateMetadata({
   if (!car) return { title: "Occasion niet gevonden" };
 
   const title = `${car.full} occasion kopen in Breda`;
-  const description = `${car.full} uit ${car.bouwjaar}, ${car.kmFmt}, ${car.brandstof}, ${car.transmissie}. ${car.prijsFmt} rijklaar incl. garantie bij Zuyd Automotive in Breda. Plan een bezichtiging met Leroy.`;
+  const description = `${car.full} uit ${car.bouwjaar}, ${car.kmFmt}, ${car.brandstof}, ${car.transmissie}. ${car.prijsFmt} rijklaar bij Zuyd Automotive in Breda. Bel of app en vraag naar Leroy voor een bezichtiging.`;
   return {
     title,
     description,
@@ -123,7 +124,7 @@ export default async function OccasionDetailPage({
               <span className="font-display font-extrabold text-[clamp(30px,4vw,40px)] text-steel">
                 {car.prijsFmt}
               </span>
-              <span className="text-sm text-slate-soft">rijklaar incl. garantie</span>
+              <span className="text-sm text-slate-soft">rijklaar</span>
             </div>
 
             <div className="grid grid-cols-[repeat(auto-fill,minmax(158px,1fr))] gap-2.5 mb-6">
@@ -151,7 +152,7 @@ export default async function OccasionDetailPage({
                 <ZBadge size={48} className="!bg-warm/15" />
                 <div className="leading-snug">
                   <div className="font-display font-bold text-base text-white">
-                    Plan een bezichtiging met Leroy
+                    Vraag naar Leroy
                   </div>
                   <div className="text-[13.5px] text-creme/85">
                     Bekijk deze auto rustig op je gemak
@@ -159,7 +160,7 @@ export default async function OccasionDetailPage({
                 </div>
               </div>
               <BookButton car={bc} variant="onDark" size="md" className="w-full h-[54px]">
-                Plan bezichtiging
+                Maak een afspraak
               </BookButton>
             </div>
 
@@ -179,6 +180,16 @@ export default async function OccasionDetailPage({
               >
                 <WhatsappIcon size={17} />
                 WhatsApp
+              </a>
+              <a
+                href={mailHref(
+                  `Bezichtiging ${car.full}`,
+                  `Hoi Leroy, ik wil graag de ${car.full} (${car.prijsFmt}) bekijken. Wanneer kan dat?`,
+                )}
+                className="flex-1 inline-flex items-center justify-center gap-2.5 h-[50px] bg-white border-[1.5px] border-line rounded-xl font-display font-bold text-[15px] text-slate hover:border-steel hover:text-steel-deep transition-colors"
+              >
+                <Mail size={17} />
+                Mailen
               </a>
             </div>
           </div>
@@ -239,7 +250,11 @@ export default async function OccasionDetailPage({
               Met een gerust hart
             </h3>
             <div className="flex flex-col gap-4 relative">
-              <TrustRow icon={ShieldCheck} title="Garantie inbegrepen" body="Standaard 6 maanden, uit te breiden." />
+              <TrustRow
+                icon={ShieldCheck}
+                title="Garantie mogelijk"
+                body="Via Auto Trust, landelijk netwerk van vakgarages."
+              />
               <TrustRow icon={CheckCircle2} title="Gekeurd & onderhouden" body="Met onderhoudshistorie en nieuwe APK." />
               <TrustRow icon={RefreshCw} title="Inruil mogelijk" body="Wij nemen je huidige auto graag mee." />
             </div>
@@ -267,8 +282,8 @@ export default async function OccasionDetailPage({
             <WhatsappIcon size={20} />
           </a>
           <BookButton car={bc} size="md" className="flex-1 h-[52px]">
-            <Calendar size={18} />
-            Plan bezichtiging
+            <Phone size={18} />
+            Maak een afspraak
           </BookButton>
         </div>
       </div>

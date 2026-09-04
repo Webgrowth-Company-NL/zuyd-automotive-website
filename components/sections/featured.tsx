@@ -53,7 +53,7 @@ function SingleSpotlight({ car }: { car: CarView }) {
           <span className="font-display font-extrabold text-[clamp(26px,3.5vw,34px)] text-steel">
             {car.prijsFmt}
           </span>
-          <span className="text-sm text-slate-soft">rijklaar incl. garantie</span>
+          <span className="text-sm text-slate-soft">rijklaar</span>
         </div>
         <div className="flex flex-wrap gap-2 mb-5">
           {specs.map((s, i) => (
@@ -77,7 +77,7 @@ function SingleSpotlight({ car }: { car: CarView }) {
         <div className="flex flex-wrap gap-3">
           <BookButton car={bookingCarOf(car)} size="md">
             <Calendar size={17} />
-            Plan bezichtiging
+            Maak een afspraak
           </BookButton>
           <Link
             href={`/occasions/${car.slug}`}

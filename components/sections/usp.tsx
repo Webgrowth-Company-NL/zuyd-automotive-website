@@ -9,8 +9,8 @@ const ITEMS = [
   },
   {
     icon: CalendarCheck,
-    title: "Plan zelf je bezichtiging",
-    body: "Kies online een moment dat jou uitkomt. Leroy staat voor je klaar, zonder gehaast.",
+    title: "Vast aanspreekpunt",
+    body: "Bel of app en vraag naar Leroy. Hij laat je de auto zien, zonder gehaast.",
   },
   {
     icon: Sparkles,
@@ -19,8 +19,8 @@ const ITEMS = [
   },
   {
     icon: ShieldCheck,
-    title: "Garantie op orde",
-    body: "Gekeurd en met onderhoudshistorie. We leveren de auto netjes en compleet af.",
+    title: "Garantie mogelijk",
+    body: "Via Auto Trust, met een landelijk netwerk van vakgarages. Vraag ernaar bij je auto.",
   },
 ];
 

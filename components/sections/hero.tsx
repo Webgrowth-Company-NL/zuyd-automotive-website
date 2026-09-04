@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight, Calendar, Check } from "lucide-react";
+import { ArrowRight, Check, Phone } from "lucide-react";
 import { BookButton } from "@/components/booking/book-button";
 import { buttonVariants } from "@/components/ui/button";
 import { Photo } from "@/components/ui/photo";
@@ -11,7 +11,7 @@ import { cn } from "@/lib/cn";
 
 const ROTATING = [
   "persoonlijk uitgekozen",
-  "gekeurd & met garantie",
+  "gekeurd voor aflevering",
   "zonder verkooppraat",
   "klaar voor de weg",
 ];
@@ -70,14 +70,14 @@ export function Hero({ heroImage }: { heroImage?: string }) {
           </h1>
 
           <p className="text-[clamp(16px,2vw,19px)] leading-relaxed text-slate-soft max-w-[40ch] mt-5">
-            Een eerlijke auto, zonder verkooppraat. Plan online zelf je persoonlijke bezichtiging met
-            Leroy en bekijk hem rustig op je gemak.
+            Welkom bij Zuyd Automotive. Vraag naar Leroy, dan laat hij je de auto zien waar je
+            interesse in hebt. Rustig, op je gemak en zonder verkooppraat.
           </p>
 
           <div className="flex flex-wrap gap-3 mt-7">
             <BookButton size="lg">
-              <Calendar size={18} />
-              Plan een bezichtiging
+              <Phone size={18} />
+              Maak een afspraak
             </BookButton>
             <Link href="/occasions" className={buttonVariants({ variant: "secondary", size: "lg" })}>
               Bekijk de voorraad
@@ -117,7 +117,7 @@ export function Hero({ heroImage }: { heroImage?: string }) {
           <div className="absolute -right-4 -top-4 bottom-10 left-11 bg-steel rounded-[var(--radius-lg)] z-0" />
           <Photo
             src={heroImage}
-            alt="Renault Clio E-Tech Hybrid R.S. Line — occasion bij Zuyd Automotive in Breda"
+            alt="Renault Clio E-Tech Hybrid R.S. Line · occasion bij Zuyd Automotive in Breda"
             label="uitgelichte auto · hoofdfoto"
             priority
             sizes="(max-width: 1024px) 100vw, 560px"
@@ -126,7 +126,7 @@ export function Hero({ heroImage }: { heroImage?: string }) {
           {/* Rating chip top-right */}
           <div className="absolute z-[2] right-3 top-3 bg-white/92 backdrop-blur border border-line rounded-full px-3 py-1.5 flex items-center gap-1.5 shadow-soft">
             <Check size={15} className="text-steel" />
-            <span className="text-[12.5px] font-semibold text-slate">Gekeurd & garantie</span>
+            <span className="text-[12.5px] font-semibold text-slate">Gekeurd voor aflevering</span>
           </div>
           {/* Floating Leroy card */}
           <div className="absolute -left-1.5 -bottom-[18px] z-[2] bg-white border border-line rounded-2xl px-[18px] py-3.5 shadow-lg flex items-center gap-3.5 max-w-[280px]">

@@ -1,25 +1,22 @@
 /**
- * Lead-afhandeling — Forester Lead Engine (gestubd).
+ * Lead-afhandeling via de Forester Lead Engine (captureFormLead).
  *
- * TODO go-live:
- *  - Zet FORESTER_LEAD_ENGINE_ID + endpoint/credentials in .env.
- *  - Implementeer `dispatchToForester` met de echte Lead Engine-call
- *    (zelfde patroon als captureFormLead / andere klantsites).
- *  - Tot dat moment loggen we de lead server-side zodat niets verloren gaat.
+ * Alleen het inkoopformulier levert nog een lead op. Bezichtigingen lopen
+ * bewust rechtstreeks via Leroy (bellen, WhatsApp of mail), dus daar komt geen
+ * formulier meer aan te pas.
+ *
+ * Forester doet de rest: lead opslaan, notificatie naar Leroy, en de
+ * bevestigingsmail naar de inzender via Postmark. Die bevestiging is een
+ * instelling op de lead engine zelf (`config.settings.confirmationEmail.enabled`),
+ * niet iets wat deze site verstuurt.
+ *
+ * TODO go-live: FORESTER_WEBSITE_ID + FORESTER_LEAD_ENGINE_INKOOP in Vercel
+ * zetten. Zolang die leeg zijn logt de site de lead server-side, zodat niets
+ * verloren gaat.
  */
 
-export type LeadType = "bezichtiging" | "inkoop";
-
-export interface BezichtigingLead {
-  type: "bezichtiging";
-  car?: { slug: string; full: string; prijs: number } | null;
-  dag: string; // ISO date (yyyy-mm-dd)
-  dagLabel: string;
-  tijdslot: string;
-  naam: string;
-  telefoon: string;
-  bericht?: string;
-}
+const CAPTURE_URL =
+  "https://europe-west4-webgrowth-company-lzz4e6.cloudfunctions.net/captureFormLead";
 
 export interface InkoopLead {
   type: "inkoop";
@@ -28,35 +25,100 @@ export interface InkoopLead {
   bouwjaar: string;
   km: string;
   kenteken?: string;
+  onderhoudshistorie?: string;
+  aankomendOnderhoud?: string;
   naam: string;
+  email: string;
   telefoon: string;
 }
 
-export type Lead = BezichtigingLead | InkoopLead;
+/** Keramische coating: prijs is op aanvraag, dus we vragen auto en kleur uit. */
+export interface CoatingLead {
+  type: "coating";
+  autoType: string;
+  kleur: string;
+  toelichting?: string;
+  naam: string;
+  email: string;
+  telefoon: string;
+}
+
+export type Lead = InkoopLead | CoatingLead;
 
 export interface LeadResult {
   ok: boolean;
   error?: string;
 }
 
-const LEAD_ENGINE_ID = process.env.FORESTER_LEAD_ENGINE_ID;
+const WEBSITE_ID = process.env.FORESTER_WEBSITE_ID;
 
-async function dispatchToForester(lead: Lead): Promise<LeadResult> {
-  // STUB: echte Forester Lead Engine-koppeling komt hier.
-  // Verwacht payload-vorm sluit aan op de bestaande lead-engine flow.
-  if (!LEAD_ENGINE_ID) {
-    console.info("[lead] (stub, geen FORESTER_LEAD_ENGINE_ID) ontvangen:", JSON.stringify(lead));
-    return { ok: true };
+function engineIdVoor(type: Lead["type"]): string | undefined {
+  return type === "inkoop"
+    ? process.env.FORESTER_LEAD_ENGINE_INKOOP
+    : process.env.FORESTER_LEAD_ENGINE_COATING;
+}
+
+/** Vlakke payload; captureFormLead mapt op de keys name/email/phone. */
+function payloadVoor(lead: Lead, engineId: string | undefined) {
+  const basis = {
+    websiteId: WEBSITE_ID,
+    ...(engineId ? { leadEngineId: engineId } : {}),
+    formId: lead.type,
+    name: lead.naam,
+    email: lead.email,
+    phone: lead.telefoon,
+    submittedAt: new Date().toISOString(),
+  };
+
+  if (lead.type === "coating") {
+    return {
+      ...basis,
+      pageId: "/detailing",
+      answer_autoType: lead.autoType,
+      answer_kleur: lead.kleur,
+      answer_toelichting: lead.toelichting ?? "",
+    };
   }
 
-  // Voorbeeld van de toekomstige call (uitgeschakeld tot endpoint bekend is):
-  // const res = await fetch(`${process.env.FORESTER_LEAD_ENGINE_URL}/${LEAD_ENGINE_ID}`, {
-  //   method: "POST",
-  //   headers: { "content-type": "application/json" },
-  //   body: JSON.stringify(lead),
-  // });
-  // return { ok: res.ok };
-  console.info("[lead] ontvangen voor engine", LEAD_ENGINE_ID, JSON.stringify(lead));
+  return {
+    ...basis,
+    pageId: "/inkoop",
+    answer_merk: lead.merk,
+    answer_model: lead.model,
+    answer_bouwjaar: lead.bouwjaar,
+    answer_km: lead.km,
+    answer_kenteken: lead.kenteken ?? "",
+    answer_onderhoudshistorie: lead.onderhoudshistorie ?? "",
+    answer_aankomendOnderhoud: lead.aankomendOnderhoud ?? "",
+  };
+}
+
+async function dispatchToForester(lead: Lead): Promise<LeadResult> {
+  if (!WEBSITE_ID) {
+    console.warn(
+      "[lead] FORESTER_WEBSITE_ID ontbreekt, lead niet verstuurd, alleen gelogd:",
+      JSON.stringify(lead),
+    );
+    return { ok: true };
+  }
+  const engineId = engineIdVoor(lead.type);
+  if (!engineId) {
+    // Zonder engine stuurt Forester geen bevestigingsmail naar de inzender.
+    console.warn(`[lead] geen lead engine voor "${lead.type}", geen bevestigingsmail`);
+  }
+
+  const res = await fetch(CAPTURE_URL, {
+    method: "POST",
+    headers: { "content-type": "application/json" },
+    body: JSON.stringify(payloadVoor(lead, engineId)),
+  });
+
+  if (!res.ok) {
+    const tekst = await res.text().catch(() => "");
+    console.error("[lead] captureFormLead mislukt:", res.status, tekst);
+    return { ok: false, error: "verzenden mislukt" };
+  }
+
   return { ok: true };
 }
 
@@ -69,56 +131,51 @@ export async function submitLead(lead: Lead): Promise<LeadResult> {
   }
 }
 
+const emailOk = (e: string) => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(e);
+const telOk = (t: string) => t.replace(/\D/g, "").length >= 9;
+
 /** Eenvoudige validatie aan de systeemgrens (API route). */
 export function validateLead(input: unknown): Lead | null {
   if (!input || typeof input !== "object") return null;
   const o = input as Record<string, unknown>;
+  if (o.type !== "inkoop" && o.type !== "coating") return null;
+
   const str = (v: unknown) => (typeof v === "string" ? v.trim() : "");
-  const telOk = (t: string) => t.replace(/\D/g, "").length >= 9;
+  const naam = str(o.naam);
+  const email = str(o.email).toLowerCase();
+  const telefoon = str(o.telefoon);
+  if (naam.length < 2 || !emailOk(email) || !telOk(telefoon)) return null;
 
-  if (o.type === "bezichtiging") {
-    const naam = str(o.naam);
-    const telefoon = str(o.telefoon);
-    const dag = str(o.dag);
-    const tijdslot = str(o.tijdslot);
-    if (naam.length < 2 || !telOk(telefoon) || !dag || !tijdslot) return null;
-    const car =
-      o.car && typeof o.car === "object"
-        ? {
-            slug: str((o.car as Record<string, unknown>).slug),
-            full: str((o.car as Record<string, unknown>).full),
-            prijs: Number((o.car as Record<string, unknown>).prijs) || 0,
-          }
-        : null;
+  if (o.type === "coating") {
+    const autoType = str(o.autoType);
+    const kleur = str(o.kleur);
+    if (!autoType || !kleur) return null;
     return {
-      type: "bezichtiging",
-      car,
-      dag,
-      dagLabel: str(o.dagLabel),
-      tijdslot,
+      type: "coating",
+      autoType,
+      kleur,
+      toelichting: str(o.toelichting) || undefined,
       naam,
-      telefoon,
-      bericht: str(o.bericht) || undefined,
-    };
-  }
-
-  if (o.type === "inkoop") {
-    const naam = str(o.naam);
-    const telefoon = str(o.telefoon);
-    const merk = str(o.merk);
-    const model = str(o.model);
-    if (naam.length < 2 || !telOk(telefoon) || !merk || !model) return null;
-    return {
-      type: "inkoop",
-      merk,
-      model,
-      bouwjaar: str(o.bouwjaar),
-      km: str(o.km),
-      kenteken: str(o.kenteken) || undefined,
-      naam,
+      email,
       telefoon,
     };
   }
 
-  return null;
+  const merk = str(o.merk);
+  const model = str(o.model);
+  if (!merk || !model) return null;
+
+  return {
+    type: "inkoop",
+    merk,
+    model,
+    bouwjaar: str(o.bouwjaar),
+    km: str(o.km),
+    kenteken: str(o.kenteken) || undefined,
+    onderhoudshistorie: str(o.onderhoudshistorie) || undefined,
+    aankomendOnderhoud: str(o.aankomendOnderhoud) || undefined,
+    naam,
+    email,
+    telefoon,
+  };
 }

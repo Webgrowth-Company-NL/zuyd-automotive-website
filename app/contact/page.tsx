@@ -1,15 +1,15 @@
 import type { Metadata } from "next";
-import { Clock, MapPin, Phone } from "lucide-react";
+import { Clock, Mail, MapPin, Phone } from "lucide-react";
 import { Photo } from "@/components/ui/photo";
 import { BookButton } from "@/components/booking/book-button";
 import { WhatsappIcon } from "@/components/ui/icons";
 import { autoDealerLd, breadcrumbLd, JsonLd } from "@/lib/structured-data";
-import { SITE, mapsHref, telHref, whatsappHref } from "@/lib/site";
+import { SITE, mailHref, mapsHref, telHref, whatsappHref } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Contact — kom langs in Breda",
+  title: "Contact · kom langs in Breda",
   description:
-    "Zuyd Automotive aan de Riethil 14 in Breda. Bekijk openingstijden, bel of app ons, of plan vooraf een bezichtiging met Leroy zodat de auto klaarstaat.",
+    "Zuyd Automotive aan de Riethil 14 in Breda. Bekijk openingstijden en bel, app of mail Leroy voor een afspraak, dan staat de auto klaar.",
   alternates: { canonical: "/contact" },
 };
 
@@ -60,14 +60,11 @@ export default function ContactPage() {
                 <Clock size={20} />
               </IconBox>
               <div className="flex-1">
-                <div className="font-display font-bold text-base text-slate mb-2">Openingstijden</div>
-                <div className="flex flex-col gap-1.5 text-[14.5px] text-slate-soft">
-                  {SITE.openingHours.map((row) => (
-                    <span key={row.day} className="flex justify-between">
-                      <span>{row.day}</span>
-                      <span>{row.time}</span>
-                    </span>
-                  ))}
+                <div className="font-display font-bold text-base text-slate mb-2">
+                  {SITE.openingText}
+                </div>
+                <div className="text-[14.5px] text-slate-soft leading-relaxed">
+                  {SITE.openingSub}
                 </div>
               </div>
             </div>
@@ -89,6 +86,16 @@ export default function ContactPage() {
                 <WhatsappIcon size={17} />
                 WhatsApp
               </a>
+              <a
+                href={mailHref(
+                  "Afspraak voor een bezichtiging",
+                  "Hoi Leroy, ik wil graag langskomen om een auto te bekijken. Wanneer kan dat?",
+                )}
+                className="flex-1 inline-flex items-center justify-center gap-2.5 h-[52px] bg-white border-[1.5px] border-line rounded-xl font-display font-bold text-[15px] text-slate hover:border-steel hover:text-steel-deep transition-colors"
+              >
+                <Mail size={17} />
+                Mailen
+              </a>
             </div>
           </div>
 
@@ -107,12 +114,12 @@ export default function ContactPage() {
             <div className="bg-steel rounded-[var(--radius)] p-6 mt-3.5 flex flex-wrap items-center justify-between gap-4">
               <div>
                 <div className="font-display font-bold text-[17px] text-white">
-                  Liever zeker van een moment?
+                  Een auto bekijken?
                 </div>
-                <div className="text-sm text-creme/88">Plan online een bezichtiging met Leroy.</div>
+                <div className="text-sm text-creme/88">Leroy plant de afspraak zo met je in.</div>
               </div>
               <BookButton variant="onDark" size="md">
-                Plan bezichtiging
+                Maak een afspraak
               </BookButton>
             </div>
           </div>

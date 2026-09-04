@@ -23,11 +23,11 @@ const hanken = Hanken_Grotesk({
 export const metadata: Metadata = {
   metadataBase: new URL(SITE.baseUrl),
   title: {
-    default: "Zuyd Automotive — Betrouwbare occasions in Breda",
+    default: "Zuyd Automotive · Betrouwbare occasions in Breda",
     template: "%s · Zuyd Automotive",
   },
   description:
-    "Betaalbare, persoonlijk uitgekozen occasions in Breda. Plan online een bezichtiging met Leroy. Gekeurd, met garantie en eerlijk advies — zonder verkooppraat.",
+    "Betaalbare, persoonlijk uitgekozen occasions in Breda. Vraag naar Leroy voor een bezichtiging. Gekeurd, eerlijk advies en garantie mogelijk, zonder verkooppraat.",
   keywords: [
     "occasions Breda",
     "tweedehands auto Breda",
@@ -41,15 +41,15 @@ export const metadata: Metadata = {
     locale: SITE.locale,
     url: SITE.baseUrl,
     siteName: SITE.name,
-    title: "Zuyd Automotive — Betrouwbare occasions in Breda",
+    title: "Zuyd Automotive · Betrouwbare occasions in Breda",
     description:
-      "Persoonlijk uitgekozen occasions in Breda. Plan online een bezichtiging met Leroy.",
+      "Persoonlijk uitgekozen occasions in Breda. Vraag naar Leroy voor een bezichtiging.",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Zuyd Automotive — Betrouwbare occasions in Breda",
+    title: "Zuyd Automotive · Betrouwbare occasions in Breda",
     description:
-      "Persoonlijk uitgekozen occasions in Breda. Plan online een bezichtiging met Leroy.",
+      "Persoonlijk uitgekozen occasions in Breda. Vraag naar Leroy voor een bezichtiging.",
   },
   robots: { index: true, follow: true },
 };

@@ -32,13 +32,9 @@ export function SiteFooter() {
             </a>
           </FooterCol>
 
-          <FooterCol title="Openingstijden">
-            {SITE.openingHours.map((row) => (
-              <span key={row.day} className="flex justify-between gap-4">
-                <span>{row.day}</span>
-                <span>{row.time}</span>
-              </span>
-            ))}
+          <FooterCol title="Langskomen">
+            <span>{SITE.openingText}</span>
+            <span>{SITE.openingSub}</span>
           </FooterCol>
         </div>
 

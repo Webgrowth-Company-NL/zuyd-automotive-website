@@ -1,4 +1,4 @@
-/** Nederlandse formatters — consistent over de hele site. */
+/** Nederlandse formatters, consistent over de hele site. */
 
 export function euro(n: number): string {
   return "€ " + Number(n).toLocaleString("nl-NL");

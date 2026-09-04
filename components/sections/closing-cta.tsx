@@ -15,12 +15,12 @@ export function ClosingCta() {
               Klaar om je volgende auto te ontmoeten?
             </h2>
             <p className="text-[17px] leading-relaxed text-creme/92 mt-4 mb-7 max-w-[46ch]">
-              Plan een persoonlijke bezichtiging met Leroy. Kies een moment dat jou uitkomt — wij
-              zorgen dat de auto klaarstaat.
+              Bel of app even en vraag naar Leroy. We werken op afspraak, dus zeg wanneer het je
+              uitkomt en de auto staat klaar.
             </p>
             <div className="flex flex-wrap gap-3.5">
               <BookButton variant="onDark" size="lg">
-                Plan een bezichtiging met Leroy
+                Maak een afspraak
               </BookButton>
               <Link
                 href="/occasions"

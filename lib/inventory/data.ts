@@ -59,7 +59,7 @@ export const CARS: Car[] = [
       "S line interieurpakket en panoramadak",
       "Adaptieve cruise control en Audi navigatie",
       "Volledige en aantoonbare onderhoudshistorie",
-      "Lichte schade aan de achterbumper — zie foto's",
+      "Lichte schade aan de achterbumper, zie foto's",
     ],
     quote:
       "Een complete A4 Avant met panoramadak en S line interieur, onderhouden volgens fabrieksvoorschrift. De achterbumper heeft een lichte beschadiging; dat zie je op de foto's en dat zit in de prijs.",

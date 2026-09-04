@@ -11,7 +11,7 @@ interface Shot {
 }
 
 /**
- * "Zuyd in beeld" — byq for-human-stijl filmische image-marquee met de échte
+ * "Zuyd in beeld", byq for-human-stijl filmische image-marquee met de échte
  * voertuigfoto's. Pauzeert bij hover. Geen stockbeeld: alleen onze eigen auto's.
  */
 function ShotCard({ shot }: { shot: Shot }) {

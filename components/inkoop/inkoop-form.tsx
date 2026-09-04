@@ -10,7 +10,10 @@ interface FormState {
   bouwjaar: string;
   km: string;
   kenteken: string;
+  onderhoudshistorie: string;
+  aankomendOnderhoud: string;
   naam: string;
+  email: string;
   telefoon: string;
 }
 
@@ -20,9 +23,18 @@ const EMPTY: FormState = {
   bouwjaar: "",
   km: "",
   kenteken: "",
+  onderhoudshistorie: "",
+  aankomendOnderhoud: "",
   naam: "",
+  email: "",
   telefoon: "",
 };
+
+const HISTORIE_OPTIES = [
+  "Ja, volledig",
+  "Deels bekend",
+  "Nee, niet bekend",
+];
 
 export function InkoopForm() {
   const [form, setForm] = useState<FormState>(EMPTY);
@@ -111,6 +123,37 @@ export function InkoopForm() {
         />
       </div>
       <Input label="Kenteken" placeholder="XX-123-X" value={form.kenteken} onChange={set("kenteken")} />
+      <div>
+        <label className="block text-[13px] font-semibold text-slate mb-1.5">
+          Is de onderhoudshistorie bekend?
+        </label>
+        <select
+          value={form.onderhoudshistorie}
+          onChange={(e) => setForm((f) => ({ ...f, onderhoudshistorie: e.target.value }))}
+          required
+          className="w-full h-12 px-3.5 border-[1.5px] border-line rounded-[10px] bg-warm font-sans text-[15px] text-slate outline-none focus:border-steel focus:bg-white transition-colors"
+        >
+          <option value="">Maak een keuze</option>
+          {HISTORIE_OPTIES.map((o) => (
+            <option key={o} value={o}>
+              {o}
+            </option>
+          ))}
+        </select>
+      </div>
+      <div>
+        <label className="block text-[13px] font-semibold text-slate mb-1.5">
+          Welk onderhoud komt eraan?{" "}
+          <span className="text-slate-soft font-normal">(optioneel)</span>
+        </label>
+        <textarea
+          value={form.aankomendOnderhoud}
+          onChange={(e) => setForm((f) => ({ ...f, aankomendOnderhoud: e.target.value }))}
+          rows={2}
+          placeholder="Bijv. beurt over 5.000 km, APK in maart, distributieriem gedaan"
+          className="w-full px-3.5 py-3 border-[1.5px] border-line rounded-[10px] bg-warm font-sans text-[15px] text-slate outline-none focus:border-steel focus:bg-white transition-colors resize-y"
+        />
+      </div>
       <div className="grid grid-cols-2 gap-3">
         <Input label="Naam" placeholder="Jouw naam" required value={form.naam} onChange={set("naam")} />
         <Input
@@ -122,6 +165,15 @@ export function InkoopForm() {
           onChange={set("telefoon")}
         />
       </div>
+      <Input
+        label="E-mailadres"
+        placeholder="jouw@mail.nl"
+        type="email"
+        inputMode="email"
+        required
+        value={form.email}
+        onChange={set("email")}
+      />
       {error && <p className="text-sm text-[#b4452f]">{error}</p>}
       <Button type="submit" size="md" disabled={submitting} className="mt-1.5 h-[54px]">
         {submitting ? "Versturen…" : "Vraag een voorstel aan"}

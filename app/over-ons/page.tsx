@@ -6,9 +6,9 @@ import { breadcrumbLd, JsonLd } from "@/lib/structured-data";
 import { SITE } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Over ons — Leroy van Zuyd Automotive",
+  title: "Over ons · de mannen achter Zuyd Automotive",
   description:
-    "Bij Zuyd Automotive krijg je Leroy aan de lijn. Eén aanspreekpunt, één belofte: eerlijke, persoonlijk uitgekozen occasions in Breda. Maak kennis met de man achter Zuyd.",
+    "Jarenlange ervaring in de automotive branche en één vast aanspreekpunt. Bij Zuyd Automotive in Breda vraag je naar Leroy en hij laat je de auto rustig zien.",
   alternates: { canonical: "/over-ons" },
 };
 
@@ -36,7 +36,8 @@ export default function OverOnsPage() {
         </h1>
         <p className="text-[clamp(16px,2vw,19px)] leading-relaxed text-slate-soft mt-5 max-w-[56ch] mx-auto">
           Zuyd Automotive begon met een simpel idee: autokopen kan ook rustig, eerlijk en persoonlijk.
-          Geen showroom vol druk, maar één vast aanspreekpunt dat je echt verder helpt.
+          Geen showroom vol druk, maar mensen die weten waar ze over praten en één vast
+          aanspreekpunt dat je echt verder helpt.
         </p>
       </section>
 
@@ -54,10 +55,11 @@ export default function OverOnsPage() {
       <section className="bg-white border-y border-line-soft">
         <div className="max-w-[1100px] mx-auto px-[22px] py-[clamp(48px,6vw,80px)]">
           <h2 className="font-display font-extrabold text-[clamp(24px,3.4vw,34px)] text-slate text-center mb-2">
-            De man achter Zuyd
+            De mannen achter Zuyd
           </h2>
-          <p className="text-center text-slate-soft text-[16.5px] max-w-[46ch] mx-auto mb-10">
-            Bij ons koop je geen auto van een onbekende. Je koopt &apos;m van Leroy.
+          <p className="text-center text-slate-soft text-[16.5px] max-w-[52ch] mx-auto mb-10">
+            Samen jarenlange ervaring in de automotive branche. We weten waar we over praten, en je
+            hebt bij ons altijd hetzelfde gezicht tegenover je.
           </p>
           <Reveal>
             <div className="grid grid-cols-1 sm:grid-cols-[minmax(0,5fr)_minmax(0,6fr)] items-stretch bg-warm border border-line-soft rounded-[var(--radius)] overflow-hidden">
@@ -74,15 +76,16 @@ export default function OverOnsPage() {
                   Leroy
                 </h3>
                 <p className="text-[13.5px] font-semibold text-steel mt-1 mb-3.5 tracking-[0.02em]">
-                  Mede-eigenaar · inkoop, verkoop en bezichtigingen
+                  Mede-eigenaar · jouw vaste aanspreekpunt
                 </p>
                 <p className="text-[15.5px] leading-relaxed text-slate-soft">
-                  Leroy zoekt elke auto zelf uit en keurt hem voordat hij in de voorraad komt. Alleen
-                  wat technisch in orde is en wat hij zelf zou rijden, verkoopt hij door.
+                  Bel je of kom je langs, dan vraag je naar Leroy. Hij laat je de auto zien waar je
+                  interesse in hebt, vertelt eerlijk wat je mag verwachten en denkt met je mee,
+                  zonder druk.
                 </p>
                 <p className="text-[15.5px] leading-relaxed text-slate-soft mt-3">
-                  Kom je langs, dan ontvangt hij je persoonlijk en laat hij de auto rustig zien. Hij
-                  vertelt eerlijk wat je mag verwachten en denkt met je mee — zonder druk.
+                  Van de eerste vraag tot de sleutels heb je zo steeds dezelfde persoon aan de lijn.
+                  Geen doorverbinden, geen verhaal dat je twee keer moet vertellen.
                 </p>
               </div>
             </div>
@@ -100,7 +103,7 @@ export default function OverOnsPage() {
           ))}
         </div>
         <div className="mt-10 text-center">
-          <BookButton size="lg">Kom langs — plan een bezichtiging</BookButton>
+          <BookButton size="lg">Kom langs en maak een afspraak</BookButton>
         </div>
       </section>
     </>

@@ -3,7 +3,7 @@ import type { CarView } from "./inventory";
 
 const ORG_ID = `${SITE.baseUrl}/#dealer`;
 
-/** AutoDealer / LocalBusiness — voor de homepage en als publisher-referentie. */
+/** AutoDealer / LocalBusiness, voor de homepage en als publisher-referentie. */
 export function autoDealerLd() {
   return {
     "@context": "https://schema.org",
@@ -29,12 +29,8 @@ export function autoDealerLd() {
       longitude: SITE.address.lng,
     },
     areaServed: ["Breda", "Etten-Leur", "Oosterhout", "Noord-Brabant"],
-    openingHoursSpecification: SITE.openingHoursSpec.map((s) => ({
-      "@type": "OpeningHoursSpecification",
-      dayOfWeek: s.days,
-      opens: s.opens,
-      closes: s.closes,
-    })),
+    // Bewust geen openingHoursSpecification: Zuyd werkt op afspraak. Vaste
+    // tijden opgeven laat Google een openingstijd tonen die er niet is.
   };
 }
 

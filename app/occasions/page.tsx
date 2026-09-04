@@ -5,9 +5,9 @@ import { breadcrumbLd, JsonLd } from "@/lib/structured-data";
 import { SITE } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Occasions in Breda — onze voorraad",
+  title: "Occasions in Breda · onze voorraad",
   description:
-    "Bekijk de occasions van Zuyd Automotive in Breda. Filter op merk, prijs, brandstof, transmissie, bouwjaar en kilometerstand. Persoonlijk uitgekozen en met garantie.",
+    "Bekijk de occasions van Zuyd Automotive in Breda. Filter op merk, prijs, brandstof, transmissie, bouwjaar en kilometerstand. Stuk voor stuk persoonlijk uitgekozen.",
   alternates: { canonical: "/occasions" },
 };
 
@@ -30,8 +30,8 @@ export default async function OccasionsPage() {
           Onze occasions
         </h1>
         <p className="text-[16.5px] text-slate-soft mt-2.5 max-w-[54ch]">
-          Stuk voor stuk persoonlijk uitgekozen. Filter rustig en plan een bezichtiging voor de auto
-          die je aanspreekt.
+          Stuk voor stuk persoonlijk uitgekozen. Filter rustig en vraag naar Leroy voor de auto die
+          je aanspreekt.
         </p>
       </div>
       <VoorraadView cars={cars} />

@@ -31,7 +31,7 @@ export function Personal() {
             </h2>
             <p className="text-[17px] leading-relaxed text-warm/78 mt-5 max-w-[46ch]">
               Dit is Leroy, mede-eigenaar van Zuyd Automotive. Bel je ons, dan krijg je hem aan de
-              lijn — geen callcenter, geen doorverbinden. Hij kent elke auto in de voorraad
+              lijn, geen callcenter, geen doorverbinden. Hij kent elke auto in de voorraad
               persoonlijk en neemt de tijd om hem je rustig te laten zien. Geen verkooppraat, gewoon
               eerlijk advies.
             </p>
@@ -40,7 +40,7 @@ export function Personal() {
             </p>
             <div className="flex flex-wrap gap-3.5 mt-7">
               <BookButton variant="onDark" size="md">
-                Plan een bezichtiging
+                Maak een afspraak
               </BookButton>
               <Link href="/over-ons" className={buttonVariants({ variant: "onDarkOutline", size: "md" })}>
                 Leer ons kennen

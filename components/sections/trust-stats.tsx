@@ -68,11 +68,13 @@ export function TrustStats() {
                 Met een gerust hart
               </span>
               <div className="relative z-10">
-                <div className="font-display font-extrabold text-[clamp(36px,4vw,52px)] leading-none">
-                  6 maanden
+                <div className="font-display font-extrabold text-[clamp(30px,3.4vw,42px)] leading-[1.1]">
+                  Garantie via Auto&nbsp;Trust
                 </div>
-                <div className="text-[15px] text-creme/85 mt-2 max-w-[34ch]">
-                  Garantie standaard, uit te breiden. {SITE.address.city} · Riethil 14.
+                <div className="text-[15px] text-creme/85 mt-2 max-w-[36ch]">
+                  Mogelijk op onze occasions, met een landelijk gedekt netwerk van vakgarages.
+                  {" "}
+                  {SITE.address.city} · Riethil 14.
                 </div>
               </div>
               <div className="absolute border border-dashed border-creme/40 rounded-full w-[400px] h-[400px] -bottom-44 -right-32" />

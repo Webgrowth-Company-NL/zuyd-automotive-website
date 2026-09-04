@@ -4,14 +4,14 @@ import { breadcrumbLd, JsonLd } from "@/lib/structured-data";
 import { SITE } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Inkoop & inruil — verkoop je auto",
+  title: "Inkoop & inruil · verkoop je auto",
   description:
     "Wij kopen of ruilen je auto in tegen een eerlijke prijs, snel geregeld. Vul kort je gegevens in en Zuyd Automotive in Breda doet je een voorstel.",
   alternates: { canonical: "/inkoop" },
 };
 
 const STEPS = [
-  { n: 1, title: "Stuur je gegevens", body: "Merk, model en kilometerstand — meer niet." },
+  { n: 1, title: "Stuur je gegevens", body: "Merk, model en kilometerstand, meer niet." },
   { n: 2, title: "Wij doen een voorstel", body: "Eerlijke prijs, telefonisch of via WhatsApp." },
   { n: 3, title: "Snel geregeld", body: "Akkoord? Dan handelen we het netjes voor je af." },
 ];
