@@ -22,7 +22,7 @@ export default async function HomePage() {
       <Personal />
       <Diensten />
       <ShowcaseMarquee cars={all} />
-      <TrustStats />
+      <TrustStats cars={all} />
       <Testimonials />
       <ClosingCta />
     </>

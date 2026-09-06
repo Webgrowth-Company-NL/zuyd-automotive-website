@@ -29,9 +29,9 @@ export const SITE = {
     city: "Breda",
     region: "Noord-Brabant",
     country: "NL",
-    // Benaderend (Breda-Noord). TODO go-live: exacte coördinaten voor kaart/JSON-LD
-    lat: 51.6097,
-    lng: 4.7758,
+    // Exacte locatie van unit 14-B80, geocodeerd via OpenStreetMap/Nominatim.
+    lat: 51.605464,
+    lng: 4.774011,
   },
 
   // TODO go-live: bevestigen

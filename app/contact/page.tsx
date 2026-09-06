@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { Clock, Mail, MapPin, Phone } from "lucide-react";
-import { Photo } from "@/components/ui/photo";
 import { BookButton } from "@/components/booking/book-button";
 import { WhatsappIcon } from "@/components/ui/icons";
 import { autoDealerLd, breadcrumbLd, JsonLd } from "@/lib/structured-data";
@@ -100,17 +99,26 @@ export default function ContactPage() {
           </div>
 
           <div>
-            <a href={mapsHref()} target="_blank" rel="noopener noreferrer" className="block group">
-              <div className="relative">
-                <Photo
-                  alt={`Locatie van Zuyd Automotive: ${SITE.address.street}, ${SITE.address.city}`}
-                  label={`kaart · ${SITE.address.city.toLowerCase()}`}
-                  sizes="(max-width: 1024px) 100vw, 528px"
-                  className="w-full aspect-[4/3.2] shadow-soft"
-                />
-                <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-11 h-11 rounded-[50%_50%_50%_0] bg-steel -rotate-45 shadow-soft transition-transform group-hover:scale-110" />
-              </div>
-            </a>
+            <div className="relative w-full aspect-[4/3.2] rounded-[var(--radius)] overflow-hidden shadow-soft border border-line">
+              {/* OpenStreetMap-embed: geen API-sleutel nodig. De kaart is gewoon
+                  bruikbaar (zoomen/slepen); voor een route stuurt de knop je door
+                  naar Maps, zodat je die op je telefoon meteen kunt starten. */}
+              <iframe
+                title={`Kaart met de locatie van Zuyd Automotive aan de ${SITE.address.street} in ${SITE.address.city}`}
+                src={`https://www.openstreetmap.org/export/embed.html?bbox=${SITE.address.lng - 0.004}%2C${SITE.address.lat - 0.003}%2C${SITE.address.lng + 0.004}%2C${SITE.address.lat + 0.003}&layer=mapnik&marker=${SITE.address.lat}%2C${SITE.address.lng}`}
+                loading="lazy"
+                className="absolute inset-0 w-full h-full border-0"
+              />
+              <a
+                href={mapsHref()}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="absolute bottom-3 right-3 z-[1] inline-flex items-center gap-2 bg-white/95 backdrop-blur border border-line rounded-full px-4 py-2 font-display font-bold text-[13.5px] text-slate hover:text-steel-deep hover:border-steel transition-colors shadow-soft no-underline"
+              >
+                <MapPin size={15} />
+                Route plannen
+              </a>
+            </div>
             <div className="bg-steel rounded-[var(--radius)] p-6 mt-3.5 flex flex-wrap items-center justify-between gap-4">
               <div>
                 <div className="font-display font-bold text-[17px] text-white">

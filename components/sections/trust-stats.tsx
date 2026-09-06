@@ -1,6 +1,7 @@
 import { Photo } from "@/components/ui/photo";
 import { Reveal } from "@/components/reveal";
 import { SITE } from "@/lib/site";
+import type { CarView } from "@/lib/inventory";
 
 function StatCard({ value, label }: { value: string; label: string }) {
   return (
@@ -18,7 +19,15 @@ function StatCard({ value, label }: { value: string; label: string }) {
   );
 }
 
-export function TrustStats() {
+/**
+ * De twee sfeerfoto's komen uit de echte voorraad, zodat er geen placeholder
+ * blijft staan en het meebeweegt als de voorraad wisselt. De eerste auto slaan
+ * we over: die staat al groot in de hero.
+ */
+export function TrustStats({ cars = [] }: { cars?: CarView[] }) {
+  const metFoto = cars.filter((c) => c.cover);
+  const sfeerbeelden: (CarView | undefined)[] = [metFoto[1], metFoto[2] ?? metFoto[0]];
+
   return (
     <section className="bg-white border-y border-line-soft">
       <div className="max-w-[1200px] mx-auto px-[22px] py-[clamp(48px,6vw,80px)]">
@@ -47,21 +56,17 @@ export function TrustStats() {
 
             <StatCard value="200+" label="Auto's geleverd" />
 
-            <Photo
-              alt="Occasion van Zuyd Automotive"
-              label="foto · occasion"
-              sizes="(max-width: 1024px) 100vw, 280px"
-              className="h-[300px]"
-              rounded="rounded-[var(--radius-lg)]"
-            />
-
-            <Photo
-              alt="Occasion van Zuyd Automotive"
-              label="foto · occasion"
-              sizes="(max-width: 1024px) 100vw, 280px"
-              className="h-[300px]"
-              rounded="rounded-[var(--radius-lg)]"
-            />
+            {sfeerbeelden.map((car, i) => (
+              <Photo
+                key={car?.slug ?? `leeg-${i}`}
+                src={car?.cover ?? undefined}
+                alt={car ? `${car.full} occasion bij Zuyd Automotive` : "Occasion van Zuyd Automotive"}
+                label="foto · occasion"
+                sizes="(max-width: 1024px) 100vw, 280px"
+                className="h-[300px]"
+                rounded="rounded-[var(--radius-lg)]"
+              />
+            ))}
 
             <div className="sm:col-span-2 relative flex flex-col justify-between gap-6 bg-steel rounded-[var(--radius-lg)] p-8 min-h-[300px] overflow-hidden text-creme">
               <span className="text-[11px] font-semibold tracking-[0.14em] uppercase text-creme/85 relative z-10">
