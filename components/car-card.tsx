@@ -3,7 +3,20 @@ import { ArrowRight, Calendar, Fuel, Gauge } from "lucide-react";
 import { Photo } from "@/components/ui/photo";
 import type { CarView } from "@/lib/inventory";
 
-export function CarCard({ car, priority }: { car: CarView; priority?: boolean }) {
+/**
+ * `as` bepaalt het kopniveau: op /occasions staan de kaarten direct onder de h1
+ * (dus h2), op de homepage onder een sectie-h2 (dus h3). Zo blijft de
+ * koppenstructuur netjes genest.
+ */
+export function CarCard({
+  car,
+  priority,
+  as: Kop = "h3",
+}: {
+  car: CarView;
+  priority?: boolean;
+  as?: "h2" | "h3";
+}) {
   return (
     <Link
       href={`/occasions/${car.slug}`}
@@ -28,9 +41,9 @@ export function CarCard({ car, priority }: { car: CarView; priority?: boolean })
       </div>
       <div className="p-[18px] pb-5 flex flex-col gap-3.5 flex-1">
         <div>
-          <h3 className="font-display font-bold text-[18px] text-slate leading-tight">
+          <Kop className="font-display font-bold text-[18px] text-slate leading-tight">
             {car.title}
-          </h3>
+          </Kop>
           <p className="mt-0.5 text-[13.5px] text-slate-soft">{car.variant}</p>
         </div>
         <div className="flex flex-wrap gap-1.5">

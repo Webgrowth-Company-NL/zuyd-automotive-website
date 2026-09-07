@@ -89,7 +89,7 @@ export function VoorraadView({ cars }: { cars: CarView[] }) {
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-[22px]">
           {cars.map((car, i) => (
-            <CarCard key={car.slug} car={car} priority={i === 0} />
+            <CarCard key={car.slug} car={car} as="h2" priority={i === 0} />
           ))}
         </div>
       </div>
@@ -169,7 +169,7 @@ export function VoorraadView({ cars }: { cars: CarView[] }) {
         {filtered.length > 0 ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-[22px]">
             {filtered.map((car) => (
-              <CarCard key={car.slug} car={car} />
+              <CarCard key={car.slug} car={car} as="h2" />
             ))}
           </div>
         ) : (

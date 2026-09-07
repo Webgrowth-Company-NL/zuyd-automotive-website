@@ -6,7 +6,7 @@ import { breadcrumbLd, JsonLd } from "@/lib/structured-data";
 import { SITE } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Over ons · de mannen achter Zuyd Automotive",
+  title: "Over ons · de mannen achter Zuyd",
   description:
     "Jarenlange ervaring in de automotive branche en één vast aanspreekpunt. Bij Zuyd Automotive in Breda vraag je naar Leroy en hij laat je de auto rustig zien.",
   alternates: { canonical: "/over-ons" },

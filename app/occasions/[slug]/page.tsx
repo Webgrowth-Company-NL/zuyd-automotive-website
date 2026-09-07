@@ -39,13 +39,34 @@ export async function generateMetadata({
   const car = await getCarBySlug(slug);
   if (!car) return { title: "Occasion niet gevonden" };
 
-  const title = `${car.full} occasion kopen in Breda`;
-  const description = `${car.full} uit ${car.bouwjaar}, ${car.kmFmt}, ${car.brandstof}, ${car.transmissie}. ${car.prijsFmt} rijklaar bij Zuyd Automotive in Breda. Bel of app en vraag naar Leroy voor een bezichtiging.`;
+  // Kort houden: het titel-template plakt er nog " · Zuyd Automotive" achter en
+  // Google kapt rond de 60 tekens af. De volledige uitvoeringsnaam staat in de
+  // H1 en in og:title, dus die blijft vindbaar.
+  const title = `${car.merk} ${car.model} ${car.bouwjaar} occasion`;
+  const ogTitle = `${car.full} occasion kopen in Breda`;
+  const description = `${car.full} uit ${car.bouwjaar}, ${car.kmFmt}, ${car.transmissie}. ${car.prijsFmt} rijklaar bij Zuyd Automotive in Breda.`;
+
   return {
     title,
     description,
     alternates: { canonical: `/occasions/${car.slug}` },
-    openGraph: { title, description, type: "website", url: `${SITE.baseUrl}/occasions/${car.slug}` },
+    openGraph: {
+      title: ogTitle,
+      description,
+      type: "website",
+      url: `${SITE.baseUrl}/occasions/${car.slug}`,
+      // Zonder deze afbeelding levert een gedeelde link in WhatsApp of op
+      // social media een kale tekstkaart op, terwijl er foto's van de auto zijn.
+      images: car.cover
+        ? [{ url: `${SITE.baseUrl}${car.cover}`, width: 1200, height: 900, alt: `${car.full} occasion bij Zuyd Automotive` }]
+        : undefined,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: ogTitle,
+      description,
+      images: car.cover ? [`${SITE.baseUrl}${car.cover}`] : undefined,
+    },
   };
 }
 

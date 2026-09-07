@@ -50,24 +50,29 @@ export function Hero({ heroImage }: { heroImage?: string }) {
             Occasions in Breda · persoonlijk geselecteerd
           </span>
 
+          {/* De rotator staat bewust BUITEN de h1: alle varianten zitten in de
+              DOM voor de animatie, en binnen de h1 leest een zoekmachine ze als
+              één lange kop aan elkaar geplakt. */}
           <h1 className="font-display font-extrabold text-[clamp(34px,5.4vw,58px)] leading-[1.04] tracking-[-0.02em] text-slate mt-[22px]">
             Betrouwbare occasions in Breda,
-            <span className="relative block h-[1.12em] overflow-hidden text-steel">
-              {ROTATING.map((word, i) => (
-                <span
-                  key={word}
-                  className="absolute inset-x-0 transition-all duration-500 ease-out"
-                  style={{
-                    transform: `translateY(${(i - idx) * 100}%)`,
-                    opacity: i === idx ? 1 : 0,
-                  }}
-                  aria-hidden={i !== idx}
-                >
-                  {word}
-                </span>
-              ))}
-            </span>
           </h1>
+          <div
+            aria-hidden
+            className="font-display font-extrabold text-[clamp(34px,5.4vw,58px)] leading-[1.04] tracking-[-0.02em] relative block h-[1.12em] overflow-hidden text-steel"
+          >
+            {ROTATING.map((word, i) => (
+              <span
+                key={word}
+                className="absolute inset-x-0 transition-all duration-500 ease-out"
+                style={{
+                  transform: `translateY(${(i - idx) * 100}%)`,
+                  opacity: i === idx ? 1 : 0,
+                }}
+              >
+                {word}
+              </span>
+            ))}
+          </div>
 
           <p className="text-[clamp(16px,2vw,19px)] leading-relaxed text-slate-soft max-w-[40ch] mt-5">
             Welkom bij Zuyd Automotive. Vraag naar Leroy, dan laat hij je de auto zien waar je

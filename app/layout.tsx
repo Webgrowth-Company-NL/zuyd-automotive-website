@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     template: "%s · Zuyd Automotive",
   },
   description:
-    "Betaalbare, persoonlijk uitgekozen occasions in Breda. Vraag naar Leroy voor een bezichtiging. Gekeurd, eerlijk advies en garantie mogelijk, zonder verkooppraat.",
+    "Betaalbare, persoonlijk uitgekozen occasions in Breda. Vraag naar Leroy voor een bezichtiging. Gekeurd, met eerlijk advies en garantie mogelijk.",
   keywords: [
     "occasions Breda",
     "tweedehands auto Breda",

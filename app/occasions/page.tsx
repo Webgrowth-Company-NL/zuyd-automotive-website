@@ -7,7 +7,7 @@ import { SITE } from "@/lib/site";
 export const metadata: Metadata = {
   title: "Occasions in Breda · onze voorraad",
   description:
-    "Bekijk de occasions van Zuyd Automotive in Breda. Filter op merk, prijs, brandstof, transmissie, bouwjaar en kilometerstand. Stuk voor stuk persoonlijk uitgekozen.",
+    "Bekijk de occasions van Zuyd Automotive in Breda. Filter op merk, prijs, brandstof, bouwjaar en kilometerstand. Stuk voor stuk persoonlijk uitgekozen.",
   alternates: { canonical: "/occasions" },
 };
 

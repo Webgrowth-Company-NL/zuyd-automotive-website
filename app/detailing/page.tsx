@@ -4,7 +4,7 @@ import { breadcrumbLd, JsonLd } from "@/lib/structured-data";
 import { SITE } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Car detailing · keramische coating in Breda",
+  title: "Keramische coating in Breda",
   description:
     "Keramische coating voor je auto bij Zuyd Automotive in Breda. Beschermt de lak en houdt de glans jarenlang diep. Prijs op aanvraag, afhankelijk van de auto.",
   alternates: { canonical: "/detailing" },
