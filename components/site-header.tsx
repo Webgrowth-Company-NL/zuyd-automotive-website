@@ -17,7 +17,9 @@ export function SiteHeader() {
     <>
       <header className="sticky top-0 z-50 bg-warm/85 backdrop-blur-[14px] border-b border-line-soft">
         <div className="max-w-[1200px] mx-auto px-[22px] h-[72px] flex items-center justify-between gap-4">
-        <Link href="/" aria-label="Zuyd Automotive, home" className="shrink-0">
+        {/* Geen aria-label: het woordmerk staat als echte tekst in de link, en
+            een afwijkend label botst met de zichtbare tekst (WCAG 2.5.3). */}
+        <Link href="/" className="shrink-0">
           <Wordmark />
         </Link>
 

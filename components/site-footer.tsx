@@ -53,9 +53,11 @@ export function SiteFooter() {
 function FooterCol({ title, children }: { title: string; children: React.ReactNode }) {
   return (
     <div>
-      <h4 className="font-display font-bold text-[13px] tracking-[0.1em] uppercase text-creme mb-3.5">
+      {/* h2 en niet h4: de footer volgt direct op de h1 van de pagina, dus een
+          h4 slaat twee niveaus over en dat leest een screenreader als een gat. */}
+      <h2 className="font-display font-bold text-[13px] tracking-[0.1em] uppercase text-creme mb-3.5">
         {title}
-      </h4>
+      </h2>
       <div className="flex flex-col gap-2.5 items-start text-[14.5px]">{children}</div>
     </div>
   );

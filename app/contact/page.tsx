@@ -124,7 +124,7 @@ export default function ContactPage() {
                 <div className="font-display font-bold text-[17px] text-white">
                   Een auto bekijken?
                 </div>
-                <div className="text-sm text-creme/88">Leroy plant de afspraak zo met je in.</div>
+                <div className="text-sm text-white/95">Leroy plant de afspraak zo met je in.</div>
               </div>
               <BookButton variant="onDark" size="md">
                 Maak een afspraak

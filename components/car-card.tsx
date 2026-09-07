@@ -53,7 +53,7 @@ export function CarCard({
         </div>
         <div className="mt-auto flex items-center justify-between gap-3 pt-1.5 border-t border-line-soft">
           <span className="font-display font-extrabold text-[22px] text-slate">{car.prijsFmt}</span>
-          <span className="inline-flex items-center gap-1.5 h-10 px-[15px] bg-steel text-creme font-display font-bold text-[13.5px] rounded-[10px] transition-colors group-hover:bg-steel-deep">
+          <span className="inline-flex items-center gap-1.5 h-10 px-[15px] bg-steel text-white font-display font-bold text-[13.5px] rounded-[10px] transition-colors group-hover:bg-steel-deep">
             Bekijk
             <ArrowRight size={15} />
           </span>

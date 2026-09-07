@@ -41,7 +41,7 @@ export default function InkoopPage() {
             <div className="flex flex-col gap-4 mt-7">
               {STEPS.map((s) => (
                 <div key={s.n} className="flex gap-3.5 items-start">
-                  <span className="w-[30px] h-[30px] rounded-full bg-steel text-creme font-display font-extrabold text-sm grid place-items-center shrink-0">
+                  <span className="w-[30px] h-[30px] rounded-full bg-steel text-white font-display font-extrabold text-sm grid place-items-center shrink-0">
                     {s.n}
                   </span>
                   <div>

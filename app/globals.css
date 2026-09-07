@@ -11,7 +11,10 @@
   --color-creme: #eae5d8;
   --color-creme-deep: #e0d9c8;
   --color-slate: #27333b;
-  --color-slate-soft: #62707a;
+  /* Iets donkerder dan de oorspronkelijke #62707a: die haalde op crème vlakken
+     maar 4.05 en bleef daarmee onder WCAG AA. Nu 4.82 op crème, 5.61 op de
+     warme achtergrond. */
+  --color-slate-soft: #576470;
   --color-warm: #f7f6f2;
   --color-line: #e6e2d8;
   --color-line-soft: #eeebe3;

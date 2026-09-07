@@ -1,12 +1,12 @@
 import { ImageResponse } from "next/og";
 
-// 256px zodat het embleem ook scherp is in tabbladen op retina-schermen en in
-// zoekresultaten, waar Google een grotere favicon uitvraagt.
-export const size = { width: 256, height: 256 };
+// Apple gebruikt dit icoon als iemand de site op zijn beginscherm zet. Zonder
+// dit bestand pakt iOS een schermafdruk van de pagina, wat er rommelig uitziet.
+// Vierkant en zonder eigen ronding: iOS maakt er zelf een afgerond vlak van.
+export const size = { width: 180, height: 180 };
 export const contentType = "image/png";
 
-/** Rond Z-embleem als favicon (staalblauw met crème Z). */
-export default function Icon() {
+export default function AppleIcon() {
   return new ImageResponse(
     (
       <div
@@ -17,9 +17,8 @@ export default function Icon() {
           alignItems: "center",
           justifyContent: "center",
           background: "#5C7382",
-          borderRadius: "50%",
           color: "#EAE5D8",
-          fontSize: 160,
+          fontSize: 116,
           fontWeight: 800,
           fontFamily: "Arial, sans-serif",
         }}

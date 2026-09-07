@@ -69,14 +69,14 @@ export function TrustStats({ cars = [] }: { cars?: CarView[] }) {
             ))}
 
             <div className="sm:col-span-2 relative flex flex-col justify-between gap-6 bg-steel rounded-[var(--radius-lg)] p-8 min-h-[300px] overflow-hidden text-creme">
-              <span className="text-[11px] font-semibold tracking-[0.14em] uppercase text-creme/85 relative z-10">
+              <span className="text-[11px] font-semibold tracking-[0.14em] uppercase text-white/95 relative z-10">
                 Met een gerust hart
               </span>
               <div className="relative z-10">
                 <div className="font-display font-extrabold text-[clamp(30px,3.4vw,42px)] leading-[1.1]">
                   Garantie via Auto&nbsp;Trust
                 </div>
-                <div className="text-[15px] text-creme/85 mt-2 max-w-[36ch]">
+                <div className="text-[15px] text-white/95 mt-2 max-w-[36ch]">
                   Mogelijk op onze occasions, met een landelijk gedekt netwerk van vakgarages.
                   {" "}
                   {SITE.address.city} · Riethil 14.

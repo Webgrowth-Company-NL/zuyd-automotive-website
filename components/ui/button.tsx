@@ -13,8 +13,10 @@ const base =
   "inline-flex items-center justify-center gap-2.5 font-display font-bold rounded-xl cursor-pointer transition-all duration-200 disabled:cursor-not-allowed disabled:opacity-60 no-underline whitespace-nowrap select-none";
 
 const variants: Record<ButtonVariant, string> = {
+  // Wit in plaats van crème: crème op staalblauw haalt maar 3.95 en blijft
+  // daarmee onder WCAG AA. Wit geeft 4.96 en oogt op de knop vrijwel gelijk.
   primary:
-    "bg-steel text-creme shadow-soft hover:bg-steel-deep hover:-translate-y-px active:translate-y-0",
+    "bg-steel text-white shadow-soft hover:bg-steel-deep hover:-translate-y-px active:translate-y-0",
   secondary:
     "bg-white text-slate border-[1.5px] border-line hover:border-steel hover:text-steel-deep",
   onDark: "bg-creme text-steel-700 hover:bg-white shadow-soft",

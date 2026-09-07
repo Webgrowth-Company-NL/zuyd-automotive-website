@@ -175,7 +175,7 @@ export default async function OccasionDetailPage({
                   <div className="font-display font-bold text-base text-white">
                     Vraag naar Leroy
                   </div>
-                  <div className="text-[13.5px] text-creme/85">
+                  <div className="text-[13.5px] text-white/95">
                     Bekijk deze auto rustig op je gemak
                   </div>
                 </div>

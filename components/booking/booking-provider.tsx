@@ -169,14 +169,14 @@ function ContactKnop({
       {...(extern ? { target: "_blank", rel: "noopener noreferrer" } : {})}
       className={
         primair
-          ? "flex items-center gap-3.5 h-[62px] px-[18px] rounded-xl bg-steel text-creme shadow-soft hover:bg-steel-deep transition-colors no-underline"
+          ? "flex items-center gap-3.5 h-[62px] px-[18px] rounded-xl bg-steel text-white shadow-soft hover:bg-steel-deep transition-colors no-underline"
           : "flex items-center gap-3.5 h-[62px] px-[18px] rounded-xl bg-white border-[1.5px] border-line text-slate hover:border-steel hover:text-steel-deep transition-colors no-underline"
       }
     >
-      <span className={primair ? "text-creme shrink-0" : "text-steel-deep shrink-0"}>{icon}</span>
+      <span className={primair ? "text-white shrink-0" : "text-steel-deep shrink-0"}>{icon}</span>
       <span className="leading-tight min-w-0">
         <span className="block font-display font-bold text-[15.5px]">{label}</span>
-        <span className={primair ? "block text-[13px] text-creme/85 truncate" : "block text-[13px] text-slate-soft truncate"}>
+        <span className={primair ? "block text-[13px] text-white/95 truncate" : "block text-[13px] text-slate-soft truncate"}>
           {detail}
         </span>
       </span>

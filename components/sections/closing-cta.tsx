@@ -14,7 +14,7 @@ export function ClosingCta() {
             <h2 className="font-display font-extrabold text-[clamp(27px,4vw,42px)] tracking-[-0.01em] text-white leading-tight">
               Klaar om je volgende auto te ontmoeten?
             </h2>
-            <p className="text-[17px] leading-relaxed text-creme/92 mt-4 mb-7 max-w-[46ch]">
+            <p className="text-[17px] leading-relaxed text-white/95 mt-4 mb-7 max-w-[46ch]">
               Bel of app even en vraag naar Leroy. We werken op afspraak, dus zeg wanneer het je
               uitkomt en de auto staat klaar.
             </p>
