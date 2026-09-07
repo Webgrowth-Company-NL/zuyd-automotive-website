@@ -41,16 +41,8 @@ export default function OverOnsPage() {
         </p>
       </section>
 
-      <section className="max-w-[1100px] mx-auto px-[22px] pt-[clamp(20px,3vw,30px)] pb-[clamp(40px,5vw,64px)]">
-        <Reveal>
-          <Photo
-            alt="Het pand van Zuyd Automotive aan de Riethil in Breda"
-            label="foto · het pand aan de riethil"
-            sizes="(max-width: 1100px) 100vw, 1056px"
-            className="w-full aspect-[16/7] shadow-soft"
-          />
-        </Reveal>
-      </section>
+      {/* Hier stond een placeholder voor een foto van het pand aan de Riethil.
+          Weggehaald tot er een echte gevelfoto is; een leeg vlak zegt niets. */}
 
       <section className="bg-white border-y border-line-soft">
         <div className="max-w-[1100px] mx-auto px-[22px] py-[clamp(48px,6vw,80px)]">
