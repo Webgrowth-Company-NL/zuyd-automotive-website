@@ -5,10 +5,10 @@ import { Reveal } from "@/components/reveal";
 const DIENSTEN = [
   {
     icon: Car,
-    title: "Inkoop & verkoop occasions",
-    body: "Onze basis. We kopen betaalbare occasions in, keuren ze en verkopen ze door. Ook als je je eigen auto wilt verkopen of inruilen.",
-    href: "/inkoop",
-    linkLabel: "Meld je auto aan",
+    title: "Verkoop van occasions",
+    body: "Onze basis. Betaalbare occasions, stuk voor stuk uitgezocht en gekeurd. Je huidige auto ruilen we graag in op de auto waar je interesse in hebt.",
+    href: "/inruil",
+    linkLabel: "Inruil aanvragen",
   },
   {
     icon: Globe2,

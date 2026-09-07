@@ -22,15 +22,17 @@ export const CARS: Car[] = [
     deuren: 5,
     apk: "01-2028",
     verbruik: "1 op 23,0",
+    kenteken: "N-586-ZS",
     status: "Beschikbaar",
     highlights: [
       "Eerste eigenaar, 31.368 km",
       "Adaptive cruise control & Apple CarPlay",
       "Achteruitrijcamera & RS Line sportstoelen",
       "Dealeronderhouden, APK tot 01-2028",
+      "Wordt afgeleverd met 1 jaar Autotrust-garantie",
     ],
     quote:
-      "Eén eigenaar, volledig dealeronderhouden en die zuinige E-Tech hybride: deze Clio rijdt als nieuw en is helemaal compleet.",
+      "Eén eigenaar, volledig dealeronderhouden en die zuinige E-Tech hybride: deze Clio rijdt als nieuw en is helemaal compleet. Hij wordt afgeleverd met 1 jaar Autotrust-garantie.",
     images: [
       "/occasions/clio/5.jpg", // 3/4 voor (cover)
       "/occasions/clio/2.jpg", // zijkant
@@ -44,7 +46,7 @@ export const CARS: Car[] = [
     merk: "Audi",
     model: "A4 Avant",
     variant: "2.0 TFSI ultra MHEV 190 pk S tronic",
-    prijs: 19500,
+    prijs: 18750,
     bouwjaar: 2018,
     km: 147512,
     brandstof: "Benzine",
@@ -54,6 +56,7 @@ export const CARS: Car[] = [
     deuren: 5,
     apk: "12-2026",
     verbruik: "",
+    kenteken: "XD-816-P",
     status: "Beschikbaar",
     highlights: [
       "S line interieurpakket en panoramadak",
@@ -62,7 +65,7 @@ export const CARS: Car[] = [
       "Lichte schade aan de achterbumper, zie foto's",
     ],
     quote:
-      "Een complete A4 Avant met panoramadak en S line interieur, onderhouden volgens fabrieksvoorschrift. De achterbumper heeft een lichte beschadiging; dat zie je op de foto's en dat zit in de prijs.",
+      "Deze auto wordt verkocht in opdracht van de huidige eigenaar. Wij verzorgen de presentatie, communicatie en begeleiding rondom de verkoop.",
     images: [
       "/occasions/a4/1.jpg", // 3/4 voor (cover)
       "/occasions/a4/2.jpg", // zijkant
@@ -86,6 +89,7 @@ export const CARS: Car[] = [
     deuren: 5,
     apk: "07-2027",
     verbruik: "",
+    kenteken: "70-ZJG-6",
     status: "Beschikbaar",
     highlights: [
       "Volledig hybride: zuinig én automaat",

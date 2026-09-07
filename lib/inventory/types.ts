@@ -19,6 +19,8 @@ export interface Car {
   deuren: number;
   apk: string;
   verbruik: string;
+  /** Kenteken; leeg laten als het (nog) niet bekend is, dan valt het spec-blokje weg. */
+  kenteken?: string;
   status: CarStatus;
   highlights: string[];
   quote: string;

@@ -54,7 +54,7 @@ export function TrustStats({ cars = [] }: { cars?: CarView[] }) {
               rounded="rounded-[var(--radius-lg)]"
             />
 
-            <StatCard value="200+" label="Auto's geleverd" />
+            <StatCard value="25" label="Tevreden klanten sinds de start in januari 2026" />
 
             {sfeerbeelden.map((car, i) => (
               <Photo

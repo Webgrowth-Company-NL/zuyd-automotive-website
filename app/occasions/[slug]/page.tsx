@@ -9,6 +9,7 @@ import {
   Droplet,
   Fuel,
   Gauge,
+  Hash,
   Mail,
   Palette,
   Phone,
@@ -102,6 +103,7 @@ export default async function OccasionDetailPage({
     { icon: Droplet, label: "Verbruik", value: car.verbruik },
     { icon: Palette, label: "Kleur", value: car.kleur },
     { icon: ShieldCheck, label: "APK tot", value: car.apk },
+    { icon: Hash, label: "Kenteken", value: car.kenteken ?? "" },
   ].filter((s) => s.value); // onbekende specs (bv. verbruik) niet leeg tonen
 
   return (
@@ -277,7 +279,11 @@ export default async function OccasionDetailPage({
                 body="Via Auto Trust, landelijk netwerk van vakgarages."
               />
               <TrustRow icon={CheckCircle2} title="Gekeurd & onderhouden" body="Met onderhoudshistorie en nieuwe APK." />
-              <TrustRow icon={RefreshCw} title="Inruil mogelijk" body="Wij nemen je huidige auto graag mee." />
+              <TrustRow
+                icon={RefreshCw}
+                title="Inruil mogelijk"
+                body="Wij nemen je huidige auto graag mee in het inruilvoorstel."
+              />
             </div>
           </div>
         </div>

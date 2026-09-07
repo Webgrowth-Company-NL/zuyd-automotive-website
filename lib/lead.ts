@@ -1,7 +1,8 @@
 /**
  * Lead-afhandeling via de Forester Lead Engine (captureFormLead).
  *
- * Alleen het inkoopformulier levert nog een lead op. Bezichtigingen lopen
+ * Alleen het inruilformulier en de coating-aanvraag leveren een lead op.
+ * Bezichtigingen lopen
  * bewust rechtstreeks via Leroy (bellen, WhatsApp of mail), dus daar komt geen
  * formulier meer aan te pas.
  *
@@ -25,6 +26,7 @@ export interface InkoopLead {
   bouwjaar: string;
   km: string;
   kenteken?: string;
+  gebreken?: string;
   onderhoudshistorie?: string;
   aankomendOnderhoud?: string;
   naam: string;
@@ -82,12 +84,13 @@ function payloadVoor(lead: Lead, engineId: string | undefined) {
 
   return {
     ...basis,
-    pageId: "/inkoop",
+    pageId: "/inruil",
     answer_merk: lead.merk,
     answer_model: lead.model,
     answer_bouwjaar: lead.bouwjaar,
     answer_km: lead.km,
     answer_kenteken: lead.kenteken ?? "",
+    answer_gebreken: lead.gebreken ?? "",
     answer_onderhoudshistorie: lead.onderhoudshistorie ?? "",
     answer_aankomendOnderhoud: lead.aankomendOnderhoud ?? "",
   };
@@ -172,6 +175,7 @@ export function validateLead(input: unknown): Lead | null {
     bouwjaar: str(o.bouwjaar),
     km: str(o.km),
     kenteken: str(o.kenteken) || undefined,
+    gebreken: str(o.gebreken) || undefined,
     onderhoudshistorie: str(o.onderhoudshistorie) || undefined,
     aankomendOnderhoud: str(o.aankomendOnderhoud) || undefined,
     naam,

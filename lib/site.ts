@@ -41,14 +41,15 @@ export const SITE = {
   // Zuyd werkt volledig op afspraak, dus geen vaste openingstijden. Bewust ook
   // geen openingHoursSpecification in de JSON-LD: Google toont die anders als
   // harde tijden en dan staat er iemand voor een dichte deur.
-  openingText: "We werken op afspraak",
-  openingSub: "Bel of app even, dan zorgen we dat de auto klaarstaat.",
+  openingText: "Wij werken uitsluitend op afspraak",
+  openingSub:
+    "Je bent welkom op onze kleinschalige, zorgvuldig ingerichte stallingslocatie. Bel of app even, dan zorgen we dat de auto klaarstaat.",
 } as const;
 
 export const NAV = [
   { label: "Voorraad", href: "/occasions" },
   { label: "Over ons", href: "/over-ons" },
-  { label: "Inkoop & inruil", href: "/inkoop" },
+  { label: "Inruil", href: "/inruil" },
   { label: "Detailing", href: "/detailing" },
   { label: "Contact", href: "/contact" },
 ] as const;

@@ -10,6 +10,7 @@ interface FormState {
   bouwjaar: string;
   km: string;
   kenteken: string;
+  gebreken: string;
   onderhoudshistorie: string;
   aankomendOnderhoud: string;
   naam: string;
@@ -23,6 +24,7 @@ const EMPTY: FormState = {
   bouwjaar: "",
   km: "",
   kenteken: "",
+  gebreken: "",
   onderhoudshistorie: "",
   aankomendOnderhoud: "",
   naam: "",
@@ -36,7 +38,7 @@ const HISTORIE_OPTIES = [
   "Nee, niet bekend",
 ];
 
-export function InkoopForm() {
+export function InruilForm() {
   const [form, setForm] = useState<FormState>(EMPTY);
   const [sent, setSent] = useState(false);
   const [submitting, setSubmitting] = useState(false);
@@ -140,6 +142,22 @@ export function InkoopForm() {
             </option>
           ))}
         </select>
+      </div>
+      <div>
+        <label className="block text-[13px] font-semibold text-slate mb-1.5">
+          Gebreken of beschadigingen{" "}
+          <span className="text-slate-soft font-normal">(optioneel)</span>
+        </label>
+        <textarea
+          value={form.gebreken}
+          onChange={(e) => setForm((f) => ({ ...f, gebreken: e.target.value }))}
+          rows={3}
+          placeholder="Bijv. kras op de achterbumper, deukje in het portier, airco koelt niet meer"
+          className="w-full px-3.5 py-3 border-[1.5px] border-line rounded-[10px] bg-warm font-sans text-[15px] text-slate outline-none focus:border-steel focus:bg-white transition-colors resize-y"
+        />
+        <p className="text-[12.5px] text-slate-soft mt-1.5">
+          Hoe eerlijker het beeld, hoe scherper we het voorstel kunnen maken.
+        </p>
       </div>
       <div>
         <label className="block text-[13px] font-semibold text-slate mb-1.5">

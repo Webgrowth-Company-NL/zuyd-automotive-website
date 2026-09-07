@@ -15,7 +15,10 @@ export const metadata: Metadata = {
 const VALUES = [
   { title: "Nuchter & eerlijk", body: "We zeggen het zoals het is. Ook als een auto niet bij je past." },
   { title: "Persoonlijk", body: "Vast aanspreekpunt, van bezichtiging tot sleutels." },
-  { title: "Zorgvuldig", body: "Elke auto gekeurd en netjes afgeleverd, met garantie." },
+  {
+    title: "Zorgvuldig",
+    body: "Elke auto gekeurd en netjes afgeleverd. Optioneel met garantie via Autotrust.",
+  },
 ];
 
 export default function OverOnsPage() {
