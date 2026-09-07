@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import Script from "next/script";
 import { Archivo, Hanken_Grotesk } from "next/font/google";
 import "./globals.css";
 import { BookingProvider } from "@/components/booking/booking-provider";
@@ -62,6 +63,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="nl" className={`${archivo.variable} ${hanken.variable}`}>
       <body>
+        {/* Fathom: cookieloos, dus geen toestemmingsbanner nodig. */}
+        <Script
+          src="https://cdn.usefathom.com/script.js"
+          data-site="EJEUBSWV"
+          strategy="afterInteractive"
+          defer
+        />
         <BookingProvider>
           <SiteHeader />
           <main>{children}</main>
