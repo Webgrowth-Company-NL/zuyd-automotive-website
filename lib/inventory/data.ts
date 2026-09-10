@@ -46,7 +46,7 @@ export const CARS: Car[] = [
     merk: "Audi",
     model: "A4 Avant",
     variant: "2.0 TFSI ultra MHEV 190 pk S tronic",
-    prijs: 18750,
+    prijs: 18250,
     bouwjaar: 2018,
     km: 147512,
     brandstof: "Benzine",
