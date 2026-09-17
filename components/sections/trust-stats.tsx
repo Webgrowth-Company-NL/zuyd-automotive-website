@@ -74,10 +74,10 @@ export function TrustStats({ cars = [] }: { cars?: CarView[] }) {
               </span>
               <div className="relative z-10">
                 <div className="font-display font-extrabold text-[clamp(30px,3.4vw,42px)] leading-[1.1]">
-                  Garantie via Auto&nbsp;Trust
+                  Garantie via Autotrust
                 </div>
                 <div className="text-[15px] text-white/95 mt-2 max-w-[36ch]">
-                  Mogelijk op onze occasions, met een landelijk gedekt netwerk van vakgarages.
+                  Mogelijk op onze occasions, met een landelijk gedekt netwerk van reparatiepartners.
                   {" "}
                   {SITE.address.city} · Riethil 14.
                 </div>

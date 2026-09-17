@@ -276,7 +276,7 @@ export default async function OccasionDetailPage({
               <TrustRow
                 icon={ShieldCheck}
                 title="Garantie mogelijk"
-                body="Via Auto Trust, landelijk netwerk van vakgarages."
+                body="Via Autotrust, landelijk netwerk van reparatiepartners."
               />
               <TrustRow icon={CheckCircle2} title="Gekeurd & onderhouden" body="Met onderhoudshistorie en nieuwe APK." />
               <TrustRow

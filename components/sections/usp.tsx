@@ -20,7 +20,7 @@ const ITEMS = [
   {
     icon: ShieldCheck,
     title: "Garantie mogelijk",
-    body: "Via Auto Trust, met een landelijk netwerk van vakgarages. Vraag ernaar bij je auto.",
+    body: "Via Autotrust, met een landelijk netwerk van reparatiepartners. Vraag ernaar bij je auto.",
   },
 ];
 
