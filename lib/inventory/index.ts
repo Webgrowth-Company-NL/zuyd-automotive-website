@@ -10,16 +10,25 @@ export { decorate, carSlug } from "./decorate";
  */
 export const inventory: InventorySource = new JsonInventorySource();
 
+/**
+ * Alle auto's, met de leverbare eerst.
+ *
+ * Die volgorde zat alleen in `getFeaturedCars`, waardoor de voorraadpagina de
+ * ruwe volgorde uit het databestand aanhield. Toen de Clio op verkocht ging
+ * (20-09-2026) stond er dus een verkochte auto vooraan in de voorraad. Sorteren
+ * gebeurt stabiel, dus onderling houden de leverbare auto's hun eigen volgorde.
+ */
 export async function getAllCars(): Promise<CarView[]> {
   const cars = await inventory.getAll();
-  return cars.map(decorate);
+  return cars
+    .map(decorate)
+    .sort((a, b) => Number(b.available) - Number(a.available));
 }
 
 export async function getFeaturedCars(count = 3): Promise<CarView[]> {
+  // De leverbare auto's staan al vooraan; hier alleen nog afsnijden.
   const cars = await getAllCars();
-  // Toon eerst de leverbare auto's; vul aan tot count.
-  const ordered = [...cars].sort((a, b) => Number(b.available) - Number(a.available));
-  return ordered.slice(0, count);
+  return cars.slice(0, count);
 }
 
 export async function getCarBySlug(slug: string): Promise<CarView | null> {
