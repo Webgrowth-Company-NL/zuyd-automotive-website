@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import { Photo } from "@/components/ui/photo";
+import { StatusMarkering } from "@/components/status-markering";
 import { cn } from "@/lib/cn";
 
 export function OccasionGallery({
@@ -37,12 +38,7 @@ export function OccasionGallery({
         ) : (
           <Photo alt={alt} label={`foto · ${alt}`} priority sizes="(max-width: 1024px) 100vw, 560px" className="w-full aspect-[4/3] shadow-soft" />
         )}
-        <span
-          className="absolute top-4 left-4 font-display font-bold text-xs px-3 py-1.5 rounded-full"
-          style={{ background: badge.bg, color: badge.color }}
-        >
-          {status}
-        </span>
+        <StatusMarkering status={status} badge={badge} />
       </div>
 
       <div className="grid grid-cols-4 gap-2.5 mt-2.5">

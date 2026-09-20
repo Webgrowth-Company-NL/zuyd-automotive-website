@@ -23,7 +23,7 @@ export const CARS: Car[] = [
     apk: "01-2028",
     verbruik: "1 op 23,0",
     kenteken: "N-586-ZS",
-    status: "Beschikbaar",
+    status: "Verkocht",
     highlights: [
       "Eerste eigenaar, 31.368 km",
       "Adaptive cruise control & Apple CarPlay",

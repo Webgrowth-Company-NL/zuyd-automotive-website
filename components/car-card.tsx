@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ArrowRight, Calendar, Fuel, Gauge } from "lucide-react";
 import { Photo } from "@/components/ui/photo";
+import { StatusMarkering } from "@/components/status-markering";
 import type { CarView } from "@/lib/inventory";
 
 /**
@@ -32,12 +33,7 @@ export function CarCard({
           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 290px"
           className="w-full h-full"
         />
-        <span
-          className="absolute top-3 left-3 font-display font-bold text-[11.5px] px-2.5 py-1.5 rounded-full"
-          style={{ background: car.badge.bg, color: car.badge.color }}
-        >
-          {car.status}
-        </span>
+        <StatusMarkering status={car.status} badge={car.badge} klein />
       </div>
       <div className="p-[18px] pb-5 flex flex-col gap-3.5 flex-1">
         <div>

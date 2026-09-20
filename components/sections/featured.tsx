@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ArrowRight, Calendar, CheckCircle2, Cog, Fuel, Gauge } from "lucide-react";
 import { CarCard } from "@/components/car-card";
 import { Photo } from "@/components/ui/photo";
+import { StatusMarkering } from "@/components/status-markering";
 import { Reveal } from "@/components/reveal";
 import { BookButton } from "@/components/booking/book-button";
 import { buttonVariants } from "@/components/ui/button";
@@ -37,12 +38,7 @@ function SingleSpotlight({ car }: { car: CarView }) {
           className="w-full aspect-[4/3]"
           rounded="rounded-[var(--radius)]"
         />
-        <span
-          className="absolute top-4 left-4 font-display font-bold text-[11.5px] px-2.5 py-1.5 rounded-full"
-          style={{ background: car.badge.bg, color: car.badge.color }}
-        >
-          {car.status}
-        </span>
+        <StatusMarkering status={car.status} badge={car.badge} />
       </Link>
       <div>
         <h3 className="font-display font-extrabold text-[clamp(24px,3vw,32px)] tracking-[-0.01em] text-slate leading-tight">
