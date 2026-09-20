@@ -70,11 +70,19 @@ function SingleSpotlight({ car }: { car: CarView }) {
             </li>
           ))}
         </ul>
+        {/* Een verkochte auto valt niet meer te bezichtigen, dus geen afspraak
+            maar een weg naar de auto's die er nog wel staan (Leroy, 20-09-2026). */}
         <div className="flex flex-wrap gap-3">
-          <BookButton car={bookingCarOf(car)} size="md">
-            <Calendar size={17} />
-            Maak een afspraak
-          </BookButton>
+          {car.status === "Verkocht" ? (
+            <Link href="/occasions" className={buttonVariants({ size: "md" })}>
+              Bekijk de voorraad
+            </Link>
+          ) : (
+            <BookButton car={bookingCarOf(car)} size="md">
+              <Calendar size={17} />
+              Maak een afspraak
+            </BookButton>
+          )}
           <Link
             href={`/occasions/${car.slug}`}
             className={buttonVariants({ variant: "secondary", size: "md" })}

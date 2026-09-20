@@ -169,22 +169,36 @@ export default async function OccasionDetailPage({
               ))}
             </div>
 
-            {/* Primary CTA */}
+            {/* Primary CTA. Bij een verkochte auto valt er niets meer te
+                bezichtigen (Leroy, 20-09-2026), dus dan wijst dit blok naar de
+                auto's die er nog wel staan. Bellen, WhatsApp en mailen blijven
+                eronder gewoon staan: contact opnemen mag altijd. */}
             <div className="bg-steel rounded-[var(--radius)] p-[22px] mb-[18px]">
               <div className="flex items-center gap-3.5 mb-4">
                 <ZBadge size={48} className="!bg-warm/15" />
                 <div className="leading-snug">
                   <div className="font-display font-bold text-base text-white">
-                    Vraag naar Leroy
+                    {car.status === "Verkocht" ? "Deze auto is verkocht" : "Vraag naar Leroy"}
                   </div>
                   <div className="text-[13.5px] text-white/95">
-                    Bekijk deze auto rustig op je gemak
+                    {car.status === "Verkocht"
+                      ? "Vraag gerust of er iets vergelijkbaars aankomt"
+                      : "Bekijk deze auto rustig op je gemak"}
                   </div>
                 </div>
               </div>
-              <BookButton car={bc} variant="onDark" size="md" className="w-full h-[54px]">
-                Maak een afspraak
-              </BookButton>
+              {car.status === "Verkocht" ? (
+                <Link
+                  href="/occasions"
+                  className="w-full h-[54px] inline-flex items-center justify-center gap-2 bg-warm rounded-xl font-display font-bold text-[15px] text-slate hover:bg-white transition-colors"
+                >
+                  Bekijk de voorraad
+                </Link>
+              ) : (
+                <BookButton car={bc} variant="onDark" size="md" className="w-full h-[54px]">
+                  Maak een afspraak
+                </BookButton>
+              )}
             </div>
 
             <div className="flex gap-3">
@@ -205,10 +219,17 @@ export default async function OccasionDetailPage({
                 WhatsApp
               </a>
               <a
-                href={mailHref(
-                  `Bezichtiging ${car.full}`,
-                  `Hoi Leroy, ik wil graag de ${car.full} (${car.prijsFmt}) bekijken. Wanneer kan dat?`,
-                )}
+                href={
+                  car.status === "Verkocht"
+                    ? mailHref(
+                        `Vergelijkbaar met de ${car.full}`,
+                        `Hoi Leroy, ik zag dat de ${car.full} verkocht is. Komt er iets vergelijkbaars binnen?`,
+                      )
+                    : mailHref(
+                        `Bezichtiging ${car.full}`,
+                        `Hoi Leroy, ik wil graag de ${car.full} (${car.prijsFmt}) bekijken. Wanneer kan dat?`,
+                      )
+                }
                 className="flex-1 inline-flex items-center justify-center gap-2.5 h-[50px] bg-white border-[1.5px] border-line rounded-xl font-display font-bold text-[15px] text-slate hover:border-steel hover:text-steel-deep transition-colors"
               >
                 <Mail size={17} />
@@ -308,10 +329,19 @@ export default async function OccasionDetailPage({
           >
             <WhatsappIcon size={20} />
           </a>
-          <BookButton car={bc} size="md" className="flex-1 h-[52px]">
-            <Phone size={18} />
-            Maak een afspraak
-          </BookButton>
+          {car.status === "Verkocht" ? (
+            <Link
+              href="/occasions"
+              className="flex-1 h-[52px] inline-flex items-center justify-center gap-2 bg-steel rounded-xl font-display font-bold text-[15px] text-white hover:bg-steel-deep transition-colors"
+            >
+              Bekijk de voorraad
+            </Link>
+          ) : (
+            <BookButton car={bc} size="md" className="flex-1 h-[52px]">
+              <Phone size={18} />
+              Maak een afspraak
+            </BookButton>
+          )}
         </div>
       </div>
     </div>
