@@ -13,7 +13,6 @@ export const metadata: Metadata = {
   alternates: { canonical: "/contact" },
 };
 
-export const revalidate = 60;
 
 export default async function ContactPage() {
   const [intro, t] = await Promise.all([tekst("contact__intro"), tekst("contact__gegevens")]);

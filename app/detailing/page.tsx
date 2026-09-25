@@ -11,7 +11,6 @@ export const metadata: Metadata = {
   alternates: { canonical: "/detailing" },
 };
 
-export const revalidate = 60;
 
 export default async function DetailingPage() {
   const [intro, formulier] = await Promise.all([

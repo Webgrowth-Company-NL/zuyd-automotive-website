@@ -60,7 +60,6 @@ export const viewport: Viewport = {
   themeColor: "#F7F6F2",
 };
 
-export const revalidate = 60;
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   const [header, footer, afspraak] = await Promise.all([
@@ -78,6 +77,11 @@ export default async function RootLayout({ children }: { children: React.ReactNo
           strategy="afterInteractive"
           defer
         />
+        {/* Forester: teksten aanwijzen als de site in Forester in een frame
+            staat. Voor gewone bezoekers laadt het script niet eens. */}
+        <Script id="forester-bewerken" strategy="afterInteractive">
+          {`if (window.parent !== window) { var s = document.createElement("script"); s.src = "/forester-bewerken.js"; document.body.appendChild(s); }`}
+        </Script>
         <BookingProvider t={afspraak}>
           <SiteHeader t={header} />
           <main>{children}</main>

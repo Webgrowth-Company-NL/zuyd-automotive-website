@@ -2,12 +2,11 @@ import type { Car } from "./types";
 import occasions from "@/content/occasions.json";
 
 /**
- * Standaardvoorraad van Zuyd Automotive.
+ * De voorraad van Zuyd Automotive, uit content/occasions.json.
  *
- * De echte voorraad staat in Forester (sites/zuyd-automotive/collecties/
- * occasions), waar Leroy hem via Q bijwerkt. Deze JSON is het vangnet als
- * Forester niet bereikbaar is, en de bron waarmee de collectie is gevuld
- * (scripts/forester-vullen.mjs). Een wijziging hier komt dus niet vanzelf
- * live; die hoort in Forester.
+ * Dat bestand wordt beheerd vanuit Forester: Leroy past via Q of het
+ * inhoudsscherm een auto aan, Forester commit de JSON in deze repo en Vercel
+ * bouwt de site opnieuw. Wat een auto is en wat er aangepast mag worden staat
+ * in content/occasions.schema.json.
  */
 export const CARS = occasions as Car[];

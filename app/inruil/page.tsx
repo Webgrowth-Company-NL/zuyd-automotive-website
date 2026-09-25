@@ -11,7 +11,6 @@ export const metadata: Metadata = {
   alternates: { canonical: "/inruil" },
 };
 
-export const revalidate = 60;
 
 export default async function InruilPage() {
   const [intro, formulier] = await Promise.all([tekst("inruil__intro"), tekst("inruil__formulier")]);

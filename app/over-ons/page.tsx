@@ -13,7 +13,6 @@ export const metadata: Metadata = {
   alternates: { canonical: "/over-ons" },
 };
 
-export const revalidate = 60;
 
 export default async function OverOnsPage() {
   const [intro, team, waarden] = await Promise.all([

@@ -11,7 +11,6 @@ import { Testimonials } from "@/components/sections/testimonials";
 import { ClosingCta } from "@/components/sections/closing-cta";
 import { tekst } from "@/lib/teksten";
 
-export const revalidate = 60;
 
 export default async function HomePage() {
   const [featured, all, hero] = await Promise.all([

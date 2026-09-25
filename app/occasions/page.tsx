@@ -12,7 +12,6 @@ export const metadata: Metadata = {
   alternates: { canonical: "/occasions" },
 };
 
-export const revalidate = 60;
 
 export default async function OccasionsPage() {
   const [cars, intro, voorraad, kaart] = await Promise.all([

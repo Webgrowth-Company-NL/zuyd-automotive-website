@@ -1,22 +1,23 @@
 /**
- * De teksten van de site, per sectie.
+ * De teksten van de site, per sectie, uit content/secties.json.
  *
- * De standaardtekst staat in content/secties.json. Forester (via Q of de
- * editor) kan elke sectie aanvullen of overschrijven; zie lib/forester/inhoud.
- * Alleen aanroepen vanuit server components. Client components krijgen hun
- * tekst als prop mee van de dichtstbijzijnde page of layout.
+ * Dat bestand wordt beheerd vanuit Forester (via Q of het inhoudsscherm), dat
+ * de wijziging in deze repo commit. De site leest alleen het bestand: hij weet
+ * niets van Forester of een database.
+ *
+ * Async met opzet: de pagina's wachten er al op, en zo blijft de aanroep gelijk
+ * als de bron ooit verandert.
  */
 
 import SECTIES from "@/content/secties.json";
-import { sectie } from "@/lib/forester/inhoud";
 
 export type Secties = typeof SECTIES;
 export type SectieId = keyof Secties;
 /** Het type van één sectie, ook bruikbaar in client components (alleen type). */
 export type Teksten<K extends SectieId> = Secties[K];
 
-export function tekst<K extends SectieId>(id: K): Promise<Secties[K]> {
-  return sectie(id, SECTIES[id]);
+export async function tekst<K extends SectieId>(id: K): Promise<Secties[K]> {
+  return SECTIES[id];
 }
 
 /** Vult {naam}-plekken in een tekst, bv. "{stad} · Riethil 14." */

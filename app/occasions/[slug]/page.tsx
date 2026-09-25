@@ -27,7 +27,6 @@ import { breadcrumbLd, JsonLd, vehicleLd } from "@/lib/structured-data";
 import { SITE, mailHref, telHref, whatsappHref } from "@/lib/site";
 import { tekst } from "@/lib/teksten";
 
-export const revalidate = 60;
 
 export async function generateStaticParams() {
   const slugs = await getAllSlugs();
