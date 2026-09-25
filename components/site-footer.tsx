@@ -1,8 +1,9 @@
 import Link from "next/link";
 import { Wordmark } from "@/components/brand/logo";
 import { NAV, SITE, telHref } from "@/lib/site";
+import type { Teksten } from "@/lib/teksten";
 
-export function SiteFooter() {
+export function SiteFooter({ t }: { t: Teksten<"shared__footer"> }) {
   return (
     <footer className="bg-slate text-warm/72">
       <div className="max-w-[1200px] mx-auto px-[22px] pt-[clamp(44px,5vw,64px)] pb-7">
@@ -12,7 +13,7 @@ export function SiteFooter() {
             <p className="text-sm leading-relaxed">{SITE.tagline}</p>
           </div>
 
-          <FooterCol title="Pagina's">
+          <FooterCol title={t.kopPaginas}>
             {NAV.map((item) => (
               <Link key={item.href} href={item.href} className="hover:text-white transition-colors">
                 {item.label}
@@ -20,7 +21,7 @@ export function SiteFooter() {
             ))}
           </FooterCol>
 
-          <FooterCol title="Contact">
+          <FooterCol title={t.kopContact}>
             <span>
               {SITE.address.street.split(" - ")[0]}, {SITE.address.city}
             </span>
@@ -32,7 +33,7 @@ export function SiteFooter() {
             </a>
           </FooterCol>
 
-          <FooterCol title="Langskomen">
+          <FooterCol title={t.kopLangskomen}>
             <span>{SITE.openingText}</span>
             <span>{SITE.openingSub}</span>
           </FooterCol>

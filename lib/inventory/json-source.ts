@@ -1,23 +1,20 @@
 import type { Car, InventorySource } from "./types";
 import { CARS } from "./data";
 import { carSlug } from "./decorate";
+import { collectie } from "../forester/inhoud";
 
 /**
- * Static/json bron over de in-code CARS-array.
- * Async API zodat een latere feed/CMS-bron drop-in vervangbaar is.
+ * De voorraad uit Forester, met de JSON in /content als vangnet.
+ * Async API zodat een latere feed (AutoTrack, Marktplaats) drop-in past.
  */
 export class JsonInventorySource implements InventorySource {
-  private readonly cars: Car[];
-
-  constructor(cars: Car[] = CARS) {
-    this.cars = cars;
-  }
+  constructor(private readonly standaard: Car[] = CARS) {}
 
   async getAll(): Promise<Car[]> {
-    return this.cars;
+    return collectie("occasions", this.standaard);
   }
 
   async getBySlug(slug: string): Promise<Car | null> {
-    return this.cars.find((c) => carSlug(c) === slug) ?? null;
+    return (await this.getAll()).find((c) => carSlug(c) === slug) ?? null;
   }
 }

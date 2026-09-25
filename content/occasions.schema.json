@@ -1,0 +1,30 @@
+{
+  "naam": "occasions",
+  "enkelvoud": "auto",
+  "meervoud": "auto's",
+  "pagina": "/occasions",
+  "titel": ["merk", "model", "variant"],
+  "zoekVelden": ["merk", "model", "variant", "kenteken", "kleur", "bouwjaar", "brandstof", "transmissie"],
+  "statusVeld": "status",
+  "fotoVeld": "images",
+  "velden": [
+    { "sleutel": "merk", "label": "merk", "type": "tekst", "bewerkbaar": false },
+    { "sleutel": "model", "label": "model", "type": "tekst", "bewerkbaar": false },
+    { "sleutel": "variant", "label": "uitvoering", "type": "tekst", "bewerkbaar": false, "synoniemen": ["variant", "type"] },
+    { "sleutel": "prijs", "label": "prijs", "type": "getal", "eenheid": "euro", "min": 500, "max": 250000, "bewerkbaar": true, "synoniemen": ["vraagprijs", "verkoopprijs"] },
+    { "sleutel": "km", "label": "kilometerstand", "type": "getal", "eenheid": "km", "min": 0, "max": 900000, "bewerkbaar": true, "synoniemen": ["km", "kilometers", "tellerstand", "km-stand"] },
+    { "sleutel": "bouwjaar", "label": "bouwjaar", "type": "getal", "min": 1950, "max": 2030, "bewerkbaar": true },
+    { "sleutel": "brandstof", "label": "brandstof", "type": "keuze", "opties": ["Benzine", "Diesel", "Hybride", "Elektrisch"], "bewerkbaar": true },
+    { "sleutel": "transmissie", "label": "transmissie", "type": "keuze", "opties": ["Handgeschakeld", "Automaat"], "bewerkbaar": true, "synoniemen": ["versnellingsbak", "schakeling"] },
+    { "sleutel": "pk", "label": "vermogen", "type": "getal", "eenheid": "pk", "min": 20, "max": 1500, "bewerkbaar": true, "synoniemen": ["pk", "pk's"] },
+    { "sleutel": "kleur", "label": "kleur", "type": "tekst", "max": 60, "bewerkbaar": true },
+    { "sleutel": "deuren", "label": "aantal deuren", "type": "getal", "min": 2, "max": 5, "bewerkbaar": true, "synoniemen": ["deuren"] },
+    { "sleutel": "apk", "label": "APK tot", "type": "tekst", "formaat": "MM-JJJJ", "patroon": "^(0[1-9]|1[0-2])-20[2-4][0-9]$", "bewerkbaar": true, "synoniemen": ["apk", "keuring"] },
+    { "sleutel": "verbruik", "label": "verbruik", "type": "tekst", "max": 40, "bewerkbaar": true },
+    { "sleutel": "kenteken", "label": "kenteken", "type": "tekst", "max": 12, "bewerkbaar": true },
+    { "sleutel": "status", "label": "status", "type": "keuze", "opties": ["Beschikbaar", "Nieuw binnen", "Gereserveerd", "Verkocht"], "bewerkbaar": true, "synoniemen": ["beschikbaarheid"] },
+    { "sleutel": "highlights", "label": "highlights", "type": "lijst", "max": 160, "bewerkbaar": true, "synoniemen": ["pluspunten", "kenmerken", "opties"] },
+    { "sleutel": "quote", "label": "omschrijving", "type": "lang", "max": 1200, "bewerkbaar": true, "synoniemen": ["beschrijving", "tekst", "verhaal"] },
+    { "sleutel": "images", "label": "foto's", "type": "fotos", "bewerkbaar": true, "synoniemen": ["foto", "afbeeldingen", "plaatjes"] }
+  ]
+}

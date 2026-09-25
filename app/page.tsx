@@ -9,14 +9,21 @@ import { TrustStats } from "@/components/sections/trust-stats";
 import { ShowcaseMarquee } from "@/components/sections/showcase-marquee";
 import { Testimonials } from "@/components/sections/testimonials";
 import { ClosingCta } from "@/components/sections/closing-cta";
+import { tekst } from "@/lib/teksten";
+
+export const revalidate = 60;
 
 export default async function HomePage() {
-  const [featured, all] = await Promise.all([getFeaturedCars(3), getAllCars()]);
+  const [featured, all, hero] = await Promise.all([
+    getFeaturedCars(3),
+    getAllCars(),
+    tekst("home__hero"),
+  ]);
 
   return (
     <>
       <JsonLd data={autoDealerLd()} />
-      <Hero heroImage={featured[0]?.cover ?? undefined} />
+      <Hero heroImage={featured[0]?.cover ?? undefined} t={hero} />
       <Featured cars={featured} />
       <Usp />
       <Personal />

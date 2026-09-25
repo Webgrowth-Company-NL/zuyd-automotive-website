@@ -7,6 +7,7 @@ import { Reveal } from "@/components/reveal";
 import { BookButton } from "@/components/booking/book-button";
 import { buttonVariants } from "@/components/ui/button";
 import type { CarView } from "@/lib/inventory";
+import { tekst, type Teksten } from "@/lib/teksten";
 
 function bookingCarOf(car: CarView) {
   return {
@@ -20,7 +21,7 @@ function bookingCarOf(car: CarView) {
   };
 }
 
-function SingleSpotlight({ car }: { car: CarView }) {
+function SingleSpotlight({ car, t }: { car: CarView; t: Teksten<"home__uitgelicht"> }) {
   const specs = [
     { icon: Calendar, value: String(car.bouwjaar) },
     { icon: Gauge, value: car.kmFmt },
@@ -49,7 +50,7 @@ function SingleSpotlight({ car }: { car: CarView }) {
           <span className="font-display font-extrabold text-[clamp(26px,3.5vw,34px)] text-steel">
             {car.prijsFmt}
           </span>
-          <span className="text-sm text-slate-soft">rijklaar</span>
+          <span className="text-sm text-slate-soft">{t.rijklaar}</span>
         </div>
         <div className="flex flex-wrap gap-2 mb-5">
           {specs.map((s, i) => (
@@ -75,19 +76,19 @@ function SingleSpotlight({ car }: { car: CarView }) {
         <div className="flex flex-wrap gap-3">
           {car.status === "Verkocht" ? (
             <Link href="/occasions" className={buttonVariants({ size: "md" })}>
-              Bekijk de voorraad
+              {t.knopVoorraad}
             </Link>
           ) : (
             <BookButton car={bookingCarOf(car)} size="md">
               <Calendar size={17} />
-              Maak een afspraak
+              {t.knopAfspraak}
             </BookButton>
           )}
           <Link
             href={`/occasions/${car.slug}`}
             className={buttonVariants({ variant: "secondary", size: "md" })}
           >
-            Bekijk deze auto
+            {t.knopAuto}
           </Link>
         </div>
       </div>
@@ -95,8 +96,9 @@ function SingleSpotlight({ car }: { car: CarView }) {
   );
 }
 
-export function Featured({ cars }: { cars: CarView[] }) {
+export async function Featured({ cars }: { cars: CarView[] }) {
   if (cars.length === 0) return null;
+  const [t, kaart] = await Promise.all([tekst("home__uitgelicht"), tekst("shared__autokaart")]);
   const single = cars.length === 1;
 
   return (
@@ -104,30 +106,30 @@ export function Featured({ cars }: { cars: CarView[] }) {
       <div className="flex items-end justify-between gap-5 flex-wrap mb-7">
         <div>
           <span className="font-display font-bold text-[13px] tracking-[0.14em] uppercase text-steel">
-            Uitgelicht
+            {t.eyebrow}
           </span>
           <h2 className="font-display font-extrabold text-[clamp(26px,3.6vw,38px)] tracking-[-0.01em] text-slate mt-2">
-            {single ? "Onze occasion van dit moment" : "Onze occasions van deze week"}
+            {single ? t.titelEen : t.titelMeer}
           </h2>
         </div>
         <Link
           href="/occasions"
           className="inline-flex items-center gap-2 h-[46px] px-5 bg-white border-[1.5px] border-line rounded-[11px] font-display font-bold text-[14.5px] text-slate hover:border-steel hover:text-steel-deep transition-colors"
         >
-          Hele voorraad
+          {t.knopHeleVoorraad}
           <ArrowRight size={16} />
         </Link>
       </div>
 
       {single ? (
         <Reveal>
-          <SingleSpotlight car={cars[0]} />
+          <SingleSpotlight car={cars[0]} t={t} />
         </Reveal>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[22px]">
           {cars.map((car, i) => (
             <Reveal key={car.slug} delay={i * 90} className="h-full">
-              <CarCard car={car} priority={i === 0} />
+              <CarCard car={car} priority={i === 0} knop={kaart.knop} />
             </Reveal>
           ))}
         </div>

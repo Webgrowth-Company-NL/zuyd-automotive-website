@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import type { Teksten } from "@/lib/teksten";
 
 interface FormState {
   autoType: string;
@@ -22,7 +23,7 @@ const EMPTY: FormState = {
   telefoon: "",
 };
 
-export function CoatingForm() {
+export function CoatingForm({ t }: { t: Teksten<"detailing__formulier"> }) {
   const [form, setForm] = useState<FormState>(EMPTY);
   const [sent, setSent] = useState(false);
   const [submitting, setSubmitting] = useState(false);
@@ -46,13 +47,13 @@ export function CoatingForm() {
       });
       const data = (await res.json().catch(() => ({}))) as { ok?: boolean };
       if (!res.ok || !data.ok) {
-        setError("Er ging iets mis. Probeer het zo nog eens of bel ons even.");
+        setError(t.foutMislukt);
         return;
       }
       setSent(true);
       window.scrollTo({ top: 0, behavior: "smooth" });
     } catch {
-      setError("Geen verbinding. Probeer het zo nog eens of bel ons even.");
+      setError(t.foutVerbinding);
     } finally {
       setSubmitting(false);
     }
@@ -65,11 +66,10 @@ export function CoatingForm() {
           <Check size={30} strokeWidth={2.2} />
         </div>
         <h3 className="font-display font-extrabold text-[21px] text-slate mb-1.5">
-          Bedankt, we sturen je een prijs
+          {t.bedanktTitel}
         </h3>
         <p className="text-[15px] text-slate-soft max-w-[34ch] mx-auto mb-5 leading-relaxed">
-          De prijs hangt af van de auto en de staat van de lak. We nemen contact op met een
-          voorstel op maat.
+          {t.bedanktTekst}
         </p>
         <Button
           variant="secondary"
@@ -79,7 +79,7 @@ export function CoatingForm() {
             setSent(false);
           }}
         >
-          Nog een auto aanmelden
+          {t.bedanktKnop}
         </Button>
       </div>
     );
@@ -90,41 +90,42 @@ export function CoatingForm() {
       onSubmit={onSubmit}
       className="bg-white border border-line rounded-[var(--radius-lg)] p-[clamp(22px,3vw,32px)] shadow-soft flex flex-col gap-3.5"
     >
-      <h3 className="font-display font-bold text-[19px] text-slate mb-0.5">Vraag een prijs aan</h3>
+      <h3 className="font-display font-bold text-[19px] text-slate mb-0.5">{t.titel}</h3>
       <p className="text-[14px] text-slate-soft -mt-2 mb-1">
-        De prijs is afhankelijk van de auto, dus we horen graag welke het is.
+        {t.intro}
       </p>
       <Veld
-        label="Wat voor auto is het?"
-        placeholder="Bijv. Volkswagen Golf 2019"
+        label={t.autoType}
+        placeholder={t.autoTypePlaceholder}
         required
         value={form.autoType}
         onChange={set("autoType")}
       />
       <Veld
-        label="Welke kleur?"
-        placeholder="Bijv. zwart metallic"
+        label={t.kleur}
+        placeholder={t.kleurPlaceholder}
         required
         value={form.kleur}
         onChange={set("kleur")}
       />
       <div>
         <label className="block text-[13px] font-semibold text-slate mb-1.5">
-          Toelichting <span className="text-slate-soft font-normal">(optioneel)</span>
+          {t.toelichting}{" "}
+          <span className="text-slate-soft font-normal">{t.optioneel}</span>
         </label>
         <textarea
           value={form.toelichting}
           onChange={set("toelichting")}
           rows={3}
-          placeholder="Staat van de lak, krassen, wensen, laat het weten."
+          placeholder={t.toelichtingPlaceholder}
           className={inputCls + " py-3 h-auto resize-y"}
         />
       </div>
       <div className="grid grid-cols-2 gap-3">
-        <Veld label="Naam" placeholder="Jouw naam" required value={form.naam} onChange={set("naam")} />
+        <Veld label={t.naam} placeholder={t.naamPlaceholder} required value={form.naam} onChange={set("naam")} />
         <Veld
-          label="Telefoon"
-          placeholder="06 12 34 56 78"
+          label={t.telefoon}
+          placeholder={t.telefoonPlaceholder}
           inputMode="tel"
           required
           value={form.telefoon}
@@ -132,8 +133,8 @@ export function CoatingForm() {
         />
       </div>
       <Veld
-        label="E-mailadres"
-        placeholder="jouw@mail.nl"
+        label={t.email}
+        placeholder={t.emailPlaceholder}
         type="email"
         inputMode="email"
         required
@@ -142,10 +143,10 @@ export function CoatingForm() {
       />
       {error && <p className="text-sm text-[#b4452f]">{error}</p>}
       <Button type="submit" size="md" disabled={submitting} className="mt-1.5 h-[54px]">
-        {submitting ? "Versturen…" : "Vraag een prijs aan"}
+        {submitting ? t.knopBezig : t.knop}
       </Button>
       <p className="text-[12.5px] text-slate-soft text-center">
-        Vrijblijvend. We nemen contact op met een prijs op maat.
+        {t.voetnoot}
       </p>
     </form>
   );

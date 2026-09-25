@@ -2,8 +2,10 @@ import Link from "next/link";
 import { Reveal } from "@/components/reveal";
 import { BookButton } from "@/components/booking/book-button";
 import { buttonVariants } from "@/components/ui/button";
+import { tekst } from "@/lib/teksten";
 
-export function ClosingCta() {
+export async function ClosingCta() {
+  const t = await tekst("shared__closing-cta");
   return (
     <section className="max-w-[1200px] mx-auto px-[22px] py-[clamp(40px,6vw,72px)]">
       <Reveal>
@@ -12,21 +14,20 @@ export function ClosingCta() {
           <div className="absolute right-7 top-7 w-40 h-40 rounded-full border-2 border-creme/12" />
           <div className="relative max-w-[620px]">
             <h2 className="font-display font-extrabold text-[clamp(27px,4vw,42px)] tracking-[-0.01em] text-white leading-tight">
-              Klaar om je volgende auto te ontmoeten?
+              {t.titel}
             </h2>
             <p className="text-[17px] leading-relaxed text-white/95 mt-4 mb-7 max-w-[46ch]">
-              Bel of app even en vraag naar Leroy. We werken op afspraak, dus zeg wanneer het je
-              uitkomt en de auto staat klaar.
+              {t.tekst}
             </p>
             <div className="flex flex-wrap gap-3.5">
               <BookButton variant="onDark" size="lg">
-                Maak een afspraak
+                {t.knopAfspraak}
               </BookButton>
               <Link
                 href="/occasions"
                 className={buttonVariants({ variant: "onDarkOutline", size: "lg" })}
               >
-                Bekijk de voorraad
+                {t.knopVoorraad}
               </Link>
             </div>
           </div>

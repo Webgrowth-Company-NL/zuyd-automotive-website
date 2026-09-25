@@ -1,0 +1,355 @@
+{
+  "home__hero": {
+    "eyebrow": "Occasions in Breda · persoonlijk geselecteerd",
+    "titel": "Betrouwbare occasions in Breda,",
+    "roterend": [
+      "persoonlijk uitgekozen",
+      "gekeurd voor aflevering",
+      "zonder verkooppraat",
+      "klaar voor de weg"
+    ],
+    "intro": "Welkom bij Zuyd Automotive. Vraag naar Leroy, dan laat hij je de auto zien waar je interesse in hebt. Rustig, op je gemak en zonder verkooppraat.",
+    "knopAfspraak": "Maak een afspraak",
+    "knopVoorraad": "Bekijk de voorraad",
+    "beoordeling": "4,9",
+    "beoordelingTekst": "gemiddeld · kopers uit Breda e.o.",
+    "fotoLabel": "Gekeurd voor aflevering",
+    "leroyTitel": "Vraag naar Leroy",
+    "leroyTekst": "Je vaste aanspreekpunt"
+  },
+  "home__uitgelicht": {
+    "eyebrow": "Uitgelicht",
+    "titelEen": "Onze occasion van dit moment",
+    "titelMeer": "Onze occasions van deze week",
+    "knopHeleVoorraad": "Hele voorraad",
+    "rijklaar": "rijklaar",
+    "knopAfspraak": "Maak een afspraak",
+    "knopVoorraad": "Bekijk de voorraad",
+    "knopAuto": "Bekijk deze auto"
+  },
+  "home__usp": {
+    "titel": "Autokopen zoals het hoort: rustig en eerlijk",
+    "intro": "Geen druk, geen rode uitroeptekens. Wel een eerlijke auto en een persoon die je echt te woord staat.",
+    "items": [
+      {
+        "titel": "Persoonlijk uitgekozen",
+        "tekst": "Elke auto rijden we zelf en kiezen we met zorg. Alleen wat wij zelf zouden kopen."
+      },
+      {
+        "titel": "Vast aanspreekpunt",
+        "tekst": "Bel of app en vraag naar Leroy. Hij laat je de auto zien, zonder gehaast."
+      },
+      {
+        "titel": "Eerlijke prijs",
+        "tekst": "Een heldere prijs zonder verrassingen achteraf. Je weet precies wat je krijgt."
+      },
+      {
+        "titel": "Garantie mogelijk",
+        "tekst": "Via Autotrust, met een landelijk netwerk van reparatiepartners. Vraag ernaar bij je auto."
+      }
+    ]
+  },
+  "home__leroy": {
+    "eyebrow": "Wie je treft",
+    "titelRegel1": "Eén aanspreekpunt,",
+    "titelRegel2": "één belofte",
+    "alinea1": "Dit is Leroy, mede-eigenaar van Zuyd Automotive. Bel je ons, dan krijg je hem aan de lijn, geen callcenter, geen doorverbinden. Hij kent elke auto in de voorraad persoonlijk en neemt de tijd om hem je rustig te laten zien. Geen verkooppraat, gewoon eerlijk advies.",
+    "alinea2": "Bij ons koop je geen nummer, maar een auto die wij met een gerust hart aan je meegeven.",
+    "knopAfspraak": "Maak een afspraak",
+    "knopOverOns": "Leer ons kennen"
+  },
+  "home__diensten": {
+    "eyebrow": "Wat we doen",
+    "titel": "Meer dan alleen auto's verkopen",
+    "items": [
+      {
+        "titel": "Verkoop van occasions",
+        "tekst": "Onze basis. Betaalbare occasions, stuk voor stuk uitgezocht en gekeurd. Je huidige auto ruilen we graag in op de auto waar je interesse in hebt.",
+        "linkLabel": "Inruil aanvragen"
+      },
+      {
+        "titel": "Hulp bij importeren",
+        "tekst": "Een auto op het oog in het buitenland? We helpen je met het importeren, van de keuring tot de papieren.",
+        "linkLabel": "Vraag naar de mogelijkheden"
+      },
+      {
+        "titel": "Car detailing",
+        "tekst": "Het aanbrengen van keramische coatings, zodat de lak beschermd blijft en jarenlang diep blijft staan.",
+        "linkLabel": "Bekijk detailing"
+      }
+    ]
+  },
+  "home__in-beeld": {
+    "eyebrow": "Onze occasions",
+    "titel": "Zuyd in beeld",
+    "link": "Bekijk de hele voorraad →"
+  },
+  "home__vertrouwen": {
+    "eyebrow": "Waarom Zuyd",
+    "titel": "Vertrouwd autokopen in de regio Breda",
+    "statEyebrow": "In het kort",
+    "stats": [
+      { "waarde": "4,9", "label": "Gemiddelde beoordeling" },
+      { "waarde": "25", "label": "Tevreden klanten sinds de start in januari 2026" }
+    ],
+    "garantieEyebrow": "Met een gerust hart",
+    "garantieTitel": "Garantie via Autotrust",
+    "garantieTekst": "Mogelijk op onze occasions, met een landelijk gedekt netwerk van reparatiepartners.",
+    "garantieAdres": "{stad} · Riethil 14."
+  },
+  "home__testimonials": {
+    "eyebrow": "Wat kopers zeggen",
+    "titel": "Met een gerust gevoel gereden",
+    "reviews": [
+      {
+        "quote": "Rustig geholpen door Leroy, alle tijd genomen. Eerlijk verhaal over de auto en netjes afgeleverd.",
+        "naam": "Sandra",
+        "plaats": "Breda"
+      },
+      {
+        "quote": "Fijne, nuchtere mensen. Geen gladde verkooppraat. Onze eerste gezinsauto met een gerust gevoel gekocht.",
+        "naam": "Mehmet",
+        "plaats": "Etten-Leur"
+      },
+      {
+        "quote": "Auto online gevonden, bezichtiging gepland, en alles klopte. Aanrader voor wie geen gedoe wil.",
+        "naam": "Patrick",
+        "plaats": "Oosterhout"
+      },
+      {
+        "quote": "Eerlijk advies en een nette auto met garantie. Voelde echt als kopen van iemand die je kent, niet van een loket.",
+        "naam": "Linda",
+        "plaats": "Prinsenbeek"
+      }
+    ]
+  },
+  "shared__closing-cta": {
+    "titel": "Klaar om je volgende auto te ontmoeten?",
+    "tekst": "Bel of app even en vraag naar Leroy. We werken op afspraak, dus zeg wanneer het je uitkomt en de auto staat klaar.",
+    "knopAfspraak": "Maak een afspraak",
+    "knopVoorraad": "Bekijk de voorraad"
+  },
+  "shared__autokaart": {
+    "knop": "Bekijk"
+  },
+  "shared__header": {
+    "knopAfspraak": "Maak een afspraak",
+    "knopAfspraakKort": "Afspraak",
+    "menuOpenen": "Menu openen",
+    "menuSluiten": "Menu sluiten",
+    "home": "Home"
+  },
+  "shared__footer": {
+    "kopPaginas": "Pagina's",
+    "kopContact": "Contact",
+    "kopLangskomen": "Langskomen"
+  },
+  "shared__afspraak": {
+    "titel": "Afspraak met Leroy",
+    "subtitel": "Even contact, dan staat het zo",
+    "dialoogLabel": "Afspraak maken met Leroy",
+    "sluiten": "Sluiten",
+    "intro": "Leroy plant de afspraak liever even persoonlijk. Bellen gaat het snelst, appen of mailen mag ook.",
+    "bellen": "Bel Leroy",
+    "appen": "Stuur een appje",
+    "appenDetail": "Meestal snel antwoord",
+    "mailen": "Mail Leroy"
+  },
+  "over-ons__intro": {
+    "eyebrow": "Over ons",
+    "titel": "Een eerlijke auto, persoonlijk uitgezocht",
+    "tekst": "Zuyd Automotive begon met een simpel idee: autokopen kan ook rustig, eerlijk en persoonlijk. Geen showroom vol druk, maar mensen die weten waar ze over praten en één vast aanspreekpunt dat je echt verder helpt."
+  },
+  "over-ons__team": {
+    "titel": "De mannen achter Zuyd",
+    "intro": "Samen jarenlange ervaring in de automotive branche. We weten waar we over praten, en je hebt bij ons altijd hetzelfde gezicht tegenover je.",
+    "naam": "Leroy",
+    "rol": "Mede-eigenaar · jouw vaste aanspreekpunt",
+    "alinea1": "Bel je of kom je langs, dan vraag je naar Leroy. Hij laat je de auto zien waar je interesse in hebt, vertelt eerlijk wat je mag verwachten en denkt met je mee, zonder druk.",
+    "alinea2": "Van de eerste vraag tot de sleutels heb je zo steeds dezelfde persoon aan de lijn. Geen doorverbinden, geen verhaal dat je twee keer moet vertellen."
+  },
+  "over-ons__waarden": {
+    "items": [
+      { "titel": "Nuchter & eerlijk", "tekst": "We zeggen het zoals het is. Ook als een auto niet bij je past." },
+      { "titel": "Persoonlijk", "tekst": "Vast aanspreekpunt, van bezichtiging tot sleutels." },
+      {
+        "titel": "Zorgvuldig",
+        "tekst": "Elke auto gekeurd en netjes afgeleverd. Optioneel met garantie via Autotrust."
+      }
+    ],
+    "knop": "Kom langs en maak een afspraak"
+  },
+  "inruil__intro": {
+    "eyebrow": "Inruil",
+    "titel": "Jouw auto in op onze occasion",
+    "tekst": "Wij ruilen je huidige auto graag in op de auto waar je interesse in hebt. Vul kort je gegevens in, dan nemen we contact op met een voorstel.",
+    "stappen": [
+      {
+        "titel": "Stuur je gegevens",
+        "tekst": "Merk, model, kilometerstand en een beschrijving van eventuele gebreken en beschadigingen."
+      },
+      { "titel": "Wij doen een voorstel", "tekst": "Eerlijke prijs, telefonisch of via WhatsApp." },
+      { "titel": "Snel geregeld", "tekst": "Akkoord? Dan handelen we het netjes voor je af." }
+    ]
+  },
+  "inruil__formulier": {
+    "titel": "Meld je auto aan",
+    "merk": "Merk",
+    "merkPlaceholder": "Volkswagen",
+    "model": "Model",
+    "modelPlaceholder": "Golf",
+    "bouwjaar": "Bouwjaar",
+    "bouwjaarPlaceholder": "2018",
+    "km": "Km-stand",
+    "kmPlaceholder": "85.000",
+    "kenteken": "Kenteken",
+    "kentekenPlaceholder": "XX-123-X",
+    "historie": "Is de onderhoudshistorie bekend?",
+    "historieKeuze": "Maak een keuze",
+    "historieOpties": ["Ja, volledig", "Deels bekend", "Nee, niet bekend"],
+    "gebreken": "Gebreken of beschadigingen",
+    "gebrekenPlaceholder": "Bijv. kras op de achterbumper, deukje in het portier, airco koelt niet meer",
+    "gebrekenHulp": "Hoe eerlijker het beeld, hoe scherper we het voorstel kunnen maken.",
+    "onderhoud": "Welk onderhoud komt eraan?",
+    "onderhoudPlaceholder": "Bijv. beurt over 5.000 km, APK in maart, distributieriem gedaan",
+    "optioneel": "(optioneel)",
+    "naam": "Naam",
+    "naamPlaceholder": "Jouw naam",
+    "telefoon": "Telefoon",
+    "telefoonPlaceholder": "06 12 34 56 78",
+    "email": "E-mailadres",
+    "emailPlaceholder": "jouw@mail.nl",
+    "knop": "Vraag een voorstel aan",
+    "knopBezig": "Versturen…",
+    "voetnoot": "Geen verplichtingen. We bellen je voor een eerlijke prijs.",
+    "foutMislukt": "Er ging iets mis. Probeer het zo nog eens of bel ons even.",
+    "foutVerbinding": "Geen verbinding. Probeer het zo nog eens of bel ons even.",
+    "bedanktTitel": "Bedankt, we nemen contact op",
+    "bedanktTekst": "Leroy belt je binnen één werkdag met een eerlijk voorstel.",
+    "bedanktKnop": "Nog een auto aanmelden"
+  },
+  "detailing__intro": {
+    "eyebrow": "Car detailing",
+    "titel": "Keramische coating voor je auto",
+    "tekst": "Een keramische coating legt een beschermlaag over de lak. Je auto blijft langer mooi, is makkelijker schoon te houden en houdt die diepe glans. Ook voor auto's die je niet bij ons hebt gekocht.",
+    "voordelen": [
+      {
+        "titel": "Bescherming die blijft",
+        "tekst": "De coating hecht op de lak en beschermt tegen vuil, regen en uitgebleekte plekken."
+      },
+      {
+        "titel": "Makkelijker schoon",
+        "tekst": "Water en vuil pakken minder houvast, dus je bent sneller klaar met wassen."
+      },
+      {
+        "titel": "Diepe glans",
+        "tekst": "De kleur blijft vol en diep staan, ook na jaren buiten staan."
+      }
+    ],
+    "prijsKop": "Prijs op aanvraag.",
+    "prijsTekst": "Wat het kost hangt af van de auto en de staat van de lak. Laat weten wat je rijdt, dan sturen we een prijs op maat."
+  },
+  "detailing__formulier": {
+    "titel": "Vraag een prijs aan",
+    "intro": "De prijs is afhankelijk van de auto, dus we horen graag welke het is.",
+    "autoType": "Wat voor auto is het?",
+    "autoTypePlaceholder": "Bijv. Volkswagen Golf 2019",
+    "kleur": "Welke kleur?",
+    "kleurPlaceholder": "Bijv. zwart metallic",
+    "toelichting": "Toelichting",
+    "toelichtingPlaceholder": "Staat van de lak, krassen, wensen, laat het weten.",
+    "optioneel": "(optioneel)",
+    "naam": "Naam",
+    "naamPlaceholder": "Jouw naam",
+    "telefoon": "Telefoon",
+    "telefoonPlaceholder": "06 12 34 56 78",
+    "email": "E-mailadres",
+    "emailPlaceholder": "jouw@mail.nl",
+    "knop": "Vraag een prijs aan",
+    "knopBezig": "Versturen…",
+    "voetnoot": "Vrijblijvend. We nemen contact op met een prijs op maat.",
+    "foutMislukt": "Er ging iets mis. Probeer het zo nog eens of bel ons even.",
+    "foutVerbinding": "Geen verbinding. Probeer het zo nog eens of bel ons even.",
+    "bedanktTitel": "Bedankt, we sturen je een prijs",
+    "bedanktTekst": "De prijs hangt af van de auto en de staat van de lak. We nemen contact op met een voorstel op maat.",
+    "bedanktKnop": "Nog een auto aanmelden"
+  },
+  "contact__intro": {
+    "eyebrow": "Contact",
+    "titel": "Kom langs in Breda",
+    "tekst": "Je bent welkom aan de {straat}. Plan vooraf even een bezichtiging, dan staat de auto voor je klaar en nemen we rustig de tijd."
+  },
+  "contact__gegevens": {
+    "adres": "Adres",
+    "bellen": "Bellen",
+    "whatsapp": "WhatsApp",
+    "mailen": "Mailen",
+    "route": "Route plannen",
+    "ctaTitel": "Een auto bekijken?",
+    "ctaTekst": "Leroy plant de afspraak zo met je in.",
+    "knopAfspraak": "Maak een afspraak"
+  },
+  "occasions__intro": {
+    "eyebrow": "Voorraad",
+    "titel": "Onze occasions",
+    "tekst": "Stuk voor stuk persoonlijk uitgekozen. Filter rustig en vraag naar Leroy voor de auto die je aanspreekt."
+  },
+  "occasions__voorraad": {
+    "filters": "Filters",
+    "wissen": "Wissen",
+    "merk": "Merk",
+    "alleMerken": "Alle merken",
+    "brandstof": "Brandstof",
+    "transmissie": "Transmissie",
+    "alle": "Alle",
+    "maxPrijs": "Max. prijs",
+    "vanafBouwjaar": "Vanaf bouwjaar",
+    "maxKm": "Max. km-stand",
+    "gevonden": "auto's gevonden",
+    "beschikbaarEen": "auto beschikbaar",
+    "beschikbaarMeer": "auto's beschikbaar",
+    "leegTitel": "Geen auto's met deze filters",
+    "leegTekst": "Verruim je filters om meer occasions te zien.",
+    "leegKnop": "Filters wissen"
+  },
+  "occasion__detail": {
+    "terug": "Terug naar voorraad",
+    "rijklaar": "rijklaar",
+    "specs": {
+      "bouwjaar": "Bouwjaar",
+      "km": "Km-stand",
+      "brandstof": "Brandstof",
+      "transmissie": "Transmissie",
+      "vermogen": "Vermogen",
+      "verbruik": "Verbruik",
+      "kleur": "Kleur",
+      "apk": "APK tot",
+      "kenteken": "Kenteken"
+    },
+    "ctaTitel": "Vraag naar Leroy",
+    "ctaTekst": "Bekijk deze auto rustig op je gemak",
+    "verkochtTitel": "Deze auto is verkocht",
+    "verkochtTekst": "Vraag gerust of er iets vergelijkbaars aankomt",
+    "knopAfspraak": "Maak een afspraak",
+    "knopVoorraad": "Bekijk de voorraad",
+    "bellen": "Bellen",
+    "whatsapp": "WhatsApp",
+    "mailen": "Mailen",
+    "quoteEyebrow": "Leroy over deze auto",
+    "quoteNaam": "Leroy",
+    "quoteRol": "Mede-eigenaar Zuyd Automotive",
+    "pluspunten": "Pluspunten",
+    "gerustHart": "Met een gerust hart",
+    "zekerheden": [
+      { "titel": "Garantie mogelijk", "tekst": "Via Autotrust, landelijk netwerk van reparatiepartners." },
+      { "titel": "Gekeurd & onderhouden", "tekst": "Met onderhoudshistorie en nieuwe APK." },
+      { "titel": "Inruil mogelijk", "tekst": "Wij nemen je huidige auto graag mee in het inruilvoorstel." }
+    ]
+  },
+  "notfound__tekst": {
+    "titel": "Deze pagina bestaat niet",
+    "tekst": "Misschien is de auto net verkocht of klopt de link niet. Bekijk gerust de rest van onze voorraad.",
+    "knopVoorraad": "Naar de voorraad",
+    "knopHome": "Terug naar home"
+  }
+}

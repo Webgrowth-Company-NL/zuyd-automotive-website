@@ -3,8 +3,10 @@ import { Photo } from "@/components/ui/photo";
 import { Reveal } from "@/components/reveal";
 import { BookButton } from "@/components/booking/book-button";
 import { buttonVariants } from "@/components/ui/button";
+import { tekst } from "@/lib/teksten";
 
-export function Personal() {
+export async function Personal() {
+  const t = await tekst("home__leroy");
   return (
     <section className="bg-slate relative overflow-hidden">
       <div className="absolute -left-24 -bottom-24 w-80 h-80 rounded-full border-2 border-creme/[0.07]" />
@@ -22,28 +24,25 @@ export function Personal() {
           </Reveal>
           <Reveal delay={120}>
             <span className="font-display font-bold text-[13px] tracking-[0.16em] uppercase text-[#9fb3bd]">
-              Wie je treft
+              {t.eyebrow}
             </span>
             <h2 className="font-display font-extrabold text-[clamp(28px,3.8vw,44px)] tracking-[-0.015em] text-creme mt-3 leading-[1.05]">
-              Eén aanspreekpunt,
+              {t.titelRegel1}
               <br />
-              één belofte
+              {t.titelRegel2}
             </h2>
             <p className="text-[17px] leading-relaxed text-warm/78 mt-5 max-w-[46ch]">
-              Dit is Leroy, mede-eigenaar van Zuyd Automotive. Bel je ons, dan krijg je hem aan de
-              lijn, geen callcenter, geen doorverbinden. Hij kent elke auto in de voorraad
-              persoonlijk en neemt de tijd om hem je rustig te laten zien. Geen verkooppraat, gewoon
-              eerlijk advies.
+              {t.alinea1}
             </p>
             <p className="text-[17px] leading-relaxed text-warm/78 mt-3.5 max-w-[46ch]">
-              Bij ons koop je geen nummer, maar een auto die wij met een gerust hart aan je meegeven.
+              {t.alinea2}
             </p>
             <div className="flex flex-wrap gap-3.5 mt-7">
               <BookButton variant="onDark" size="md">
-                Maak een afspraak
+                {t.knopAfspraak}
               </BookButton>
               <Link href="/over-ons" className={buttonVariants({ variant: "onDarkOutline", size: "md" })}>
-                Leer ons kennen
+                {t.knopOverOns}
               </Link>
             </div>
           </Reveal>

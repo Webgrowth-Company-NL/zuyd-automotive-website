@@ -25,6 +25,9 @@ import { BookButton } from "@/components/booking/book-button";
 import { WhatsappIcon } from "@/components/ui/icons";
 import { breadcrumbLd, JsonLd, vehicleLd } from "@/lib/structured-data";
 import { SITE, mailHref, telHref, whatsappHref } from "@/lib/site";
+import { tekst } from "@/lib/teksten";
+
+export const revalidate = 60;
 
 export async function generateStaticParams() {
   const slugs = await getAllSlugs();
@@ -89,22 +92,25 @@ export default async function OccasionDetailPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const car = await getCarBySlug(slug);
+  const [car, t] = await Promise.all([getCarBySlug(slug), tekst("occasion__detail")]);
   if (!car) notFound();
 
   const bc = bookingCarOf(car);
 
   const specs = [
-    { icon: Calendar, label: "Bouwjaar", value: String(car.bouwjaar) },
-    { icon: Gauge, label: "Km-stand", value: car.kmFmt },
-    { icon: Fuel, label: "Brandstof", value: car.brandstof },
-    { icon: Cog, label: "Transmissie", value: car.transmissie },
-    { icon: Zap, label: "Vermogen", value: car.pkFmt },
-    { icon: Droplet, label: "Verbruik", value: car.verbruik },
-    { icon: Palette, label: "Kleur", value: car.kleur },
-    { icon: ShieldCheck, label: "APK tot", value: car.apk },
-    { icon: Hash, label: "Kenteken", value: car.kenteken ?? "" },
-  ].filter((s) => s.value); // onbekende specs (bv. verbruik) niet leeg tonen
+    { icon: Calendar, label: t.specs.bouwjaar, value: String(car.bouwjaar) },
+    { icon: Gauge, label: t.specs.km, value: car.kmFmt },
+    { icon: Fuel, label: t.specs.brandstof, value: car.brandstof },
+    { icon: Cog, label: t.specs.transmissie, value: car.transmissie },
+    { icon: Zap, label: t.specs.vermogen, value: car.pkFmt },
+    { icon: Droplet, label: t.specs.verbruik, value: car.verbruik },
+    { icon: Palette, label: t.specs.kleur, value: car.kleur },
+    { icon: ShieldCheck, label: t.specs.apk, value: car.apk },
+    { icon: Hash, label: t.specs.kenteken, value: car.kenteken ?? "" },
+  ].filter((s) => s.value);
+
+  /** Iconen bij de zekerheden, in de volgorde van occasion__detail.zekerheden. */
+  const zekerheidIconen = [ShieldCheck, CheckCircle2, RefreshCw]; // onbekende specs (bv. verbruik) niet leeg tonen
 
   return (
     <div className="pb-[84px] lg:pb-0">
@@ -125,7 +131,7 @@ export default async function OccasionDetailPage({
           className="inline-flex items-center gap-1.5 text-sm font-semibold text-slate-soft hover:text-steel mb-5"
         >
           <ArrowLeft size={16} />
-          Terug naar voorraad
+          {t.terug}
         </Link>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-[clamp(26px,3.5vw,44px)] items-start">
@@ -147,7 +153,7 @@ export default async function OccasionDetailPage({
               <span className="font-display font-extrabold text-[clamp(30px,4vw,40px)] text-steel">
                 {car.prijsFmt}
               </span>
-              <span className="text-sm text-slate-soft">rijklaar</span>
+              <span className="text-sm text-slate-soft">{t.rijklaar}</span>
             </div>
 
             <div className="grid grid-cols-[repeat(auto-fill,minmax(158px,1fr))] gap-2.5 mb-6">
@@ -178,12 +184,10 @@ export default async function OccasionDetailPage({
                 <ZBadge size={48} className="!bg-warm/15" />
                 <div className="leading-snug">
                   <div className="font-display font-bold text-base text-white">
-                    {car.status === "Verkocht" ? "Deze auto is verkocht" : "Vraag naar Leroy"}
+                    {car.status === "Verkocht" ? t.verkochtTitel : t.ctaTitel}
                   </div>
                   <div className="text-[13.5px] text-white/95">
-                    {car.status === "Verkocht"
-                      ? "Vraag gerust of er iets vergelijkbaars aankomt"
-                      : "Bekijk deze auto rustig op je gemak"}
+                    {car.status === "Verkocht" ? t.verkochtTekst : t.ctaTekst}
                   </div>
                 </div>
               </div>
@@ -192,11 +196,11 @@ export default async function OccasionDetailPage({
                   href="/occasions"
                   className="w-full h-[54px] inline-flex items-center justify-center gap-2 bg-warm rounded-xl font-display font-bold text-[15px] text-slate hover:bg-white transition-colors"
                 >
-                  Bekijk de voorraad
+                  {t.knopVoorraad}
                 </Link>
               ) : (
                 <BookButton car={bc} variant="onDark" size="md" className="w-full h-[54px]">
-                  Maak een afspraak
+                  {t.knopAfspraak}
                 </BookButton>
               )}
             </div>
@@ -207,7 +211,7 @@ export default async function OccasionDetailPage({
                 className="flex-1 inline-flex items-center justify-center gap-2.5 h-[50px] bg-white border-[1.5px] border-line rounded-xl font-display font-bold text-[15px] text-slate hover:border-steel hover:text-steel-deep transition-colors"
               >
                 <Phone size={17} />
-                Bellen
+                {t.bellen}
               </a>
               <a
                 href={whatsappHref(`Hoi, ik heb interesse in de ${car.full} (${car.prijsFmt}).`)}
@@ -216,7 +220,7 @@ export default async function OccasionDetailPage({
                 className="flex-1 inline-flex items-center justify-center gap-2.5 h-[50px] bg-white border-[1.5px] border-line rounded-xl font-display font-bold text-[15px] text-slate hover:border-steel hover:text-steel-deep transition-colors"
               >
                 <WhatsappIcon size={17} />
-                WhatsApp
+                {t.whatsapp}
               </a>
               <a
                 href={
@@ -233,7 +237,7 @@ export default async function OccasionDetailPage({
                 className="flex-1 inline-flex items-center justify-center gap-2.5 h-[50px] bg-white border-[1.5px] border-line rounded-xl font-display font-bold text-[15px] text-slate hover:border-steel hover:text-steel-deep transition-colors"
               >
                 <Mail size={17} />
-                Mailen
+                {t.mailen}
               </a>
             </div>
           </div>
@@ -255,7 +259,7 @@ export default async function OccasionDetailPage({
           />
           <div className="flex-1 min-w-[270px] relative">
             <span className="font-display font-bold text-[12.5px] tracking-[0.16em] uppercase text-[#9fb3bd]">
-              Leroy over deze auto
+              {t.quoteEyebrow}
             </span>
             <blockquote className="mt-3 font-display font-semibold text-[clamp(20px,2.5vw,28px)] leading-[1.32] tracking-[-0.01em] text-creme">
               “{car.quote}”
@@ -263,8 +267,8 @@ export default async function OccasionDetailPage({
             <div className="flex items-center gap-3 mt-5">
               <ZBadge size={36} />
               <span className="leading-tight">
-                <span className="block font-display font-bold text-[15px] text-white">Leroy</span>
-                <span className="block text-[13px] text-creme/70">Mede-eigenaar Zuyd Automotive</span>
+                <span className="block font-display font-bold text-[15px] text-white">{t.quoteNaam}</span>
+                <span className="block text-[13px] text-creme/70">{t.quoteRol}</span>
               </span>
             </div>
           </div>
@@ -276,7 +280,7 @@ export default async function OccasionDetailPage({
         <div className="grid grid-cols-1 md:grid-cols-2 gap-[22px]">
           <div className="bg-white border border-line rounded-[var(--radius)] p-6 relative overflow-hidden">
             <div className="absolute -right-12 -top-12 w-44 h-44 rounded-full border-2 border-steel/10" />
-            <h3 className="font-display font-bold text-[19px] text-slate mb-4 relative">Pluspunten</h3>
+            <h3 className="font-display font-bold text-[19px] text-slate mb-4 relative">{t.pluspunten}</h3>
             <div className="flex flex-col gap-3.5 relative">
               {car.highlights.map((h) => (
                 <div key={h} className="flex items-center gap-3 text-[15.5px] text-slate">
@@ -291,20 +295,17 @@ export default async function OccasionDetailPage({
           <div className="bg-white border border-line rounded-[var(--radius)] p-6 relative overflow-hidden">
             <div className="absolute -right-12 -top-12 w-44 h-44 rounded-full border-2 border-steel/10" />
             <h3 className="font-display font-bold text-[19px] text-slate mb-4 relative">
-              Met een gerust hart
+              {t.gerustHart}
             </h3>
             <div className="flex flex-col gap-4 relative">
-              <TrustRow
-                icon={ShieldCheck}
-                title="Garantie mogelijk"
-                body="Via Autotrust, landelijk netwerk van reparatiepartners."
-              />
-              <TrustRow icon={CheckCircle2} title="Gekeurd & onderhouden" body="Met onderhoudshistorie en nieuwe APK." />
-              <TrustRow
-                icon={RefreshCw}
-                title="Inruil mogelijk"
-                body="Wij nemen je huidige auto graag mee in het inruilvoorstel."
-              />
+              {t.zekerheden.map((z, i) => (
+                <TrustRow
+                  key={z.titel}
+                  icon={zekerheidIconen[i % zekerheidIconen.length]}
+                  title={z.titel}
+                  body={z.tekst}
+                />
+              ))}
             </div>
           </div>
         </div>
@@ -315,7 +316,7 @@ export default async function OccasionDetailPage({
         <div className="max-w-[1200px] mx-auto flex gap-2.5 items-center">
           <a
             href={telHref()}
-            aria-label="Bellen"
+            aria-label={t.bellen}
             className="w-[52px] h-[52px] shrink-0 grid place-items-center bg-white border-[1.5px] border-line rounded-xl text-slate"
           >
             <Phone size={20} />
@@ -324,7 +325,7 @@ export default async function OccasionDetailPage({
             href={whatsappHref(`Hoi, ik heb interesse in de ${car.full}.`)}
             target="_blank"
             rel="noopener noreferrer"
-            aria-label="WhatsApp"
+            aria-label={t.whatsapp}
             className="w-[52px] h-[52px] shrink-0 grid place-items-center bg-white border-[1.5px] border-line rounded-xl text-slate"
           >
             <WhatsappIcon size={20} />
@@ -334,12 +335,12 @@ export default async function OccasionDetailPage({
               href="/occasions"
               className="flex-1 h-[52px] inline-flex items-center justify-center gap-2 bg-steel rounded-xl font-display font-bold text-[15px] text-white hover:bg-steel-deep transition-colors"
             >
-              Bekijk de voorraad
+              {t.knopVoorraad}
             </Link>
           ) : (
             <BookButton car={bc} size="md" className="flex-1 h-[52px]">
               <Phone size={18} />
-              Maak een afspraak
+              {t.knopAfspraak}
             </BookButton>
           )}
         </div>

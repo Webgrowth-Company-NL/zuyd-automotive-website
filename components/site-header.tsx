@@ -8,8 +8,9 @@ import { Wordmark, ZBadge } from "@/components/brand/logo";
 import { BookButton } from "@/components/booking/book-button";
 import { NAV, SITE } from "@/lib/site";
 import { cn } from "@/lib/cn";
+import type { Teksten } from "@/lib/teksten";
 
-export function SiteHeader() {
+export function SiteHeader({ t }: { t: Teksten<"shared__header"> }) {
   const [menuOpen, setMenuOpen] = useState(false);
   const pathname = usePathname();
 
@@ -44,12 +45,12 @@ export function SiteHeader() {
         <div className="flex items-center gap-2.5">
           <BookButton size="sm" className="max-sm:px-4">
             <Phone size={17} />
-            <span className="max-sm:hidden">Maak een afspraak</span>
-            <span className="sm:hidden">Afspraak</span>
+            <span className="max-sm:hidden">{t.knopAfspraak}</span>
+            <span className="sm:hidden">{t.knopAfspraakKort}</span>
           </BookButton>
           <button
             onClick={() => setMenuOpen(true)}
-            aria-label="Menu openen"
+            aria-label={t.menuOpenen}
             className="lg:hidden w-[46px] h-[46px] grid place-items-center bg-white border border-line rounded-[11px] text-slate hover:border-steel transition-colors"
           >
             <Menu size={20} />
@@ -64,7 +65,7 @@ export function SiteHeader() {
             <Wordmark />
             <button
               onClick={() => setMenuOpen(false)}
-              aria-label="Menu sluiten"
+              aria-label={t.menuSluiten}
               className="w-[46px] h-[46px] grid place-items-center bg-white border border-line rounded-[11px] text-slate hover:border-steel transition-colors"
             >
               <X size={20} />
@@ -73,7 +74,7 @@ export function SiteHeader() {
           <div className="max-w-[1200px] mx-auto w-full px-[22px] py-10 flex-1 flex flex-col gap-10 justify-center">
             <nav className="flex flex-col gap-1">
               <MenuLink href="/" onClick={() => setMenuOpen(false)}>
-                Home
+                {t.home}
               </MenuLink>
               {NAV.map((item) => (
                 <MenuLink key={item.href} href={item.href} onClick={() => setMenuOpen(false)}>
@@ -83,7 +84,7 @@ export function SiteHeader() {
             </nav>
             <div className="flex flex-wrap gap-3.5 items-center">
               <BookButton size="lg" onClick={() => setMenuOpen(false)}>
-                Maak een afspraak
+                {t.knopAfspraak}
               </BookButton>
               <span className="text-[15px] text-slate-soft flex items-center gap-2">
                 <ZBadge size={26} />

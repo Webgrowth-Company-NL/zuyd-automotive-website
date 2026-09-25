@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import type { Teksten } from "@/lib/teksten";
 
 interface FormState {
   merk: string;
@@ -32,13 +33,7 @@ const EMPTY: FormState = {
   telefoon: "",
 };
 
-const HISTORIE_OPTIES = [
-  "Ja, volledig",
-  "Deels bekend",
-  "Nee, niet bekend",
-];
-
-export function InruilForm() {
+export function InruilForm({ t }: { t: Teksten<"inruil__formulier"> }) {
   const [form, setForm] = useState<FormState>(EMPTY);
   const [sent, setSent] = useState(false);
   const [submitting, setSubmitting] = useState(false);
@@ -60,13 +55,13 @@ export function InruilForm() {
       });
       const data = (await res.json().catch(() => ({}))) as { ok?: boolean };
       if (!res.ok || !data.ok) {
-        setError("Er ging iets mis. Probeer het zo nog eens of bel ons even.");
+        setError(t.foutMislukt);
         return;
       }
       setSent(true);
       window.scrollTo({ top: 0, behavior: "smooth" });
     } catch {
-      setError("Geen verbinding. Probeer het zo nog eens of bel ons even.");
+      setError(t.foutVerbinding);
     } finally {
       setSubmitting(false);
     }
@@ -79,10 +74,10 @@ export function InruilForm() {
           <Check size={30} strokeWidth={2.2} />
         </div>
         <h3 className="font-display font-extrabold text-[21px] text-slate mb-1.5">
-          Bedankt, we nemen contact op
+          {t.bedanktTitel}
         </h3>
         <p className="text-[15px] text-slate-soft max-w-[32ch] mx-auto mb-5 leading-relaxed">
-          Leroy belt je binnen één werkdag met een eerlijk voorstel.
+          {t.bedanktTekst}
         </p>
         <Button
           variant="secondary"
@@ -92,7 +87,7 @@ export function InruilForm() {
             setSent(false);
           }}
         >
-          Nog een auto aanmelden
+          {t.bedanktKnop}
         </Button>
       </div>
     );
@@ -103,31 +98,31 @@ export function InruilForm() {
       onSubmit={onSubmit}
       className="bg-white border border-line rounded-[var(--radius-lg)] p-[clamp(22px,3vw,32px)] shadow-soft flex flex-col gap-3.5"
     >
-      <h3 className="font-display font-bold text-[19px] text-slate mb-0.5">Meld je auto aan</h3>
+      <h3 className="font-display font-bold text-[19px] text-slate mb-0.5">{t.titel}</h3>
       <div className="grid grid-cols-2 gap-3">
-        <Input label="Merk" placeholder="Volkswagen" required value={form.merk} onChange={set("merk")} />
-        <Input label="Model" placeholder="Golf" required value={form.model} onChange={set("model")} />
+        <Input label={t.merk} placeholder={t.merkPlaceholder} required value={form.merk} onChange={set("merk")} />
+        <Input label={t.model} placeholder={t.modelPlaceholder} required value={form.model} onChange={set("model")} />
         <Input
-          label="Bouwjaar"
-          placeholder="2018"
+          label={t.bouwjaar}
+          placeholder={t.bouwjaarPlaceholder}
           inputMode="numeric"
           required
           value={form.bouwjaar}
           onChange={set("bouwjaar")}
         />
         <Input
-          label="Km-stand"
-          placeholder="85.000"
+          label={t.km}
+          placeholder={t.kmPlaceholder}
           inputMode="numeric"
           required
           value={form.km}
           onChange={set("km")}
         />
       </div>
-      <Input label="Kenteken" placeholder="XX-123-X" value={form.kenteken} onChange={set("kenteken")} />
+      <Input label={t.kenteken} placeholder={t.kentekenPlaceholder} value={form.kenteken} onChange={set("kenteken")} />
       <div>
         <label className="block text-[13px] font-semibold text-slate mb-1.5">
-          Is de onderhoudshistorie bekend?
+          {t.historie}
         </label>
         <select
           value={form.onderhoudshistorie}
@@ -135,8 +130,8 @@ export function InruilForm() {
           required
           className="w-full h-12 px-3.5 border-[1.5px] border-line rounded-[10px] bg-warm font-sans text-[15px] text-slate outline-none focus:border-steel focus:bg-white transition-colors"
         >
-          <option value="">Maak een keuze</option>
-          {HISTORIE_OPTIES.map((o) => (
+          <option value="">{t.historieKeuze}</option>
+          {t.historieOpties.map((o) => (
             <option key={o} value={o}>
               {o}
             </option>
@@ -145,38 +140,38 @@ export function InruilForm() {
       </div>
       <div>
         <label className="block text-[13px] font-semibold text-slate mb-1.5">
-          Gebreken of beschadigingen{" "}
-          <span className="text-slate-soft font-normal">(optioneel)</span>
+          {t.gebreken}{" "}
+          <span className="text-slate-soft font-normal">{t.optioneel}</span>
         </label>
         <textarea
           value={form.gebreken}
           onChange={(e) => setForm((f) => ({ ...f, gebreken: e.target.value }))}
           rows={3}
-          placeholder="Bijv. kras op de achterbumper, deukje in het portier, airco koelt niet meer"
+          placeholder={t.gebrekenPlaceholder}
           className="w-full px-3.5 py-3 border-[1.5px] border-line rounded-[10px] bg-warm font-sans text-[15px] text-slate outline-none focus:border-steel focus:bg-white transition-colors resize-y"
         />
         <p className="text-[12.5px] text-slate-soft mt-1.5">
-          Hoe eerlijker het beeld, hoe scherper we het voorstel kunnen maken.
+          {t.gebrekenHulp}
         </p>
       </div>
       <div>
         <label className="block text-[13px] font-semibold text-slate mb-1.5">
-          Welk onderhoud komt eraan?{" "}
-          <span className="text-slate-soft font-normal">(optioneel)</span>
+          {t.onderhoud}{" "}
+          <span className="text-slate-soft font-normal">{t.optioneel}</span>
         </label>
         <textarea
           value={form.aankomendOnderhoud}
           onChange={(e) => setForm((f) => ({ ...f, aankomendOnderhoud: e.target.value }))}
           rows={2}
-          placeholder="Bijv. beurt over 5.000 km, APK in maart, distributieriem gedaan"
+          placeholder={t.onderhoudPlaceholder}
           className="w-full px-3.5 py-3 border-[1.5px] border-line rounded-[10px] bg-warm font-sans text-[15px] text-slate outline-none focus:border-steel focus:bg-white transition-colors resize-y"
         />
       </div>
       <div className="grid grid-cols-2 gap-3">
-        <Input label="Naam" placeholder="Jouw naam" required value={form.naam} onChange={set("naam")} />
+        <Input label={t.naam} placeholder={t.naamPlaceholder} required value={form.naam} onChange={set("naam")} />
         <Input
-          label="Telefoon"
-          placeholder="06 12 34 56 78"
+          label={t.telefoon}
+          placeholder={t.telefoonPlaceholder}
           inputMode="tel"
           required
           value={form.telefoon}
@@ -184,8 +179,8 @@ export function InruilForm() {
         />
       </div>
       <Input
-        label="E-mailadres"
-        placeholder="jouw@mail.nl"
+        label={t.email}
+        placeholder={t.emailPlaceholder}
         type="email"
         inputMode="email"
         required
@@ -194,10 +189,10 @@ export function InruilForm() {
       />
       {error && <p className="text-sm text-[#b4452f]">{error}</p>}
       <Button type="submit" size="md" disabled={submitting} className="mt-1.5 h-[54px]">
-        {submitting ? "Versturen…" : "Vraag een voorstel aan"}
+        {submitting ? t.knopBezig : t.knop}
       </Button>
       <p className="text-[12.5px] text-slate-soft text-center">
-        Geen verplichtingen. We bellen je voor een eerlijke prijs.
+        {t.voetnoot}
       </p>
     </form>
   );

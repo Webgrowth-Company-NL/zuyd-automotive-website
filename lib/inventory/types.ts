@@ -24,7 +24,11 @@ export interface Car {
   status: CarStatus;
   highlights: string[];
   quote: string;
-  /** Voertuigfoto's (lokaal in /public of later via feed/CMS). Leeg = placeholder. */
+  /** Positie in de voorraad; lager staat eerder. */
+  volgorde?: number;
+  /** false = offline: bewaard in Forester, niet op de site. */
+  gepubliceerd?: boolean;
+  /** Voertuigfoto's: lokaal in /public of uit Forester (Firebase Storage). Leeg = placeholder. */
   images?: string[];
 }
 

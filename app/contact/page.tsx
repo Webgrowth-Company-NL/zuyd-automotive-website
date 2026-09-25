@@ -4,6 +4,7 @@ import { BookButton } from "@/components/booking/book-button";
 import { WhatsappIcon } from "@/components/ui/icons";
 import { autoDealerLd, breadcrumbLd, JsonLd } from "@/lib/structured-data";
 import { SITE, mailHref, mapsHref, telHref, whatsappHref } from "@/lib/site";
+import { tekst, vul } from "@/lib/teksten";
 
 export const metadata: Metadata = {
   title: "Contact · kom langs in Breda",
@@ -12,7 +13,10 @@ export const metadata: Metadata = {
   alternates: { canonical: "/contact" },
 };
 
-export default function ContactPage() {
+export const revalidate = 60;
+
+export default async function ContactPage() {
+  const [intro, t] = await Promise.all([tekst("contact__intro"), tekst("contact__gegevens")]);
   return (
     <>
       <JsonLd
@@ -26,14 +30,13 @@ export default function ContactPage() {
       />
       <section className="max-w-[1100px] mx-auto px-[22px] pt-[clamp(40px,6vw,72px)] pb-[clamp(30px,4vw,44px)]">
         <span className="font-display font-bold text-[13px] tracking-[0.14em] uppercase text-steel">
-          Contact
+          {intro.eyebrow}
         </span>
         <h1 className="font-display font-extrabold text-[clamp(30px,4.4vw,46px)] tracking-[-0.02em] text-slate mt-3 leading-[1.07]">
-          Kom langs in Breda
+          {intro.titel}
         </h1>
         <p className="text-[17px] leading-relaxed text-slate-soft mt-3.5 max-w-[50ch]">
-          Je bent welkom aan de {SITE.address.street.split(" - ")[0]}. Plan vooraf even een
-          bezichtiging, dan staat de auto voor je klaar en nemen we rustig de tijd.
+          {vul(intro.tekst, { straat: SITE.address.street.split(" - ")[0] })}
         </p>
       </section>
 
@@ -45,7 +48,7 @@ export default function ContactPage() {
                 <MapPin size={20} />
               </IconBox>
               <div>
-                <div className="font-display font-bold text-base text-slate mb-1">Adres</div>
+                <div className="font-display font-bold text-base text-slate mb-1">{t.adres}</div>
                 <div className="text-[15px] text-slate-soft leading-relaxed">
                   {SITE.address.street}
                   <br />
@@ -74,7 +77,7 @@ export default function ContactPage() {
                 className="flex-1 inline-flex items-center justify-center gap-2.5 h-[52px] bg-white border-[1.5px] border-line rounded-xl font-display font-bold text-[15px] text-slate hover:border-steel hover:text-steel-deep transition-colors"
               >
                 <Phone size={17} />
-                Bellen
+                {t.bellen}
               </a>
               <a
                 href={whatsappHref("Hoi, ik heb een vraag over jullie occasions.")}
@@ -83,7 +86,7 @@ export default function ContactPage() {
                 className="flex-1 inline-flex items-center justify-center gap-2.5 h-[52px] bg-white border-[1.5px] border-line rounded-xl font-display font-bold text-[15px] text-slate hover:border-steel hover:text-steel-deep transition-colors"
               >
                 <WhatsappIcon size={17} />
-                WhatsApp
+                {t.whatsapp}
               </a>
               <a
                 href={mailHref(
@@ -93,7 +96,7 @@ export default function ContactPage() {
                 className="flex-1 inline-flex items-center justify-center gap-2.5 h-[52px] bg-white border-[1.5px] border-line rounded-xl font-display font-bold text-[15px] text-slate hover:border-steel hover:text-steel-deep transition-colors"
               >
                 <Mail size={17} />
-                Mailen
+                {t.mailen}
               </a>
             </div>
           </div>
@@ -116,18 +119,18 @@ export default function ContactPage() {
                 className="absolute bottom-3 right-3 z-[1] inline-flex items-center gap-2 bg-white/95 backdrop-blur border border-line rounded-full px-4 py-2 font-display font-bold text-[13.5px] text-slate hover:text-steel-deep hover:border-steel transition-colors shadow-soft no-underline"
               >
                 <MapPin size={15} />
-                Route plannen
+                {t.route}
               </a>
             </div>
             <div className="bg-steel rounded-[var(--radius)] p-6 mt-3.5 flex flex-wrap items-center justify-between gap-4">
               <div>
                 <div className="font-display font-bold text-[17px] text-white">
-                  Een auto bekijken?
+                  {t.ctaTitel}
                 </div>
-                <div className="text-sm text-white/95">Leroy plant de afspraak zo met je in.</div>
+                <div className="text-sm text-white/95">{t.ctaTekst}</div>
               </div>
               <BookButton variant="onDark" size="md">
-                Maak een afspraak
+                {t.knopAfspraak}
               </BookButton>
             </div>
           </div>

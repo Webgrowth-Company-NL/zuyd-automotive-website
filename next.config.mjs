@@ -5,6 +5,8 @@ const nextConfig = {
     remotePatterns: [
       // byq-supply CDN imagery used in elevated marketing sections (placeholder photography)
       { protocol: "https", hostname: "byqsupply-components.netlify.app" },
+      // Foto's uit Forester (Firebase Storage), zoals de auto's die Leroy via Q toevoegt.
+      { protocol: "https", hostname: "firebasestorage.googleapis.com", pathname: "/v0/b/webgrowth-company-lzz4e6.firebasestorage.app/o/**" },
     ],
   },
   async redirects() {

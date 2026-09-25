@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight, Plus } from "lucide-react";
 import type { CarView } from "@/lib/inventory";
+import { tekst } from "@/lib/teksten";
 
 interface Shot {
   src: string;
@@ -47,7 +48,7 @@ function ShotCard({ shot }: { shot: Shot }) {
   );
 }
 
-export function ShowcaseMarquee({ cars }: { cars: CarView[] }) {
+export async function ShowcaseMarquee({ cars }: { cars: CarView[] }) {
   // Vlakke lijst van échte foto's; bij placeholder (geen foto's) tonen we niets.
   const shots: Shot[] = cars.flatMap((car) =>
     car.photos.map((src) => ({
@@ -58,6 +59,7 @@ export function ShowcaseMarquee({ cars }: { cars: CarView[] }) {
     })),
   );
   if (shots.length === 0) return null;
+  const t = await tekst("home__in-beeld");
 
   // Genoeg kaarten voor een vloeiende loop (verdubbel tot minstens 6).
   let base = shots;
@@ -70,17 +72,17 @@ export function ShowcaseMarquee({ cars }: { cars: CarView[] }) {
       <div className="max-w-[1200px] mx-auto px-[22px] mb-9 flex items-end justify-between gap-4 flex-wrap">
         <div>
           <span className="font-display font-bold text-[13px] tracking-[0.14em] uppercase text-steel">
-            Onze occasions
+            {t.eyebrow}
           </span>
           <h2 className="font-display font-extrabold text-[clamp(28px,4.4vw,52px)] tracking-[-0.02em] text-slate mt-2">
-            Zuyd in beeld
+            {t.titel}
           </h2>
         </div>
         <Link
           href="/occasions"
           className="font-display font-bold text-[14.5px] text-steel hover:text-steel-deep shrink-0"
         >
-          Bekijk de hele voorraad →
+          {t.link}
         </Link>
       </div>
       <div className="marquee">

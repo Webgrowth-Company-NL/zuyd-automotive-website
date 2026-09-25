@@ -6,6 +6,7 @@ import { BookingProvider } from "@/components/booking/booking-provider";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { SITE } from "@/lib/site";
+import { tekst } from "@/lib/teksten";
 
 const archivo = Archivo({
   subsets: ["latin"],
@@ -59,7 +60,14 @@ export const viewport: Viewport = {
   themeColor: "#F7F6F2",
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export const revalidate = 60;
+
+export default async function RootLayout({ children }: { children: React.ReactNode }) {
+  const [header, footer, afspraak] = await Promise.all([
+    tekst("shared__header"),
+    tekst("shared__footer"),
+    tekst("shared__afspraak"),
+  ]);
   return (
     <html lang="nl" className={`${archivo.variable} ${hanken.variable}`}>
       <body>
@@ -70,10 +78,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           strategy="afterInteractive"
           defer
         />
-        <BookingProvider>
-          <SiteHeader />
+        <BookingProvider t={afspraak}>
+          <SiteHeader t={header} />
           <main>{children}</main>
-          <SiteFooter />
+          <SiteFooter t={footer} />
         </BookingProvider>
       </body>
     </html>

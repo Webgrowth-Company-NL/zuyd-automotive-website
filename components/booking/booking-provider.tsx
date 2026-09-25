@@ -7,13 +7,20 @@ import { BookingContext, type BookingCar } from "./booking-context";
 import { ZBadge } from "@/components/brand/logo";
 import { WhatsappIcon } from "@/components/ui/icons";
 import { SITE, mailHref, telHref, whatsappHref } from "@/lib/site";
+import type { Teksten } from "@/lib/teksten";
 
 /**
  * Afspraak maken loopt bewust via Leroy zelf: bellen, appen of mailen.
  * Deze schil houdt de bestaande `BookButton`-aanroepen intact en geeft de
  * auto waar de bezoeker vandaan komt mee in het WhatsApp- en mailbericht.
  */
-export function BookingProvider({ children }: { children: React.ReactNode }) {
+export function BookingProvider({
+  children,
+  t,
+}: {
+  children: React.ReactNode;
+  t: Teksten<"shared__afspraak">;
+}) {
   const [isOpen, setIsOpen] = useState(false);
   const [car, setCar] = useState<BookingCar | null>(null);
 
@@ -54,14 +61,14 @@ export function BookingProvider({ children }: { children: React.ReactNode }) {
       {isOpen && (
         <div className="fixed inset-0 z-[80] flex items-end sm:items-center justify-center z-fade">
           <button
-            aria-label="Sluiten"
+            aria-label={t.sluiten}
             onClick={close}
             className="absolute inset-0 bg-slate/50 backdrop-blur-[3px] cursor-default"
           />
           <div
             role="dialog"
             aria-modal="true"
-            aria-label="Afspraak maken met Leroy"
+            aria-label={t.dialoogLabel}
             className="relative w-full max-w-[460px] max-h-[94vh] overflow-y-auto bg-warm rounded-t-[24px] sm:rounded-[24px] shadow-lg z-sheet"
           >
             <div className="flex items-center justify-between gap-3.5 px-[22px] pt-5 pb-4 border-b border-line-soft">
@@ -69,16 +76,16 @@ export function BookingProvider({ children }: { children: React.ReactNode }) {
                 <ZBadge size={46} />
                 <div className="leading-tight">
                   <div className="font-display font-bold text-base text-slate">
-                    Afspraak met Leroy
+                    {t.titel}
                   </div>
                   <div className="text-[13px] text-slate-soft">
-                    Even contact, dan staat het zo
+                    {t.subtitel}
                   </div>
                 </div>
               </div>
               <button
                 onClick={close}
-                aria-label="Sluiten"
+                aria-label={t.sluiten}
                 className="w-10 h-10 grid place-items-center bg-white border border-line rounded-[10px] text-slate hover:border-steel transition-colors shrink-0"
               >
                 <X size={18} />
@@ -105,29 +112,28 @@ export function BookingProvider({ children }: { children: React.ReactNode }) {
               )}
 
               <p className="text-[15px] text-slate-soft leading-relaxed mb-[18px]">
-                Leroy plant de afspraak liever even persoonlijk. Bellen gaat het
-                snelst, appen of mailen mag ook.
+                {t.intro}
               </p>
 
               <div className="flex flex-col gap-2.5">
                 <ContactKnop
                   href={telHref()}
                   icon={<Phone size={19} />}
-                  label="Bel Leroy"
+                  label={t.bellen}
                   detail={SITE.phoneDisplay}
                   primair
                 />
                 <ContactKnop
                   href={whatsappHref(bericht)}
                   icon={<WhatsappIcon size={19} />}
-                  label="Stuur een appje"
-                  detail="Meestal snel antwoord"
+                  label={t.appen}
+                  detail={t.appenDetail}
                   extern
                 />
                 <ContactKnop
                   href={mailHref(onderwerp, bericht)}
                   icon={<Mail size={19} />}
-                  label="Mail Leroy"
+                  label={t.mailen}
                   detail={SITE.email}
                 />
               </div>

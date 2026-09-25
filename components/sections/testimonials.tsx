@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { Star } from "lucide-react";
+import { tekst } from "@/lib/teksten";
 
 interface Review {
   quote: string;
@@ -9,35 +10,12 @@ interface Review {
 }
 
 // TODO go-live: echte Google-reviews + portretten. byq CDN-portretten als placeholder.
-const REVIEWS: Review[] = [
-  {
-    quote:
-      "Rustig geholpen door Leroy, alle tijd genomen. Eerlijk verhaal over de auto en netjes afgeleverd.",
-    name: "Sandra",
-    place: "Breda",
-    avatar: "https://byqsupply-components.netlify.app/haldenmiller/images/ContactAvatar-3.webp",
-  },
-  {
-    quote:
-      "Fijne, nuchtere mensen. Geen gladde verkooppraat. Onze eerste gezinsauto met een gerust gevoel gekocht.",
-    name: "Mehmet",
-    place: "Etten-Leur",
-    avatar: "https://byqsupply-components.netlify.app/haldenmiller/images/ContactAvatar-1.webp",
-  },
-  {
-    quote:
-      "Auto online gevonden, bezichtiging gepland, en alles klopte. Aanrader voor wie geen gedoe wil.",
-    name: "Patrick",
-    place: "Oosterhout",
-    avatar: "https://byqsupply-components.netlify.app/haldenmiller/images/ContactAvatar.webp",
-  },
-  {
-    quote:
-      "Eerlijk advies en een nette auto met garantie. Voelde echt als kopen van iemand die je kent, niet van een loket.",
-    name: "Linda",
-    place: "Prinsenbeek",
-    avatar: "https://byqsupply-components.netlify.app/haldenmiller/images/ContactAvatar-2.webp",
-  },
+// De teksten staan in home__testimonials; de portretten gaan op volgorde mee.
+const AVATARS = [
+  "https://byqsupply-components.netlify.app/haldenmiller/images/ContactAvatar-3.webp",
+  "https://byqsupply-components.netlify.app/haldenmiller/images/ContactAvatar-1.webp",
+  "https://byqsupply-components.netlify.app/haldenmiller/images/ContactAvatar.webp",
+  "https://byqsupply-components.netlify.app/haldenmiller/images/ContactAvatar-2.webp",
 ];
 
 function ReviewCard({ r }: { r: Review }) {
@@ -64,16 +42,23 @@ function ReviewCard({ r }: { r: Review }) {
   );
 }
 
-export function Testimonials() {
-  const loop = [...REVIEWS, ...REVIEWS];
+export async function Testimonials() {
+  const t = await tekst("home__testimonials");
+  const reviews: Review[] = t.reviews.map((r, i) => ({
+    quote: r.quote,
+    name: r.naam,
+    place: r.plaats,
+    avatar: AVATARS[i % AVATARS.length],
+  }));
+  const loop = [...reviews, ...reviews];
   return (
     <section className="py-[clamp(48px,7vw,96px)] overflow-hidden">
       <div className="max-w-[1200px] mx-auto px-[22px] mb-10">
         <span className="font-display font-bold text-[13px] tracking-[0.14em] uppercase text-steel">
-          Wat kopers zeggen
+          {t.eyebrow}
         </span>
         <h2 className="font-display font-extrabold text-[clamp(28px,4.4vw,52px)] tracking-[-0.02em] text-slate mt-2 max-w-[16ch]">
-          Met een gerust gevoel gereden
+          {t.titel}
         </h2>
       </div>
       <div className="marquee">

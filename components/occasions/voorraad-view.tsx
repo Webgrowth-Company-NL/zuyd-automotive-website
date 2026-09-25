@@ -6,6 +6,9 @@ import { CarCard } from "@/components/car-card";
 import { Button } from "@/components/ui/button";
 import { euro, km as kmFmt } from "@/lib/format";
 import type { CarView } from "@/lib/inventory";
+import type { Teksten } from "@/lib/teksten";
+
+type T = Teksten<"occasions__voorraad">;
 
 interface Filters {
   merk: string;
@@ -42,38 +45,48 @@ function computeBounds(cars: CarView[]): Bounds {
   };
 }
 
-function defaultsFrom(b: Bounds): Filters {
+/** "Alle merken" en "Alle" zijn tegelijk label en filterwaarde voor geen filter. */
+function defaultsFrom(b: Bounds, t: T): Filters {
   return {
-    merk: "Alle merken",
-    brandstof: "Alle",
-    transmissie: "Alle",
+    merk: t.alleMerken,
+    brandstof: t.alle,
+    transmissie: t.alle,
     maxPrijs: b.priceMax,
     minBouwjaar: b.yearMin,
     maxKm: b.kmMax,
   };
 }
 
-export function VoorraadView({ cars }: { cars: CarView[] }) {
+export function VoorraadView({
+  cars,
+  t,
+  kaartKnop,
+}: {
+  cars: CarView[];
+  t: T;
+  /** Tekst op de knop van een autokaart, uit shared__autokaart. */
+  kaartKnop: string;
+}) {
   const bounds = useMemo(() => computeBounds(cars), [cars]);
-  const [f, setF] = useState<Filters>(() => defaultsFrom(bounds));
+  const [f, setF] = useState<Filters>(() => defaultsFrom(bounds, t));
 
   const brandOptions = useMemo(
-    () => ["Alle merken", ...Array.from(new Set(cars.map((c) => c.merk))).sort()],
-    [cars],
+    () => [t.alleMerken, ...Array.from(new Set(cars.map((c) => c.merk))).sort()],
+    [cars, t.alleMerken],
   );
 
   const filtered = useMemo(
     () =>
       cars.filter(
         (c) =>
-          (f.merk === "Alle merken" || c.merk === f.merk) &&
-          (f.brandstof === "Alle" || c.brandstof === f.brandstof) &&
-          (f.transmissie === "Alle" || c.transmissie === f.transmissie) &&
+          (f.merk === t.alleMerken || c.merk === f.merk) &&
+          (f.brandstof === t.alle || c.brandstof === f.brandstof) &&
+          (f.transmissie === t.alle || c.transmissie === f.transmissie) &&
           c.prijs <= f.maxPrijs &&
           c.bouwjaar >= f.minBouwjaar &&
           c.km <= f.maxKm,
       ),
-    [cars, f],
+    [cars, f, t.alleMerken, t.alle],
   );
 
   const set = <K extends keyof Filters>(key: K, value: Filters[K]) =>
@@ -85,11 +98,11 @@ export function VoorraadView({ cars }: { cars: CarView[] }) {
       <div>
         <div className="text-[14.5px] text-slate-soft mb-4">
           <b className="text-slate font-bold">{cars.length}</b>{" "}
-          {cars.length === 1 ? "auto beschikbaar" : "auto's beschikbaar"}
+          {cars.length === 1 ? t.beschikbaarEen : t.beschikbaarMeer}
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-[22px]">
           {cars.map((car, i) => (
-            <CarCard key={car.slug} car={car} as="h2" priority={i === 0} />
+            <CarCard key={car.slug} car={car} as="h2" priority={i === 0} knop={kaartKnop} />
           ))}
         </div>
       </div>
@@ -103,36 +116,36 @@ export function VoorraadView({ cars }: { cars: CarView[] }) {
         <div className="flex items-center justify-between mb-[18px]">
           <span className="inline-flex items-center gap-2 font-display font-bold text-[15px] text-slate">
             <SlidersHorizontal size={17} />
-            Filters
+            {t.filters}
           </span>
           <button
-            onClick={() => setF(defaultsFrom(bounds))}
+            onClick={() => setF(defaultsFrom(bounds, t))}
             className="text-[13px] font-semibold text-steel hover:text-steel-deep"
           >
-            Wissen
+            {t.wissen}
           </button>
         </div>
         <div className="flex flex-col gap-[18px]">
           <SelectField
-            label="Merk"
+            label={t.merk}
             value={f.merk}
             onChange={(v) => set("merk", v)}
             options={brandOptions}
           />
           <SelectField
-            label="Brandstof"
+            label={t.brandstof}
             value={f.brandstof}
             onChange={(v) => set("brandstof", v)}
-            options={["Alle", "Benzine", "Hybride"]}
+            options={[t.alle, "Benzine", "Hybride"]}
           />
           <SelectField
-            label="Transmissie"
+            label={t.transmissie}
             value={f.transmissie}
             onChange={(v) => set("transmissie", v)}
-            options={["Alle", "Handgeschakeld", "Automaat"]}
+            options={[t.alle, "Handgeschakeld", "Automaat"]}
           />
           <RangeField
-            label="Max. prijs"
+            label={t.maxPrijs}
             display={euro(f.maxPrijs)}
             min={bounds.priceMin}
             max={bounds.priceMax}
@@ -141,7 +154,7 @@ export function VoorraadView({ cars }: { cars: CarView[] }) {
             onChange={(v) => set("maxPrijs", v)}
           />
           <RangeField
-            label="Vanaf bouwjaar"
+            label={t.vanafBouwjaar}
             display={String(f.minBouwjaar)}
             min={bounds.yearMin}
             max={bounds.yearMax}
@@ -150,7 +163,7 @@ export function VoorraadView({ cars }: { cars: CarView[] }) {
             onChange={(v) => set("minBouwjaar", v)}
           />
           <RangeField
-            label="Max. km-stand"
+            label={t.maxKm}
             display={kmFmt(f.maxKm)}
             min={bounds.kmMin}
             max={bounds.kmMax}
@@ -164,24 +177,24 @@ export function VoorraadView({ cars }: { cars: CarView[] }) {
       {/* Results */}
       <div className="flex-[999_1_320px] min-w-[300px]">
         <div className="text-[14.5px] text-slate-soft mb-4">
-          <b className="text-slate font-bold">{filtered.length}</b> auto&apos;s gevonden
+          <b className="text-slate font-bold">{filtered.length}</b> {t.gevonden}
         </div>
         {filtered.length > 0 ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-[22px]">
             {filtered.map((car) => (
-              <CarCard key={car.slug} car={car} as="h2" />
+              <CarCard key={car.slug} car={car} as="h2" knop={kaartKnop} />
             ))}
           </div>
         ) : (
           <div className="text-center py-16 px-5 bg-white border border-dashed border-line rounded-[var(--radius)]">
             <div className="font-display font-bold text-[18px] text-slate mb-1.5">
-              Geen auto&apos;s met deze filters
+              {t.leegTitel}
             </div>
             <p className="text-[14.5px] text-slate-soft mb-[18px]">
-              Verruim je filters om meer occasions te zien.
+              {t.leegTekst}
             </p>
-            <Button size="sm" onClick={() => setF(defaultsFrom(bounds))}>
-              Filters wissen
+            <Button size="sm" onClick={() => setF(defaultsFrom(bounds, t))}>
+              {t.leegKnop}
             </Button>
           </div>
         )}

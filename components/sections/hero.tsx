@@ -8,13 +8,7 @@ import { BookButton } from "@/components/booking/book-button";
 import { buttonVariants } from "@/components/ui/button";
 import { Photo } from "@/components/ui/photo";
 import { cn } from "@/lib/cn";
-
-const ROTATING = [
-  "persoonlijk uitgekozen",
-  "gekeurd voor aflevering",
-  "zonder verkooppraat",
-  "klaar voor de weg",
-];
+import type { Teksten } from "@/lib/teksten";
 
 // byq-supply CDN portretten als tijdelijke social-proof avatars.
 // TODO go-live: vervangen door echte klant-/teamfoto's of weglaten.
@@ -25,15 +19,17 @@ const AVATARS = [
   "https://byqsupply-components.netlify.app/haldenmiller/images/ContactAvatar-3.webp",
 ];
 
-export function Hero({ heroImage }: { heroImage?: string }) {
+export function Hero({ heroImage, t }: { heroImage?: string; t: Teksten<"home__hero"> }) {
   const [mounted, setMounted] = useState(false);
   const [idx, setIdx] = useState(0);
+  const ROTATING = t.roterend;
+  const aantal = ROTATING.length;
 
   useEffect(() => {
     setMounted(true);
-    const t = setInterval(() => setIdx((i) => (i + 1) % ROTATING.length), 2600);
-    return () => clearInterval(t);
-  }, []);
+    const timer = setInterval(() => setIdx((i) => (i + 1) % aantal), 2600);
+    return () => clearInterval(timer);
+  }, [aantal]);
 
   return (
     <section className="max-w-[1200px] mx-auto px-[22px] pt-[clamp(40px,7vw,76px)] pb-[clamp(36px,5vw,56px)]">
@@ -47,14 +43,14 @@ export function Hero({ heroImage }: { heroImage?: string }) {
         >
           <span className="inline-flex items-center gap-2 bg-white border border-line text-steel-deep font-semibold text-[13px] px-3.5 py-1.5 rounded-full shadow-sm">
             <span className="w-[7px] h-[7px] rounded-full bg-steel" />
-            Occasions in Breda · persoonlijk geselecteerd
+            {t.eyebrow}
           </span>
 
           {/* De rotator staat bewust BUITEN de h1: alle varianten zitten in de
               DOM voor de animatie, en binnen de h1 leest een zoekmachine ze als
               één lange kop aan elkaar geplakt. */}
           <h1 className="font-display font-extrabold text-[clamp(34px,5.4vw,58px)] leading-[1.04] tracking-[-0.02em] text-slate mt-[22px]">
-            Betrouwbare occasions in Breda,
+            {t.titel}
           </h1>
           <div
             aria-hidden
@@ -75,17 +71,16 @@ export function Hero({ heroImage }: { heroImage?: string }) {
           </div>
 
           <p className="text-[clamp(16px,2vw,19px)] leading-relaxed text-slate-soft max-w-[40ch] mt-5">
-            Welkom bij Zuyd Automotive. Vraag naar Leroy, dan laat hij je de auto zien waar je
-            interesse in hebt. Rustig, op je gemak en zonder verkooppraat.
+            {t.intro}
           </p>
 
           <div className="flex flex-wrap gap-3 mt-7">
             <BookButton size="lg">
               <Phone size={18} />
-              Maak een afspraak
+              {t.knopAfspraak}
             </BookButton>
             <Link href="/occasions" className={buttonVariants({ variant: "secondary", size: "lg" })}>
-              Bekijk de voorraad
+              {t.knopVoorraad}
             </Link>
           </div>
 
@@ -107,7 +102,7 @@ export function Hero({ heroImage }: { heroImage?: string }) {
               ))}
             </div>
             <span className="text-[14.5px] text-slate-soft">
-              <b className="font-display font-bold text-slate">4,9</b> gemiddeld · kopers uit Breda e.o.
+              <b className="font-display font-bold text-slate">{t.beoordeling}</b> {t.beoordelingTekst}
             </span>
           </div>
         </div>
@@ -131,7 +126,7 @@ export function Hero({ heroImage }: { heroImage?: string }) {
           {/* Rating chip top-right */}
           <div className="absolute z-[2] right-3 top-3 bg-white/92 backdrop-blur border border-line rounded-full px-3 py-1.5 flex items-center gap-1.5 shadow-soft">
             <Check size={15} className="text-steel" />
-            <span className="text-[12.5px] font-semibold text-slate">Gekeurd voor aflevering</span>
+            <span className="text-[12.5px] font-semibold text-slate">{t.fotoLabel}</span>
           </div>
           {/* Floating Leroy card */}
           <div className="absolute -left-1.5 -bottom-[18px] z-[2] bg-white border border-line rounded-2xl px-[18px] py-3.5 shadow-lg flex items-center gap-3.5 max-w-[280px]">
@@ -144,9 +139,9 @@ export function Hero({ heroImage }: { heroImage?: string }) {
             />
             <span className="leading-snug">
               <span className="block font-display font-bold text-[14.5px] text-slate">
-                Vraag naar Leroy
+                {t.leroyTitel}
               </span>
-              <span className="block text-[13px] text-slate-soft">Je vaste aanspreekpunt</span>
+              <span className="block text-[13px] text-slate-soft">{t.leroyTekst}</span>
             </span>
           </div>
         </div>
