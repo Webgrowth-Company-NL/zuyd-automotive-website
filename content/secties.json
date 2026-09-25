@@ -11,7 +11,7 @@
     "intro": "Welkom bij Zuyd Automotive. Vraag naar Leroy, dan laat hij je de auto zien waar je interesse in hebt. Rustig, op je gemak en zonder verkooppraat.",
     "knopAfspraak": "Maak een afspraak",
     "knopVoorraad": "Bekijk de voorraad",
-    "beoordeling": "4,9",
+    "beoordeling": "4,8",
     "beoordelingTekst": "gemiddeld · kopers uit Breda e.o.",
     "fotoLabel": "Gekeurd voor aflevering",
     "leroyTitel": "Vraag naar Leroy",
@@ -89,8 +89,14 @@
     "titel": "Vertrouwd autokopen in de regio Breda",
     "statEyebrow": "In het kort",
     "stats": [
-      { "waarde": "4,9", "label": "Gemiddelde beoordeling" },
-      { "waarde": "25", "label": "Tevreden klanten sinds de start in januari 2026" }
+      {
+        "waarde": "4,9",
+        "label": "Gemiddelde beoordeling"
+      },
+      {
+        "waarde": "25",
+        "label": "Tevreden klanten sinds de start in januari 2026"
+      }
     ],
     "garantieEyebrow": "Met een gerust hart",
     "garantieTitel": "Garantie via Autotrust",
@@ -170,8 +176,14 @@
   },
   "over-ons__waarden": {
     "items": [
-      { "titel": "Nuchter & eerlijk", "tekst": "We zeggen het zoals het is. Ook als een auto niet bij je past." },
-      { "titel": "Persoonlijk", "tekst": "Vast aanspreekpunt, van bezichtiging tot sleutels." },
+      {
+        "titel": "Nuchter & eerlijk",
+        "tekst": "We zeggen het zoals het is. Ook als een auto niet bij je past."
+      },
+      {
+        "titel": "Persoonlijk",
+        "tekst": "Vast aanspreekpunt, van bezichtiging tot sleutels."
+      },
       {
         "titel": "Zorgvuldig",
         "tekst": "Elke auto gekeurd en netjes afgeleverd. Optioneel met garantie via Autotrust."
@@ -188,8 +200,14 @@
         "titel": "Stuur je gegevens",
         "tekst": "Merk, model, kilometerstand en een beschrijving van eventuele gebreken en beschadigingen."
       },
-      { "titel": "Wij doen een voorstel", "tekst": "Eerlijke prijs, telefonisch of via WhatsApp." },
-      { "titel": "Snel geregeld", "tekst": "Akkoord? Dan handelen we het netjes voor je af." }
+      {
+        "titel": "Wij doen een voorstel",
+        "tekst": "Eerlijke prijs, telefonisch of via WhatsApp."
+      },
+      {
+        "titel": "Snel geregeld",
+        "tekst": "Akkoord? Dan handelen we het netjes voor je af."
+      }
     ]
   },
   "inruil__formulier": {
@@ -206,7 +224,11 @@
     "kentekenPlaceholder": "XX-123-X",
     "historie": "Is de onderhoudshistorie bekend?",
     "historieKeuze": "Maak een keuze",
-    "historieOpties": ["Ja, volledig", "Deels bekend", "Nee, niet bekend"],
+    "historieOpties": [
+      "Ja, volledig",
+      "Deels bekend",
+      "Nee, niet bekend"
+    ],
     "gebreken": "Gebreken of beschadigingen",
     "gebrekenPlaceholder": "Bijv. kras op de achterbumper, deukje in het portier, airco koelt niet meer",
     "gebrekenHulp": "Hoe eerlijker het beeld, hoe scherper we het voorstel kunnen maken.",
@@ -341,9 +363,18 @@
     "pluspunten": "Pluspunten",
     "gerustHart": "Met een gerust hart",
     "zekerheden": [
-      { "titel": "Garantie mogelijk", "tekst": "Via Autotrust, landelijk netwerk van reparatiepartners." },
-      { "titel": "Gekeurd & onderhouden", "tekst": "Met onderhoudshistorie en nieuwe APK." },
-      { "titel": "Inruil mogelijk", "tekst": "Wij nemen je huidige auto graag mee in het inruilvoorstel." }
+      {
+        "titel": "Garantie mogelijk",
+        "tekst": "Via Autotrust, landelijk netwerk van reparatiepartners."
+      },
+      {
+        "titel": "Gekeurd & onderhouden",
+        "tekst": "Met onderhoudshistorie en nieuwe APK."
+      },
+      {
+        "titel": "Inruil mogelijk",
+        "tekst": "Wij nemen je huidige auto graag mee in het inruilvoorstel."
+      }
     ]
   },
   "notfound__tekst": {
