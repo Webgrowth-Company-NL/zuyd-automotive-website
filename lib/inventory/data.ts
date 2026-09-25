@@ -48,7 +48,7 @@ export const CARS: Car[] = [
     variant: "2.0 TFSI ultra MHEV 190 pk S tronic",
     prijs: 18250,
     bouwjaar: 2018,
-    km: 147512,
+    km: 149100,
     brandstof: "Benzine",
     transmissie: "Automaat",
     pk: 190,
