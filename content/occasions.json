@@ -6,9 +6,7 @@
     "merk": "Opel",
     "model": "Corsa",
     "variant": "1.2-16V Blitz",
-    "images": [
-      "/inhoud/occasions/opel-corsa-1-2-16v-blitz/mvdnp1jt-1.jpg"
-    ],
+    "images": [],
     "bouwjaar": 2014,
     "brandstof": "Benzine",
     "transmissie": "Handgeschakeld",
@@ -22,7 +20,10 @@
     "highlights": [],
     "quote": "Deze auto krijgen we binnenkort binnen. Neem contact op voor meer informatie.",
     "km": 169644,
-    "prijs": 4495
+    "prijs": 4495,
+    "images_verborgen": [
+      "/inhoud/occasions/opel-corsa-1-2-16v-blitz/mvdnp1jt-1.jpg"
+    ]
   },
   {
     "id": "clio-etech-rs-line",
