@@ -129,6 +129,11 @@
       }
     ]
   },
+  "home__meta": {
+    "titel": "Zuyd Automotive · Betrouwbare occasions in Breda",
+    "omschrijving": "Betaalbare, persoonlijk uitgekozen occasions in Breda. Vraag naar Leroy voor een bezichtiging. Gekeurd, met eerlijk advies en garantie mogelijk.",
+    "zoekwoord": "occasions Breda"
+  },
   "shared__closing-cta": {
     "titel": "Klaar om je volgende auto te ontmoeten?",
     "tekst": "Bel of app even en vraag naar Leroy. We werken op afspraak, dus zeg wanneer het je uitkomt en de auto staat klaar.",
@@ -191,6 +196,11 @@
     ],
     "knop": "Kom langs en maak een afspraak"
   },
+  "over-ons__meta": {
+    "titel": "Over ons · de mannen achter Zuyd",
+    "omschrijving": "Jarenlange ervaring in de automotive branche en één vast aanspreekpunt. Bij Zuyd Automotive in Breda vraag je naar Leroy en hij laat je de auto rustig zien.",
+    "zoekwoord": "Zuyd Automotive"
+  },
   "inruil__intro": {
     "eyebrow": "Inruil",
     "titel": "Jouw auto in op onze occasion",
@@ -250,6 +260,11 @@
     "bedanktTekst": "Leroy belt je binnen één werkdag met een eerlijk voorstel.",
     "bedanktKnop": "Nog een auto aanmelden"
   },
+  "inruil__meta": {
+    "titel": "Inruil · jouw auto in op onze occasion",
+    "omschrijving": "Wij ruilen je huidige auto graag in op de auto waar je interesse in hebt. Vul kort je gegevens in en Zuyd Automotive in Breda doet je een voorstel.",
+    "zoekwoord": "auto inruilen Breda"
+  },
   "detailing__intro": {
     "eyebrow": "Car detailing",
     "titel": "Keramische coating voor je auto",
@@ -296,6 +311,11 @@
     "bedanktTekst": "De prijs hangt af van de auto en de staat van de lak. We nemen contact op met een voorstel op maat.",
     "bedanktKnop": "Nog een auto aanmelden"
   },
+  "detailing__meta": {
+    "titel": "Keramische coating in Breda",
+    "omschrijving": "Keramische coating voor je auto bij Zuyd Automotive in Breda. Beschermt de lak en houdt de glans jarenlang diep. Prijs op aanvraag, afhankelijk van de auto.",
+    "zoekwoord": "keramische coating auto"
+  },
   "contact__intro": {
     "eyebrow": "Contact",
     "titel": "Kom langs in Breda",
@@ -310,6 +330,11 @@
     "ctaTitel": "Een auto bekijken?",
     "ctaTekst": "Leroy plant de afspraak zo met je in.",
     "knopAfspraak": "Maak een afspraak"
+  },
+  "contact__meta": {
+    "titel": "Contact · kom langs in Breda",
+    "omschrijving": "Zuyd Automotive aan de Riethil 14 in Breda. Bekijk openingstijden en bel, app of mail Leroy voor een afspraak, dan staat de auto klaar.",
+    "zoekwoord": "autobedrijf Breda"
   },
   "occasions__intro": {
     "eyebrow": "Voorraad",
@@ -333,6 +358,11 @@
     "leegTitel": "Geen auto's met deze filters",
     "leegTekst": "Verruim je filters om meer occasions te zien.",
     "leegKnop": "Filters wissen"
+  },
+  "occasions__meta": {
+    "titel": "Occasions in Breda · onze voorraad",
+    "omschrijving": "Bekijk de occasions van Zuyd Automotive in Breda. Filter op merk, prijs, brandstof, bouwjaar en kilometerstand. Stuk voor stuk persoonlijk uitgekozen.",
+    "zoekwoord": "tweedehands auto Breda"
   },
   "occasion__detail": {
     "terug": "Terug naar voorraad",

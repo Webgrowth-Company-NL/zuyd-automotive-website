@@ -2,14 +2,11 @@ import type { Metadata } from "next";
 import { CoatingForm } from "@/components/detailing/coating-form";
 import { breadcrumbLd, JsonLd } from "@/lib/structured-data";
 import { SITE } from "@/lib/site";
-import { tekst } from "@/lib/teksten";
+import { tekst, metaVan } from "@/lib/teksten";
 
-export const metadata: Metadata = {
-  title: "Keramische coating in Breda",
-  description:
-    "Keramische coating voor je auto bij Zuyd Automotive in Breda. Beschermt de lak en houdt de glans jarenlang diep. Prijs op aanvraag, afhankelijk van de auto.",
-  alternates: { canonical: "/detailing" },
-};
+export async function generateMetadata(): Promise<Metadata> {
+  return metaVan("detailing", "/detailing");
+}
 
 
 export default async function DetailingPage() {

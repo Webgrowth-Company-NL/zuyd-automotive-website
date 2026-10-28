@@ -4,14 +4,11 @@ import { Reveal } from "@/components/reveal";
 import { BookButton } from "@/components/booking/book-button";
 import { breadcrumbLd, JsonLd } from "@/lib/structured-data";
 import { SITE } from "@/lib/site";
-import { tekst } from "@/lib/teksten";
+import { tekst, metaVan } from "@/lib/teksten";
 
-export const metadata: Metadata = {
-  title: "Over ons · de mannen achter Zuyd",
-  description:
-    "Jarenlange ervaring in de automotive branche en één vast aanspreekpunt. Bij Zuyd Automotive in Breda vraag je naar Leroy en hij laat je de auto rustig zien.",
-  alternates: { canonical: "/over-ons" },
-};
+export async function generateMetadata(): Promise<Metadata> {
+  return metaVan("over-ons", "/over-ons");
+}
 
 
 export default async function OverOnsPage() {

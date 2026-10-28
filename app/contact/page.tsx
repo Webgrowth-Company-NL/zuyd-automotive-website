@@ -4,14 +4,11 @@ import { BookButton } from "@/components/booking/book-button";
 import { WhatsappIcon } from "@/components/ui/icons";
 import { autoDealerLd, breadcrumbLd, JsonLd } from "@/lib/structured-data";
 import { SITE, mailHref, mapsHref, telHref, whatsappHref } from "@/lib/site";
-import { tekst, vul } from "@/lib/teksten";
+import { tekst, vul, metaVan } from "@/lib/teksten";
 
-export const metadata: Metadata = {
-  title: "Contact · kom langs in Breda",
-  description:
-    "Zuyd Automotive aan de Riethil 14 in Breda. Bekijk openingstijden en bel, app of mail Leroy voor een afspraak, dan staat de auto klaar.",
-  alternates: { canonical: "/contact" },
-};
+export async function generateMetadata(): Promise<Metadata> {
+  return metaVan("contact", "/contact");
+}
 
 
 export default async function ContactPage() {

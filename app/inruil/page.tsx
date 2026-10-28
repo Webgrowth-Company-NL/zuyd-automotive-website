@@ -2,14 +2,11 @@ import type { Metadata } from "next";
 import { InruilForm } from "@/components/inruil/inruil-form";
 import { breadcrumbLd, JsonLd } from "@/lib/structured-data";
 import { SITE } from "@/lib/site";
-import { tekst } from "@/lib/teksten";
+import { tekst, metaVan } from "@/lib/teksten";
 
-export const metadata: Metadata = {
-  title: "Inruil · jouw auto in op onze occasion",
-  description:
-    "Wij ruilen je huidige auto graag in op de auto waar je interesse in hebt. Vul kort je gegevens in en Zuyd Automotive in Breda doet je een voorstel.",
-  alternates: { canonical: "/inruil" },
-};
+export async function generateMetadata(): Promise<Metadata> {
+  return metaVan("inruil", "/inruil");
+}
 
 
 export default async function InruilPage() {

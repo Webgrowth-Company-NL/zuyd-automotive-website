@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { getAllCars, getFeaturedCars } from "@/lib/inventory";
 import { autoDealerLd, JsonLd } from "@/lib/structured-data";
 import { Hero } from "@/components/sections/hero";
@@ -9,8 +10,12 @@ import { TrustStats } from "@/components/sections/trust-stats";
 import { ShowcaseMarquee } from "@/components/sections/showcase-marquee";
 import { Testimonials } from "@/components/sections/testimonials";
 import { ClosingCta } from "@/components/sections/closing-cta";
-import { tekst } from "@/lib/teksten";
+import { metaVan, tekst } from "@/lib/teksten";
 
+
+export async function generateMetadata(): Promise<Metadata> {
+  return metaVan("home", "/", { absoluut: true });
+}
 
 export default async function HomePage() {
   const [featured, all, hero] = await Promise.all([

@@ -3,14 +3,11 @@ import { getAllCars } from "@/lib/inventory";
 import { VoorraadView } from "@/components/occasions/voorraad-view";
 import { breadcrumbLd, JsonLd } from "@/lib/structured-data";
 import { SITE } from "@/lib/site";
-import { tekst } from "@/lib/teksten";
+import { tekst, metaVan } from "@/lib/teksten";
 
-export const metadata: Metadata = {
-  title: "Occasions in Breda · onze voorraad",
-  description:
-    "Bekijk de occasions van Zuyd Automotive in Breda. Filter op merk, prijs, brandstof, bouwjaar en kilometerstand. Stuk voor stuk persoonlijk uitgekozen.",
-  alternates: { canonical: "/occasions" },
-};
+export async function generateMetadata(): Promise<Metadata> {
+  return metaVan("occasions", "/occasions");
+}
 
 
 export default async function OccasionsPage() {
